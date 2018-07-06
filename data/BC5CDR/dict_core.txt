@@ -1,0 +1,2482 @@
+Chemical	( R)-alpha - methylhistamine
+Chemical	1,1-dichloro-2,2,2-trifluoroethane
+Chemical	1,2-DMH
+Chemical	1,2-dimethylhydrazine
+Chemical	1,25-dihydroxyvitamin D
+Chemical	1,3-bis-(2-chloroethyl)-1-nitrosourea
+Chemical	1-(2-methoxyphenyl)-4-[4-(2-phthalimido)butyl]piperazine
+Chemical	1-[2-(3,4-dichlorophenyl)ethyl]-4-methylpiperazine
+Chemical	1-bromo-1-chloro-2,2,2-trifluoroethane
+Chemical	1-chloro-1,2,2,2-tetrafluoroethane
+Chemical	11-deoxycortisol
+Chemical	17beta - Estradiol
+Chemical	17beta - estradiol
+Chemical	2-acetylaminofluorene
+Chemical	2-chloroprocaine - CE
+Chemical	2-methoxy-4-amino-5-chlorobenzoic acid 2-(diethylamino)ethyl ester
+Chemical	2-methyl-6-(phenylethynyl)pyridine
+Chemical	2PAM
+Chemical	3 alpha - tropyl 2-(p - bromophenyl)propionate
+Chemical	3,4-Dihydroxyphenylacetic Acid
+Chemical	DOPAC
+Chemical	3,4-methylenedioxymethamphetamine
+Chemical	3-Mercaptopropionic Acid
+Chemical	3-aminopropyl - diethoxy - methyl - phosphinic acid
+Chemical	3-benzenesulfonyl-7-(4-methyl - piperazin-1-yl)1H - indole
+Chemical	3-hydroxybutyrate
+Chemical	3-methyladenine
+Chemical	3H - TBOB
+Chemical	3MA
+Chemical	3R-1-[2-(3,4-dichlorophenyl)ethyl]-1,4-diazabicyclo[4.3.0]nonane
+Chemical	3S-1-[2-(3,4-dichlorophenyl)ethyl]-1,4-diazabicyclo[4.3.0]nonane
+Chemical	3SR,4aRS,6SR,8aRS-6-[phosphonomethyl]decahydr oisoquinoline-3- carboxylic acid
+Chemical	3alpha - hydroxy-3beta - methyl-5alpha - pregnan-20-one
+Chemical	3alpha - hydroxy-5alpha - pregnan-20-one
+Chemical	3alpha - hydroxy-5beta - pregnan-20-one
+Chemical	3alpha - tropyl 2-(p - bromophenyl)propionate
+Chemical	4'-0-tetrahydropyranyladriamycin
+Chemical	4-DAMP
+Chemical	4-diphenylacetoxy - N - methylpiperidine
+Chemical	5 - [ 2- ( 4- ( 3 - fluorobenzylidene ) piperidin-1-yl ) ethyl ] - 4 -(4-fluorophenyl ) thiazole-2-carboxamide
+Chemical	5,5-dimethyl-3-(3-fluorophenyl)-4-(4-methylsulphonyl ) phenyl-2(5H)-furanon
+Chemical	5,7-dichlorokynurenic acid
+Chemical	5,7-DCKA
+Chemical	5-AzC
+Chemical	5-FU
+Chemical	5-HT
+Chemical	5-HTP
+Chemical	5-azacytidine
+Chemical	5-fluorouracil
+Chemical	5-hydroxytriptamine
+Chemical	5-hydroxytryptamin1A
+Chemical	5-hydroxytryptamine
+Chemical	5-hydroxytryptamine4
+Chemical	5-hydroxytryptophan
+Chemical	6-OHDA
+Chemical	6-hydroxydopamine
+Chemical	8-Bromo Cyclic Adenosine Monophosphate
+Chemical	8 Br Cyclic AMP
+Chemical	8-Bromo Cyclic AMP
+Chemical	8-[(4-amino - l - methylbutyl)amino]- 5-(l - hexyloxy)-6-methoxy-4-methylquinoline
+Chemical	8-aminoquinoline
+Chemical	9-[[2-methoxy-4-[(methylsulphonyl)amino]phenyl]amino ] -N,5-dimethyl- 4-acridinecarboxamide
+Chemical	99mTc - glucarate
+Chemical	A 17
+Chemical	AAP
+Chemical	ACE inhibitor
+Chemical	ACh
+Chemical	ADR
+Chemical	AMI
+Chemical	AS 8
+Chemical	ASA
+Chemical	AVP
+Chemical	AX
+Chemical	AZT
+Chemical	Acetaminophen
+Chemical	Acetic Acid
+Chemical	Acid Phosphatase
+Chemical	acid phosphatase B
+Chemical	Adenosine Diphosphate
+Chemical	Adenosine Pyrophosphate
+Chemical	ADP
+Chemical	Magnesium ADP
+Chemical	Adenosine Monophosphate
+Chemical	Adenosine Phosphate Disodium
+Chemical	AMP
+Chemical	Adenosine Triphosphate
+Chemical	ATP
+Chemical	Magnesium Adenosine Triphosphate
+Chemical	Cu ATP
+Chemical	Zn ATP
+Chemical	insulin ATP conjugate
+Chemical	Adrenergic Agonists
+Chemical	Adrenergic Agonist
+Chemical	Adrenergic Receptor Agonist
+Chemical	Adrenergic Receptor Agonists
+Chemical	Adrenergic Antagonists
+Chemical	Adrenergic Antagonist
+Chemical	Adrenergic Blocker
+Chemical	Adrenergic Blockers
+Chemical	Adrenergic Blocking Agents
+Chemical	Adrenergic Receptor Antagonists
+Chemical	Antiadrenergic Agents
+Chemical	Adriamycin
+Chemical	Alanine Transaminase
+Chemical	Aldehyde Dehydrogenase
+Chemical	BCP 54
+Chemical	aldehyde dehydrogenase 3
+Chemical	Alkaline Phosphatase
+Chemical	Alkylating Agents
+Chemical	AmB
+Chemical	Amino Acids
+Chemical	AL 275
+Chemical	GPI 3000
+Chemical	Aminocaproic Acid
+Chemical	6 Aminocaproic Acid
+Chemical	CY 116
+Chemical	epsilon Aminocaproic Acid
+Chemical	Amiodarone
+Chemical	Amphotericin B
+Chemical	Amphotericin
+Chemical	Amphotericin B Cholesterol Dispersion
+Chemical	Amphotericin B Colloidal Dispersion
+Chemical	Fungizone
+Chemical	amphotericin B - deoxycholate
+Chemical	amphotericin B deoxycholate
+Chemical	amphotericin B lipid complex
+Chemical	Angiogenesis Inhibitors
+Chemical	Angiogenesis Factor Inhibitors
+Chemical	Angiogenic Antagonists
+Chemical	Angiogenic Inhibitors
+Chemical	Anti Angiogenesis Effect
+Chemical	Anti Angiogenesis Effects
+Chemical	Antiangiogenic Agents
+Chemical	Anti Angiogenic Drugs
+Chemical	Neovascularization Inhibitors
+Chemical	Angiotensin II
+Chemical	Antifungal Agents
+Chemical	Antifungal Antibiotics
+Chemical	Antihypertensive Agents
+Chemical	Anti Hypertensive Agents
+Chemical	Antihypertensive Drugs
+Chemical	Anti Hypertensive Drugs
+Chemical	Anti Hypertensives
+Chemical	Antineoplastic Agents
+Chemical	Anticancer Agents
+Chemical	Antineoplastic Drugs
+Chemical	Antitumor Agents
+Chemical	Antitumor Drugs
+Chemical	Cancer Chemotherapy Agents
+Chemical	Cancer Chemotherapy Drugs
+Chemical	Chemotherapeutic Anticancer Agents
+Chemical	Chemotherapeutic Anticancer Drug
+Chemical	Antipsychotic Agents
+Chemical	Antipsychotic Drugs
+Chemical	Antipsychotic Effect
+Chemical	Antipsychotic Effects
+Chemical	Antipsychotics
+Chemical	Neuroleptic Agents
+Chemical	Neuroleptic Drugs
+Chemical	Neuroleptics
+Chemical	Antithrombin III
+Chemical	Antithrombin III Alpha
+Chemical	Heparin Co Factor I
+Chemical	AT III CV
+Chemical	AT III Dublin
+Chemical	AT III Dublin 2
+Chemical	AT III Glasgow
+Chemical	AT III NP
+Chemical	Glasgow antithrombin III
+Chemical	antithrombin Glasgow III
+Chemical	Antithyroid Agents
+Chemical	Antithyroid Drugs
+Chemical	Antithyroid Effect
+Chemical	Antithyroid Effects
+Chemical	Thyroid Antagonists
+Chemical	Antiviral Agents
+Chemical	Antiviral Drugs
+Chemical	AraG
+Chemical	Arginine Vasopressin
+Chemical	Aristolochic Acids
+Chemical	aristolochic acid
+Chemical	aristolochic acid A
+Chemical	Aspartic Acid
+Chemical	Ato
+Chemical	Atrial Natriuretic Factor
+Chemical	alpha ANP
+Chemical	alpha ANP Dimer
+Chemical	alpha Atrial Natriuretic Peptide
+Chemical	ANF
+Chemical	ANF Precursors
+Chemical	ANP
+Chemical	Atrial Natriuretic Factor Precursors
+Chemical	Atrial Natriuretic Peptides
+Chemical	beta ANP
+Chemical	beta Atrial Natriuretic Peptide
+Chemical	gamma Atrial Natriuretic Peptide
+Chemical	Pro ANF
+Chemical	ANF 25
+Chemical	ANF IV
+Chemical	ANP 270
+Chemical	atrial natriuretic factor 25
+Chemical	kaliuretic peptide
+Chemical	mini atrial natriuretic peptide
+Chemical	rat atrial natriuretic peptide
+Chemical	Azathioprine
+Chemical	BCNU
+Chemical	BZDs
+Chemical	Biogenic Amines
+Chemical	Biogenic Amine
+Chemical	Blood Coagulation Factors
+Chemical	Blood Coagulation Factor
+Chemical	Clotting Factors
+Chemical	Coagulation Factor
+Chemical	Coagulation Factors
+Chemical	activated protein C receptors
+Chemical	endothelial cell protein C receptor
+Chemical	factor IX concentrate
+Chemical	large granular lymphocyte procoagulant activity
+Chemical	leukocyte PCA
+Chemical	macrophage PCA
+Chemical	macrophage procoagulant inducing factor
+Chemical	monocyte PCA
+Chemical	monocyte procoagulant activity
+Chemical	mononuclear cell procoagulant activity
+Chemical	Blood Glucose
+Chemical	Blood Sugar
+Chemical	Bradykinin Receptor Antagonists
+Chemical	Bradykinin Antagonists
+Chemical	Bradykinin Receptor Blockers
+Chemical	Bradykinin Receptor Inhibitors
+Chemical	Butylated Hydroxyanisole
+Chemical	BHA
+Chemical	CB 3717
+Chemical	CBZ
+Chemical	CC
+Chemical	CGRP
+Chemical	CMF regimen
+Chemical	CO2
+Chemical	CPA
+Chemical	CY
+Chemical	Ca
+Chemical	CaCl(2 )
+Chemical	CaCl2
+Chemical	Caffeine
+Chemical	Calcineurin Inhibitors
+Chemical	Calcineurin Antagonists
+Chemical	Calcineurin Blockers
+Chemical	Protein Phosphatase 3 Inhibitors
+Chemical	Calcium Carbonate
+Chemical	Calcium Milk
+Chemical	Marble
+Chemical	Milk of Calcium
+Chemical	solution G
+Chemical	Calcium Channel Blockers
+Chemical	Calcium Channel Antagonists
+Chemical	Calcium Channel Blocking Drugs
+Chemical	Exogenous Calcium Antagonists
+Chemical	Exogenous Calcium Inhibitors
+Chemical	Calcium Channels
+Chemical	Calcium Chloride
+Chemical	Calcium chloride
+Chemical	Calcium Gluconate
+Chemical	Capsaicin
+Chemical	Captopril
+Chemical	Carbamazepine
+Chemical	Carbon Dioxide
+Chemical	Carbon dioxide
+Chemical	carbon dioxide ion
+Chemical	Carbon Monoxide
+Chemical	CO
+Chemical	Carbon Tetrachloride
+Chemical	Carbonic Anhydrase Inhibitors
+Chemical	Caspase 3
+Chemical	Cathepsin D
+Chemical	Cell Extracts
+Chemical	bacterial lysate
+Chemical	receptor translocation modulator
+Chemical	Central Nervous System Depressants
+Chemical	CNS Depressants
+Chemical	Chelating Agents
+Chemical	Metal Antagonists
+Chemical	Metal Chelating Agents
+Chemical	Chemokine CCL2
+Chemical	CCL2 Chemokine
+Chemical	Chloride Channels
+Chemical	chloride channel 3
+Chemical	chloride channel 5
+Chemical	chloride intracellular channel 1
+Chemical	Cholinergic Agents
+Chemical	Acetylcholine Agents
+Chemical	Cholinergic Drugs
+Chemical	Cholinergic Effect
+Chemical	Cholinergic Effects
+Chemical	Cholinergics
+Chemical	Muscarinic Agents
+Chemical	Muscarinic Effect
+Chemical	Muscarinic Effects
+Chemical	Nicotinic Agents
+Chemical	Nicotinic Effect
+Chemical	Nicotinic Effects
+Chemical	Cholinesterase Inhibitors
+Chemical	Acetylcholinesterase Inhibitors
+Chemical	Anticholinesterase Agents
+Chemical	Anticholinesterase Drugs
+Chemical	Anticholinesterases
+Chemical	Irreversible Cholinesterase Inhibitors
+Chemical	Reversible Cholinesterase Inhibitors
+Chemical	Chorionic Gonadotropin
+Chemical	Human Chorionic Gonadotropin
+Chemical	PG 600
+Chemical	prostaglandin 600
+Chemical	Cisplatin
+Chemical	Citric Acid
+Chemical	Citrate
+Chemical	Citric Acid Monohydrate
+Chemical	Mg citrate
+Chemical	citric acid - sodium bicarbonate
+Chemical	Clavulanic Acid
+Chemical	Clavulanate
+Chemical	Clavulanate Potassium
+Chemical	Potassium Clavulanate
+Chemical	Sodium Clavulanate
+Chemical	Clonidine
+Chemical	Cocaine
+Chemical	Coenzyme A
+Chemical	CoA
+Chemical	Contrast Media
+Chemical	Contrast Agent
+Chemical	Contrast Agents
+Chemical	Contrast Material
+Chemical	Contrast Materials
+Chemical	Radiocontrast Agent
+Chemical	Radiocontrast Agents
+Chemical	Radiocontrast Media
+Chemical	Corn Oil
+Chemical	Corn oil
+Chemical	Corn Oils
+Chemical	Cr
+Chemical	Crack Cocaine
+Chemical	Creatine Kinase
+Chemical	CsA
+Chemical	Cyclooxygenase 1
+Chemical	Cyclooxygenase 2
+Chemical	Cyclooxygenase Inhibitors
+Chemical	Prostaglandin Synthase Inhibitors
+Chemical	Prostaglandin Synthesis Antagonists
+Chemical	Cyclophilin A
+Chemical	Cyclophosphamide
+Chemical	Cyproterone Acetate
+Chemical	Cyproterone acetate - ethinyl estradiol
+Chemical	Cysteine Proteases
+Chemical	D - pen
+Chemical	D - penicillamine
+Chemical	DA
+Chemical	DCE
+Chemical	DES
+Chemical	DFO
+Chemical	DFP
+Chemical	DFU
+Chemical	DOX
+Chemical	Deoxycholic Acid
+Chemical	Deoxycholate
+Chemical	Sodium Deoxycholate
+Chemical	Dex
+Chemical	Dexamethasone
+Chemical	Digitalis Glycosides
+Chemical	Dizocilpine Maleate
+Chemical	Dizocilpine
+Chemical	MK801
+Chemical	MK-801
+Chemical	Dobutamine
+Chemical	Dopamine
+Chemical	Dopamine Agonists
+Chemical	Dopamine Agonist
+Chemical	Dopamine Receptor Agonist
+Chemical	Dopamine Receptor Agonists
+Chemical	Dopaminergic Agonist
+Chemical	Dopaminergic Agonists
+Chemical	Dopamine Antagonists
+Chemical	Dopamine Blockers
+Chemical	Dopamine Receptor Antagonists
+Chemical	Dopaminergic Antagonists
+Chemical	Dopamine D2 Receptor Antagonists
+Chemical	Dopamine D2 Antagonists
+Chemical	Doxorubicin
+Chemical	Drinking Water
+Chemical	E2
+Chemical	EE
+Chemical	Echothiophate Iodide
+Chemical	Ecstasy
+Chemical	Enzyme Inhibitors
+Chemical	Epidermal Growth Factor
+Chemical	Epidermal growth factor
+Chemical	Human Urinary Gastric Inhibitor
+Chemical	Epinephrine
+Chemical	Ethacrynic Acid
+Chemical	Ethinyl Estradiol
+Chemical	Ethinyloestradiol
+Chemical	SH B 259 AB
+Chemical	Serial C
+Chemical	ethinyl estradiol - levonorgestrel
+Chemical	Evans Blue
+Chemical	FAN
+Chemical	FANFT
+Chemical	FK 506
+Chemical	FK506
+Chemical	FR 139317
+Chemical	Factor V
+Chemical	AC Globulin
+Chemical	Blood Coagulation Factor V
+Chemical	Coagulation Factor V
+Chemical	Factor 5
+Chemical	Factor Five
+Chemical	Factor Pi
+Chemical	factor V activity
+Chemical	factor V clotting activity
+Chemical	Factor VIII
+Chemical	Blood Coagulation Factor VIII
+Chemical	Coagulation Factor VIII
+Chemical	Factor 8
+Chemical	Factor 8 C
+Chemical	Factor Eight
+Chemical	Factor VIII Clotting Antigen
+Chemical	Factor VIII Procoagulant Activity
+Chemical	F VIII C
+Chemical	Factor VIIa
+Chemical	Activated Factor VII
+Chemical	Coagulation Factor VIIa
+Chemical	Factor Seven A
+Chemical	Novo Seven
+Chemical	coagulation factor viia recombinant human
+Chemical	recombinant coagulation factor viia
+Chemical	recombinant factor VIIa
+Chemical	Factor Xa
+Chemical	Activated Factor X
+Chemical	Coagulation Factor Xa
+Chemical	Factor Ten A
+Chemical	Fatty Acids
+Chemical	CP fatty acids
+Chemical	Flestolol
+Chemical	Flumazenil
+Chemical	Fluocinolone Acetonide
+Chemical	Fluorescent Dyes
+Chemical	Fluorescence Agents
+Chemical	Fluorescent Agents
+Chemical	Fluorescent Probes
+Chemical	Fluoxetine
+Chemical	Folic Acid
+Chemical	Folate
+Chemical	Vitamin M
+Chemical	Free Radical Scavengers
+Chemical	Free Radicals
+Chemical	Fusidic Acid
+Chemical	GABA
+Chemical	GEM
+Chemical	GM
+Chemical	GNC92H2
+Chemical	GR 55562
+Chemical	GR 82334
+Chemical	GSH
+Chemical	GSPE
+Chemical	Glial Fibrillary Acidic Protein
+Chemical	Glucaric Acid
+Chemical	Calcium Glucarate
+Chemical	D Glucaric Acid
+Chemical	D Saccharic Acid
+Chemical	Glucaric acid
+Chemical	Saccharic Acid
+Chemical	iron sucrose
+Chemical	Glutamate Decarboxylase
+Chemical	Glutamic Acid
+Chemical	Glutathione Peroxidase
+Chemical	glutathione peroxidase 1
+Chemical	glutathione peroxidase 4
+Chemical	glutathione peroxidase 5
+Chemical	Glutathione Reductase
+Chemical	Glutathione Transferase
+Chemical	glutathione S transferase theta 1
+Chemical	Grape Seed Extract
+Chemical	IH636 GSPE
+Chemical	IH636 grape seed proanthocyanidin extract
+Chemical	Growth Hormone
+Chemical	Pituitary Growth Hormone
+Chemical	Recombinant Growth Hormone
+Chemical	Recombinant Growth Hormones
+Chemical	Recombinant Pituitary Growth Hormones
+Chemical	insulin potentiating fragments of growth hormone
+Chemical	Gum Arabic
+Chemical	Gum arabic
+Chemical	H
+Chemical	H2O
+Chemical	HBeAg
+Chemical	HBsAg
+Chemical	HIV Protease
+Chemical	HIV-1 protease
+Chemical	HLA Antigens
+Chemical	HL A Antigens
+Chemical	Human Leukocyte Antigens
+Chemical	Leukocyte Antigens
+Chemical	Haloperidol
+Disease	Halothane Hepatitis
+Chemical	Hemoglobin E
+Chemical	Heparin
+Chemical	Histamine Antagonists
+Chemical	Histamine H1 Antagonists
+Chemical	First Generation H1 Antagonists
+Chemical	Histamine H1 Blockers
+Chemical	Histamine H1 Receptor Antagonists
+Chemical	Hydrogen Peroxide
+Chemical	ISO
+Chemical	Ifosfamide
+Chemical	Immunoglobulin G
+Chemical	fragment antigen and complement binding
+Chemical	immunoglobulin A - immunoglobulin G - immunoglobulin M
+Chemical	immunoglobulin G conjugated bleomycin
+Chemical	immunoglobulin antigen and complement binding fragment
+Chemical	Immunosuppressive Agents
+Chemical	Immunosuppressants
+Chemical	Indocyanine Green
+Chemical	Indomethacin
+Chemical	Ion Channels
+Chemical	mitochondrial peptide sensitive channel
+Chemical	Isoproterenol
+Chemical	Isosorbide Dinitrate
+Chemical	Iso Bid
+Chemical	K
+Chemical	Kainic Acid
+Chemical	Kainate
+Chemical	Ketamine
+Chemical	Ketone Bodies
+Chemical	L - DOPA
+Chemical	L - NAME
+Chemical	L - arginine
+Chemical	L - dopa
+Chemical	LAM
+Chemical	LY274614
+Chemical	Lactic Acid
+Chemical	Ammonium Lactate
+Chemical	D Lactic Acid
+Chemical	Lactate
+Chemical	L Lactic Acid
+Chemical	betaine - hydrocortisone - lactic acid - urea drug
+Chemical	betaine - lactic acid - urea
+Chemical	lactic acid - urea drug
+Chemical	Lamivudine
+Chemical	Levodopa
+Chemical	Li
+Chemical	LiCl
+Chemical	Lipid Bilayers
+Chemical	Lipid Peroxides
+Chemical	Fatty Acid Hydroperoxides
+Chemical	Lithium
+Chemical	Lithium Carbonate
+Chemical	Lithium Bicarbonate
+Chemical	Lithium Compounds
+Chemical	Lovastatin
+Chemical	Luteinizing Hormone
+Chemical	Interstitial Cell Stimulating Hormone
+Chemical	Luteinizing hormone
+Chemical	MDMA
+Chemical	METH
+Chemical	MPEP
+Chemical	MPTP
+Chemical	MTX
+Chemical	MZ
+Chemical	Magnesium Sulfate
+Chemical	Matrix Metalloproteinases
+Chemical	Meclofenamic Acid
+Chemical	Medroxyprogesterone Acetate
+Chemical	Medroxyprogesterone 17 Acetate
+Chemical	Mefenamic Acid
+Chemical	Apo Mefenamic
+Chemical	PMS Mefenamic Acid
+Chemical	Methamphetamine
+Chemical	Monoamine Oxidase
+Chemical	Morphine
+Chemical	N - methyl - D - aspartate
+Chemical	NADH Dehydrogenase
+Chemical	NMDA
+Chemical	NRA0160
+Chemical	Na
+Chemical	NaCl
+Chemical	Naloxone
+Chemical	Nerve Growth Factor
+Chemical	beta Nerve Growth Factor
+Chemical	Nerve Growth Factor 1
+Chemical	Nerve Growth Factor alpha Subunit
+Chemical	Nerve Growth Factor beta Subunit
+Chemical	Nerve Growth Factor gamma Subunit
+Chemical	NGF
+Chemical	Neurofilament Proteins
+Chemical	HP 36
+Chemical	light neurofilament protein
+Chemical	neurofilament 200
+Chemical	neurofilament H protein
+Chemical	neurofilament protein 68
+Chemical	neurofilament protein NF 150
+Chemical	neurofilament protein light
+Chemical	Neuromuscular Blocking Agents
+Chemical	Neuromuscular Blockers
+Chemical	Nicotine
+Chemical	Nitric Oxide
+Chemical	Endogenous Nitrate Vasodilator
+Chemical	Nitrogen Monoxide
+Chemical	nitric oxide hemoglobin
+Chemical	Nitric Oxide Synthase
+Chemical	Nitrous Oxide
+Chemical	OC
+Chemical	Oleic Acid
+Chemical	Olive Oil
+Chemical	Olive Oils
+Chemical	PAC
+Chemical	PAN
+Chemical	PDTC
+Chemical	PG
+Chemical	PG-9
+Chemical	PGE1
+Chemical	PPA
+Chemical	PTZ
+Chemical	Paclitaxel
+Chemical	Parathyroid Hormone
+Chemical	Particulate Matter
+Chemical	Ambient Particulate Matter
+Chemical	Particulate Air Pollutants
+Chemical	Penicillin G
+Chemical	Benzylpenicillin
+Chemical	Benzylpenicillin Potassium
+Chemical	Penicillin G Potassium
+Chemical	Penicillin G Sodium
+Chemical	Sodium Benzylpenicillin
+Chemical	Sodium Penicillin
+Chemical	penicillin G - penicillin G procaine
+Chemical	Periodic Acid
+Chemical	Periodic Acids
+Chemical	Peroxisome Proliferators
+Chemical	Pertussis Toxin
+Chemical	Histamine Sensitizing Factor
+Chemical	Islet Activating Protein
+Chemical	Pertussis Vaccine
+Chemical	Pharmaceutical Preparations
+Chemical	Phenylpropanolamine
+Chemical	Phosphodiesterase Inhibitors
+Chemical	Phosphodiesterase Antagonists
+Chemical	Plant Extracts
+Chemical	FM 40 compound
+Chemical	FP extract
+Chemical	KA herbal formulation
+Chemical	LI 160
+Chemical	P9605
+Chemical	olive polyphenol extract
+Chemical	renewed SS
+Chemical	Platelet Factor 4
+Chemical	Blood platelet factor 4
+Chemical	Heparin Neutralizing Protein
+Chemical	Potassium Channels
+Chemical	apamin receptors
+Chemical	glibenclamide receptors
+Chemical	open rectifier potassium channel
+Chemical	Proliferating Cell Nuclear Antigen
+Chemical	PCNA
+Chemical	Propylene Glycol
+Chemical	Propylene Glycol Monohydrate
+Chemical	Propylene Glycol Sodium Salt
+Chemical	Prostaglandin D2
+Chemical	Protease Inhibitors
+Chemical	Protease Antagonists
+Chemical	Protease Inhibitor
+Chemical	Protective Agents
+Chemical	Protective Drugs
+Chemical	Psychotropic Drugs
+Chemical	Psychoactive Agents
+Chemical	Psychoactive Drugs
+Chemical	Puromycin Aminonucleoside
+Chemical	Aminonucleoside
+Chemical	RAMH
+Chemical	Raloxifene Hydrochloride
+Chemical	Raloxifene
+Chemical	Raloxifene HCl
+Chemical	Reactive Oxygen Species
+Chemical	Active Oxygen
+Chemical	Oxygen Radicals
+Chemical	Pro Oxidants
+Chemical	Reserpine
+Chemical	Rg1
+Chemical	Risperidone
+Chemical	Ro4368554
+Chemical	Rubella Vaccine
+Chemical	Ruthenium Red
+Chemical	Ruthenium red
+Chemical	SCH 23390
+Chemical	SM 21
+Chemical	SNP
+Chemical	SRL
+Chemical	SSR103800
+Chemical	Serotonin Antagonists
+Chemical	5 HT Antagonists
+Chemical	5-HT Antagonists
+Chemical	5-Hydroxytryptamine Antagonists
+Chemical	Serotonin Receptor Antagonists
+Chemical	Serotonin Receptor Blockers
+Chemical	Serum Albumin
+Chemical	Sirolimus
+Chemical	Sodium Bicarbonate
+Chemical	Carbonic acid monosodium salt
+Chemical	Carbonic Acid Monosodium Salt
+Chemical	Sodium Hydrogen Carbonate
+Chemical	sodium bicarbonate - sodium carbonate
+Chemical	Sodium Channels
+Chemical	Sodium Chloride
+Chemical	Saline Solution
+Chemical	L 40 irrigating solution
+Chemical	dextran - saline
+Chemical	sodium peroxide - sodium chloride
+Chemical	Sodium Nitrite
+Chemical	Sodium Salicylate
+Chemical	Srl
+Chemical	Substance P
+Chemical	Hypothalamic Substance P
+Chemical	substance P octapeptide
+Chemical	Sugar Alcohols
+Chemical	Superoxide Dismutase
+Chemical	Suxamethonium
+Chemical	TAC
+Chemical	TAM
+Chemical	TCR
+Chemical	TET
+Chemical	THP
+Chemical	TMP
+Chemical	TRI
+Chemical	Tacrolimus
+Chemical	Taurocholic Acid
+Chemical	Taurodeoxycholic Acid
+Chemical	Taxol
+Chemical	Testosterone
+Chemical	Testosterone Propionate
+Chemical	Thalidomide
+Chemical	Therapeutic Uses
+Chemical	Therapeutic Effects
+Chemical	Thiamine Pyrophosphate
+Chemical	Thiamine Diphosphate
+Chemical	Thiobarbituric Acid Reactive Substances
+Chemical	TBARs
+Chemical	Thromboxane B2
+Chemical	Thymidylate Synthase
+Chemical	Toxic Actions
+Chemical	Tranexamic Acid
+Chemical	AMCA
+Chemical	Transforming Growth Factor beta1
+Chemical	TGF beta 1
+Chemical	TGF beta1 Latency Associated Protein
+Chemical	Transforming Growth Factor beta 1 Latency Associated Peptide
+Chemical	Transforming Growth Factor beta I
+Chemical	Troponin I
+Chemical	Troponin T
+Chemical	fast skeletal troponin T
+Chemical	Trypan Blue
+Chemical	direct blue 1
+Chemical	U - II
+Chemical	Uric Acid
+Chemical	Ammonium Acid Urate
+Chemical	Monosodium Urate
+Chemical	Monosodium Urate Monohydrate
+Chemical	Potassium Urate
+Chemical	Sodium Acid Urate
+Chemical	Sodium Acid Urate Monohydrate
+Chemical	Sodium Urate
+Chemical	Sodium Urate Monohydrate
+Chemical	Urate
+Chemical	Uridine Diphosphate
+Chemical	Uridine Pyrophosphate
+Chemical	Ursodeoxycholic Acid
+Chemical	VNB
+Chemical	VPA
+Chemical	VPU
+Chemical	Valproic Acid
+Chemical	Calcium Valproate
+Chemical	Divalproex
+Chemical	Divalproex Sodium
+Chemical	Magnesium Valproate
+Chemical	Sodium Valproate
+Chemical	Valproate
+Chemical	Valproate Calcium
+Chemical	Valproate Sodium
+Chemical	Vupral
+Chemical	Valproic acid
+Chemical	Vasodilator Agents
+Chemical	Vasoactive Antagonists
+Chemical	Vasodilator Drugs
+Chemical	Vasodilators
+Chemical	Vecuronium Bromide
+Chemical	NC 45
+Chemical	Vecuronium
+Chemical	Vecuronium Citrate
+Chemical	Vecuronium Hydrobromide
+Chemical	Vecuronium Hydrochloride
+Chemical	Vecuronium Maleate
+Chemical	Vecuronium Phosphate
+Chemical	Verapamil
+Chemical	Vigabatrin
+Chemical	Vitamin A
+Chemical	Vitamin A1
+Chemical	vitamin A - vitamin E
+Chemical	Vitamin D
+Chemical	Vitamin E
+Chemical	tocopherol polyethylene glycol succinate
+Chemical	Vitamin K
+Chemical	WR242511
+Chemical	Warfarin
+Chemical	Xanthine Oxidase
+Chemical	Zinc Acetate
+Chemical	erythromycin - zinc acetate
+Chemical	zinc acetate - chlorhexidine
+Chemical	zinc chlorhexidine
+Chemical	[ 3H]-5-azadeoxycytidine
+Chemical	[ 3H]-L - arginine
+Chemical	[ 3H]-dihydroergocryptine
+Chemical	[ 3H]-l - arginine
+Chemical	[ 3H]-naloxone
+Chemical	acetaminophen
+Chemical	acetylcholine
+Chemical	acetylsalicylic acid
+Chemical	adenosine
+Chemical	adrenaline
+Chemical	adriamycin
+Chemical	alanine
+Chemical	alcohol
+Chemical	aldosterone
+Chemical	alfentanil
+Chemical	alpha - lipoic acid
+Chemical	alpha - methyldopa
+Chemical	alprazolam
+Chemical	aluminum chloride
+Chemical	amantadine
+Chemical	amifostine
+Chemical	amikacin
+Chemical	amiloride
+Chemical	amino acid
+Chemical	aminoglycoside
+Chemical	aminoglycosides
+Chemical	aminophylline
+Chemical	amiodarone
+Chemical	amitriptyline
+Chemical	ammonium acetate
+Chemical	acetic acid ammonium salt
+Chemical	amoxicillin
+Chemical	amphetamine
+Chemical	amphotericin B
+Chemical	ampicillin
+Chemical	angiotensin
+Chemical	angiotensin II
+Chemical	anthracycline
+Chemical	antidepressant
+Chemical	antidepressants
+Chemical	apomorphine
+Chemical	appetite suppressants
+Chemical	argatroban
+Chemical	asenapine
+Chemical	aspartate
+Chemical	aspirin
+Chemical	atropine
+Chemical	azathioprine
+Chemical	azidothymidine
+Chemical	azithromycin
+Chemical	barium chloride
+Chemical	BaCl2
+Chemical	bendazac lysine
+Chemical	bendazac lysine salt
+Chemical	benzodiazepine
+Chemical	benzodiazepines
+Chemical	benzoylecgonine
+Chemical	bepridil
+Chemical	bicuculline
+Chemical	bilirubin
+Chemical	biperiden lactate
+Chemical	bisphenol A
+Chemical	blood urea nitrogen
+Chemical	bradykinin
+Chemical	bromocriptine
+Chemical	bupivacaine
+Chemical	bupropion
+Chemical	busulfan
+Chemical	caffeine
+Chemical	calcitonin
+Chemical	calcium
+Chemical	calcium phosphate
+Chemical	cannabis
+Chemical	capecitabine
+Chemical	capsaicin
+Chemical	captopril
+Chemical	carbachol
+Chemical	carbamazepine
+Chemical	carbimazole
+Chemical	carboplatin
+Chemical	catecholamine
+Chemical	catecholamines
+Chemical	cefazedone
+Chemical	cefonicid
+Chemical	ceftriaxone
+Chemical	cephalosporins
+Chemical	cephalothin
+Chemical	chlorhexidine phosphanilate
+Chemical	chlorhexidine diphosphanilate
+Chemical	chloroquine
+Chemical	chlorpromazine
+Chemical	cholesterol
+Chemical	choline
+Chemical	cimetidine
+Chemical	cinacalcet
+Chemical	ciprofloxacin
+Chemical	cisapride
+Chemical	cisplatin
+Chemical	citalopram
+Chemical	clomipramine
+Chemical	clonidine
+Chemical	clopidogrel
+Chemical	clozapine
+Chemical	cocaine
+Chemical	coenzyme Q10
+Chemical	coniine
+Chemical	corticosteroids
+Chemical	corticosterone
+Chemical	cortisol
+Chemical	creatine
+Chemical	creatinine
+Chemical	cresyl violet
+Chemical	cresyl violet acetate
+Chemical	cresyl violet nitrate
+Chemical	curcumin
+Chemical	cycloheximide
+Chemical	cyclophosphamide
+Chemical	cyclosporin A
+Chemical	cyclosporine
+Chemical	danazol
+Chemical	dapsone
+Chemical	daunorubicin
+Chemical	deferoxamine
+Chemical	desferrioxamine
+Chemical	desipramine
+Chemical	desogestrel
+Chemical	dex
+Chemical	dexamethasone
+Chemical	dextran
+Chemical	diazepam
+Chemical	diclofenac
+Chemical	didanosine
+Chemical	diethylstilbestrol
+Chemical	diltiazem
+Chemical	dipyridamole
+Chemical	disulfiram
+Chemical	dobutamine
+Chemical	docetaxel
+Chemical	dopamine
+Chemical	doxorubicin
+Chemical	ecstasy
+Chemical	enalapril
+Chemical	enflurane
+Chemical	ephedrine
+Chemical	epinephrine
+Chemical	ergotamine
+Chemical	eslicarbazepine acetate
+Chemical	estradiol
+Chemical	estrogen
+Chemical	ethanol
+Chemical	etoposide
+Chemical	everolimus
+Chemical	factor V Leiden
+Chemical	fentanyl
+Chemical	flestolol
+Chemical	fluorescein
+Chemical	fluoxetine
+Chemical	fluphenazine enanthate
+Chemical	folinic acid
+Chemical	furosemide
+Chemical	gabapentin
+Chemical	gamma - HCH
+Chemical	gamma - aminobutyric acid
+Chemical	garcinielliptone FC
+Chemical	gemcitabine
+Chemical	gentamicin
+Chemical	ginsenoside Re
+Chemical	ginsenoside Rg1
+Chemical	glucose
+Chemical	glutamate
+Chemical	glutathione
+Chemical	glycinamide ribonucleotide
+Chemical	glycine
+Chemical	glycopyrrolate
+Chemical	green tea
+Chemical	gum Arabic
+Chemical	haloperidol
+Chemical	halothane
+Chemical	heparin
+Chemical	hexamethonium
+Chemical	histamine
+Chemical	hydrocortisone
+Chemical	hydrocortisone acetate
+Chemical	ibuprofen
+Chemical	ifosfamide
+Chemical	indinavir
+Chemical	indomethacin
+Chemical	iodixanol
+Chemical	iopamidol
+Chemical	iron
+Chemical	isoflurane
+Chemical	isoniazid
+Chemical	isoproterenol
+Chemical	kanamycin
+Chemical	ketamine
+Chemical	ketoconazole
+Chemical	labetalol
+Chemical	lamivudine
+Chemical	lead acetate
+Chemical	lead diacetate
+Chemical	levetiracetam
+Chemical	levodopa
+Chemical	levofloxacin
+Chemical	lidocaine
+Chemical	lignocaine
+Chemical	lindane
+Chemical	lipopolysaccharide
+Chemical	liposomal doxorubicin
+Chemical	Doxil
+Chemical	pegylated liposomal doxorubicin
+Chemical	lithium
+Chemical	losartan
+Chemical	lovastatin
+Chemical	luminal
+Chemical	magnesium
+Chemical	malondialdehyde
+Chemical	maltolyl p - coumarate
+Chemical	mannitol
+Chemical	mazindol
+Chemical	mefloquine
+Chemical	melphalan
+Chemical	mesna
+Chemical	methadone
+Chemical	methamphetamine
+Chemical	methotrexate
+Chemical	methyldopa
+Chemical	methylphenidate
+Chemical	methylprednisolone
+Chemical	methylprednisolone acetate
+Chemical	metoclopramide
+Chemical	metoprolol
+Chemical	metronidazole
+Chemical	mexiletine
+Chemical	midazolam
+Chemical	mitoxantrone
+Chemical	modafinil
+Chemical	morphine
+Chemical	naloxone
+Chemical	nelarabine
+Chemical	neurotensin
+Chemical	nicotine
+Chemical	nifedipine
+Chemical	nimodipine
+Chemical	nitrendipine
+Chemical	nitroglycerin
+Chemical	nitroprusside
+Chemical	noradrenaline
+Chemical	norepinephrine
+Chemical	octreotide
+Chemical	olanzapine
+Chemical	omeprazole
+Chemical	oral contraceptive
+Chemical	oral contraceptives
+Chemical	ouabain
+Chemical	oxycodone
+Chemical	oxygen
+Chemical	oxytocin
+Chemical	paclitaxel
+Chemical	papaverine
+Chemical	paracetamol
+Chemical	paramethasone
+Chemical	paroxetine
+Chemical	penicillamine
+Chemical	penicillin
+Chemical	pentazocine
+Chemical	pentobarbital
+Chemical	pentoxifylline
+Chemical	pergolide
+Chemical	perhexiline maleate
+Chemical	perillyl alcohol
+Chemical	pethidine
+Chemical	phenacetin
+Chemical	phenobarbital
+Chemical	phenobarbitone
+Chemical	phenylacetic acid
+Chemical	phenylephrine
+Chemical	phenytoin
+Chemical	phosphate
+Chemical	picrotoxin
+Chemical	pilocarpine
+Chemical	piroxicam
+Chemical	polyethylene glycol 400
+Chemical	Peg 400
+Chemical	potassium
+Chemical	pravastatin
+Chemical	prazosin
+Chemical	prednisolone
+Chemical	prednisone
+Chemical	prilocaine
+Chemical	procainamide
+Chemical	prochlorperazine
+Chemical	progesterone
+Chemical	propofol
+Chemical	propranolol
+Chemical	propylthiouracil
+Chemical	prostaglandin E1
+Chemical	prostaglandins
+Chemical	pyridoxine
+Chemical	quinine
+Chemical	ranitidine
+Chemical	rapamycin
+Chemical	reserpine
+Chemical	ribavirin
+Chemical	rifampin
+Chemical	risperidone
+Chemical	ritonavir
+Chemical	rizatriptan
+Chemical	salbutamol
+Chemical	salmon calcitonin
+Chemical	calcitonin salmon
+Chemical	recombinant salmon calcitonin
+Chemical	synthetic salmon calcitonin
+Chemical	salt
+Chemical	salvianolic acid
+Chemical	salvianolic acid A
+Chemical	saralasin
+Chemical	scopolamine
+Chemical	selegiline
+Chemical	serotonin
+Chemical	sertraline
+Chemical	sevoflurane
+Chemical	simvastatin
+Chemical	sirolimus
+Chemical	smoking
+Chemical	sodium
+Chemical	sodium citrate
+Chemical	sodium nitroprusside
+Chemical	sorafenib
+Chemical	sparteine
+Chemical	spironolactone
+Chemical	statin
+Chemical	statins
+Chemical	steroid
+Chemical	steroids
+Chemical	streptomycin
+Chemical	streptozotocin
+Chemical	succinylcholine
+Chemical	sulfasalazine
+Chemical	sulindac
+Chemical	sulphasalazine
+Chemical	sulpiride
+Chemical	sumatriptan
+Chemical	superoxide
+Chemical	suxamethonium
+Chemical	tAMCA
+Chemical	tacrolimus
+Chemical	tamoxifen
+Chemical	telithromycin
+Chemical	terbutaline
+Chemical	terfenadine
+Chemical	terodiline
+Chemical	testosterone
+Chemical	thalidomide
+Chemical	thallium
+Chemical	theophylline
+Chemical	thiobarbituric acid
+Chemical	thiopentone
+Chemical	thyroxine
+Chemical	tiaprofenic acid
+Chemical	ticlopidine
+Chemical	timolol
+Chemical	tobramycin
+Chemical	triamcinolone diacetate
+Chemical	trihexyphenidyl
+Chemical	tyrosine
+Chemical	urea
+Chemical	vancomycin
+Chemical	vasopressin
+Chemical	venlafaxine
+Chemical	verapamil
+Chemical	vigabatrin
+Chemical	vincristine
+Chemical	vinorelbine
+Chemical	vitamin B12
+Chemical	vitamin D
+Chemical	vitamin D3
+Chemical	vitamin E
+Chemical	warfarin
+Chemical	yohimbine
+Chemical	zidovudine
+Chemical	zonisamide
+Disease	ALF
+Disease	Abdominal Pain
+Disease	Abdominal Pains
+Disease	Acquired Immunodeficiency Syndrome
+Disease	Acquired Immune Deficiency Syndrome
+Disease	Acquired Immuno Deficiency Syndrome
+Disease	Acquired Immunodeficiency Syndromes
+Disease	AIDS
+Disease	Acrodermatitis enteropathica
+Disease	Acrodermatitis enteropathica zinc deficiency type
+Disease	Acute Coronary Syndrome
+Disease	Acute Coronary Syndromes
+Disease	Acute Kidney Injury
+Disease	Acute Kidney Failure
+Disease	Acute Kidney Injuries
+Disease	Acute Kidney Insufficiency
+Disease	Acute Renal Failure
+Disease	Acute Renal Injuries
+Disease	Acute Renal Injury
+Disease	Acute Renal Insufficiency
+Disease	Acute Pain
+Disease	Acute Pains
+Disease	Adenomatous Polyps
+Disease	Airway Obstruction
+Disease	Alzheimer 's disease
+Disease	Angina Pectoris
+Disease	Anterior Wall Myocardial Infarction
+Disease	Acute Anterior Wall Myocardial Infarction
+Disease	Antiphospholipid Syndrome
+Disease	Antiphospholipid Antibody Syndrome
+Disease	Anti Phospholipid Antibody Syndrome
+Disease	Antiphospholipid Antibody Syndromes
+Disease	Anti Phospholipid Syndrome
+Disease	Antisocial Personality Disorder
+Disease	Antisocial Personality
+Disease	Antisocial Personality Disorders
+Disease	Anxiety Disorders
+Disease	ANXIETY
+Disease	Anxiety Disorder
+Disease	Aortic Aneurysm
+Disease	Aortic Aneurysms
+Disease	Arteriovenous Malformations
+Disease	Arteriovenous Malformation
+Disease	Capillary Malformation Without Arteriovenous Malformation
+Disease	Multiple Cutaneous and Mucosal Venous Malformations
+Disease	Atrial Fibrillation
+Disease	Atrial Fibrillations
+Disease	Familial Atrial Fibrillation
+Disease	Familial Atrial Fibrillations
+Disease	Paroxysmal Atrial Fibrillation
+Disease	Paroxysmal Atrial Fibrillations
+Disease	Persistent Atrial Fibrillation
+Disease	Persistent Atrial Fibrillations
+Disease	Autosomal dominant atrial fibrillation
+Disease	Atrial Flutter
+Disease	Atrioventricular Block
+Disease	Atrioventricular Blocks
+Disease	Atrioventricular Conduction Block
+Disease	Atrioventricular Conduction Blocks
+Disease	AV Block
+Disease	AV Blocks
+Disease	Autistic Disorder
+Disease	Autism
+Disease	AUTISM WITH OR WITHOUT SEIZURES
+Disease	Early Infantile Autism
+Disease	Infantile Autism
+Disease	Autoimmune Diseases
+Disease	Autoimmune Disease
+Disease	Psychogenic purpura
+Disease	Back Pain
+Disease	Back Ache
+Disease	Back Aches
+Disease	Back Pains
+Disease	Back Pain without Radiation
+Disease	Back Pain with Radiation
+Disease	Bacterial Infections
+Disease	Bacterial Infection
+Disease	Bicuspid Aortic Valve
+Disease	Biliary Atresia
+Disease	Extrahepatic Biliary Atresia
+Disease	Familial Extrahepatic Biliary Atresia
+Disease	Idiopathic Extrahepatic Biliary Atresia
+Disease	Bipolar Disorder
+Disease	Bipolar Affective Psychosis
+Disease	Bipolar Depression
+Disease	Bipolar Disorders
+Disease	Mania
+Disease	Manic Depressive Psychosis
+Disease	Manic Disorder
+Disease	Manic Disorders
+Disease	Manic State
+Disease	Manic States
+Disease	Birth Weight
+Disease	Birth Weights
+Disease	Body Weight
+Disease	Body Weights
+Disease	Bone Resorption
+Disease	Bradycardia
+Disease	Brain Edema
+Disease	Brain Swelling
+Disease	Cerebral Edema
+Disease	Cytotoxic Brain Edema
+Disease	Cytotoxic Cerebral Edema
+Disease	Intracranial Edema
+Disease	Vasogenic Brain Edema
+Disease	Vasogenic Cerebral Edema
+Disease	Bronchiolitis Obliterans
+Disease	Exudative Bronchiolitis
+Disease	Proliferative Bronchiolitis
+Disease	Burkitt Lymphoma
+Disease	African Lymphoma
+Disease	Burkitt Cell Leukemia
+Disease	Burkitt Leukemia
+Disease	Burkitt Tumor
+Disease	Butyrylcholinesterase deficiency
+Disease	Cholinesterase 2 Deficiency
+Disease	Pseudocholinesterase deficiency
+Disease	Pseudocholinesterase E1 deficiency
+Disease	Succinylcholine Sensitivity
+Disease	Suxamethonium Sensitivity
+Disease	CHF
+Disease	CIMD
+Disease	CM
+Disease	CRF
+Disease	Cancer
+Disease	Cancer Pain
+Disease	Cancer Associated Pain
+Disease	Cancer Pains
+Disease	Cancer Related Pain
+Disease	Neoplasm Associated Pain
+Disease	Neoplasm Related Pain
+Disease	Oncological Pain
+Disease	Oncological Pains
+Disease	Oncology Pain
+Disease	Oncology Pains
+Disease	Tumor Associated Pain
+Disease	Tumor Related Pain
+Disease	Capillary Leak Syndrome
+Disease	Capillary Leak Syndromes
+Disease	Clinical Capillary Leak Syndrome
+Disease	Systemic Capillary Leak Syndrome
+Disease	Periodic systemic capillary leak syndrome
+Disease	Cardiac Tamponade
+Disease	Pericardial Tamponade
+Disease	Cardiovascular Diseases
+Disease	Cardiovascular Disease
+Disease	Carotid Artery Thrombosis
+Disease	Carotid Artery Thromboses
+Disease	Carotid Thrombosis
+Disease	Common Carotid Artery Thrombosis
+Disease	External Carotid Artery Thrombosis
+Disease	Internal Carotid Artery Thrombosis
+Disease	Cerebral Hemorrhage
+Disease	Cerebral Brain Hemorrhage
+Disease	Cerebral Brain Hemorrhages
+Disease	Cerebral Hemorrhages
+Disease	Cerebral Parenchymal Hemorrhage
+Disease	Cerebral Parenchymal Hemorrhages
+Disease	Cerebrum Hemorrhage
+Disease	Cerebrum Hemorrhages
+Disease	ICH
+Disease	Intracerebral Hemorrhage
+Disease	Intracerebral Hemorrhages
+Disease	Cerebral Infarction
+Disease	CEREBRAL INFARCTION
+Disease	Cerebral Infarctions
+Disease	CEREBROVASCULAR ACCIDENT
+Disease	Subcortical Infarction
+Disease	Subcortical Infarctions
+Disease	Cerebral Palsy
+Disease	Atonic Cerebral Palsy
+Disease	Congenital Cerebral Palsy
+Disease	Dyskinetic Cerebral Palsy
+Disease	Hypotonic Cerebral Palsies
+Disease	Hypotonic Cerebral Palsy
+Disease	Little Disease
+Disease	Mixed Cerebral Palsies
+Disease	Mixed Cerebral Palsy
+Disease	Quadriplegic Infantile Cerebral Palsy
+Disease	Spastic Cerebral Palsies
+Disease	Spastic Cerebral Palsy
+Disease	Ataxic Cerebral Palsy
+Disease	Chest Pain
+Disease	Chest Pains
+Disease	Precordial Catch
+Disease	Precordial Catch Syndrome
+Disease	Choanal Atresia
+Disease	Autosomal dominant radial ray hypoplasia syndrome
+Disease	Congenital absence of skin on the upper or lower limbs
+Disease	Radial Ray Hypoplasia with Choanal Atresia
+Disease	Radial ray hypoplasia with choanal hypoplasia
+Disease	Recessive aplasia cutis congenita of the limbs
+Disease	Chondrodysplasia Punctata
+Disease	Stippled Epiphyses
+Disease	X Linked Chondrodysplasia Punctata 2
+Disease	X Linked Dominant Chondrodysplasia Punctata
+Disease	Chondrodysplasia Punctata Due To Vitamin K Deficiency
+Disease	Chondrodysplasia Punctata Due To Warfarin Teratogenicity
+Disease	Chronic Disease
+Disease	Chronically Ill
+Disease	Chronic Diseases
+Disease	Chronic Illness
+Disease	Chronic Illnesses
+Disease	Chronic Pain
+Disease	Chronic Pains
+Disease	Widespread Chronic Pain
+Disease	Widespread Chronic Pains
+Disease	Cleft Lip
+Disease	Cleft Lips
+Disease	Cleft lip with progressive retinopathy
+Disease	Congenital Healed Cleft Lip
+Disease	Cleft Palate
+Disease	Cleft palate large ears small head
+Disease	Congenital myopathy cleft palate and malignant hyperthermia
+Disease	Hydrocephalus cleft palate joint contractures
+Disease	Hypothyroidism cleft palate
+Disease	Joint contractures with other abnormalities
+Disease	Clinical Deterioration
+Disease	Clinical Deteriorations
+Disease	Cluster Headache
+Disease	Atypical Cluster Headache
+Disease	Atypical Cluster Headaches
+Disease	Chronic Cluster Headache
+Disease	Chronic Cluster Headaches
+Disease	Cluster Headaches
+Disease	Cluster Headache Syndrome
+Disease	Cluster Headache Syndromes
+Disease	Episodic Cluster Headache
+Disease	Episodic Cluster Headaches
+Disease	Cognitive Dysfunction
+Disease	Cognitive Decline
+Disease	Cognitive Declines
+Disease	Cognitive Dysfunctions
+Disease	Cognitive Impairment
+Disease	Cognitive Impairments
+Disease	Mental Deterioration
+Disease	Mental Deteriorations
+Disease	Mild Cognitive Impairment
+Disease	Mild Cognitive Impairments
+Disease	Mild Neurocognitive Disorder
+Disease	Mild Neurocognitive Disorders
+Disease	Congenital Abnormalities
+Disease	Birth Defect
+Disease	Birth Defects
+Disease	Congenital Abnormality
+Disease	Congenital Defect
+Disease	Congenital Defects
+Disease	Deformities
+Disease	Absence of vagina
+Disease	Caa
+Disease	Congenital absence of the nose
+Disease	Congenital absence of uterus and vagina
+Disease	Familial posterior lumbosacral vertebral fusion and eyelid ptosis
+Disease	Potter Syndrome
+Disease	Coronary Aneurysm
+Disease	Coronary Aneurysms
+Disease	Coronary Artery Disease
+Disease	Coronary Arteriosclerosis
+Disease	Coronary Artery Diseases
+Disease	Coronary Atherosclerosis
+Disease	Coronary Artery Disease With Myocardial Infarction
+Disease	Coronary Disease
+Disease	Coronary Diseases
+Disease	Coronary Heart Disease
+Disease	Coronary Heart Diseases
+Disease	Coronary Occlusion
+Disease	Coronary Occlusions
+Disease	Coronary Stenosis
+Disease	Coronary Artery Stenoses
+Disease	Coronary Artery Stenosis
+Disease	Coronary Stenoses
+Disease	Coronary Thrombosis
+Disease	Coronary Thromboses
+Disease	Coronary Vasospasm
+Disease	Coronary Artery Vasospasm
+Disease	Crohn 's disease
+Disease	Cytomegalovirus Infections
+Disease	Cytomegalovirus Infection
+Disease	Inclusion Disease
+Disease	Inclusion Diseases
+Disease	Salivary Gland Virus Disease
+Disease	Delayed Graft Function
+Disease	Delirium
+Disease	Delusional Parasitosis
+Disease	Psychogenic Parasitosis
+Disease	Depression
+Disease	Depressive Disorder
+Disease	Depressive Disorders
+Disease	Depressive Neurosis
+Disease	Depressive Syndrome
+Disease	Depressive Syndromes
+Disease	Endogenous Depression
+Disease	Endogenous Depressions
+Disease	Unipolar Depression
+Disease	Unipolar Depressions
+Disease	DiGeorge Syndrome
+Disease	DiGeorge Anomaly
+Disease	DiGeorge Sequence
+Disease	Diabetes Complications
+Disease	Complications of Diabetes Mellitus
+Disease	Diabetes Complication
+Disease	Diabetes Mellitus Complication
+Disease	Diabetes Mellitus Complications
+Disease	Diabetes Related Complications
+Disease	Diabetic Complication
+Disease	Diabetic Complications
+Disease	Diabetes Insipidus
+Disease	Diabetes Mellitus
+Disease	Pancreatic hypoplasia diabetes heart disease
+Disease	Permanent Neonatal Diabetes Mellitus
+Disease	Thiamine responsive myelodysplasia
+Disease	Disease Progression
+Disease	Disease Exacerbation
+Disease	Disseminated Intravascular Coagulation
+Disease	Consumption Coagulopathies
+Disease	Consumption Coagulopathy
+Disease	Intravascular Disseminated Coagulation
+Disease	Drug Hypersensitivity
+Disease	Drug Allergies
+Disease	Drug Allergy
+Disease	EPS
+Disease	ESRD
+Disease	Ebstein 's anomaly
+Disease	Elastosis perforans serpiginosa
+Disease	Endometrial Hyperplasia
+Disease	Atypical Endometrial Hyperplasia
+Disease	Complex Endometrial Hyperplasia
+Disease	Simple Endometrial Hyperplasia
+Disease	Erectile Dysfunction
+Disease	Impotence
+Disease	Male Impotence
+Disease	Male Sexual Impotence
+Disease	Erythema Multiforme
+Disease	Erythema Nodosum
+Disease	Erythema nodosum of unknown etiology
+Disease	Familial erythema nodosum
+Disease	Idiopathic erythema nodosum
+Disease	Esophageal Squamous Cell Carcinoma
+Disease	Essential Hypertension
+Disease	Facial Dermatoses
+Disease	Nodular Elastosis
+Disease	Fanconi Syndrome
+Disease	Adult Fanconi Syndrome
+Disease	Proximal Renal Tubular Dysfunction
+Disease	Renal Fanconi Syndrome
+Disease	Fanconi syndrome
+Disease	Fat Necrosis
+Disease	Fat Necroses
+Disease	Fatty Liver
+Disease	Liver Steatosis
+Disease	Steatosis of Liver
+Disease	Visceral Steatosis
+Disease	Fatal neonatal hepatic steatosis
+Disease	White liver disease
+Disease	Febrile Neutropenia
+Disease	Flank Pain
+Disease	Flank Pains
+Disease	Left Flank Pain
+Disease	Left Flank Pains
+Disease	Right Flank Pain
+Disease	Right Flank Pains
+Disease	Focal Nodular Hyperplasia
+Disease	Foot Deformities
+Disease	Gastroesophageal Reflux
+Disease	Esophageal Reflux
+Disease	Gastric Acid Reflux
+Disease	Gastric Acid Reflux Disease
+Disease	Gastroesophageal Reflux Disease
+Disease	Gerstmann Syndrome
+Disease	Acquired Gerstmann Syndrome
+Disease	Developmental Gerstmann Syndrome
+Disease	Gerstmann Syndrome 2
+Disease	Syndrome de Gerstmann
+Disease	Gestational Trophoblastic Disease
+Disease	Gestational Trophoblastic Diseases
+Disease	Gestational Trophoblastic Neoplasia
+Disease	Gestational Trophoblastic Neoplasm
+Disease	Gestational Trophoblastic Neoplasms
+Disease	Gingival Hyperplasia
+Disease	Granulosa Cell Tumor
+Disease	Cancer of Granulosa Cells
+Disease	Granulosa Cell Cancer
+Disease	Granulosa Cell Cancers
+Disease	Granulosa Cells Cancer
+Disease	Granulosa Cells Cancers
+Disease	Granulosa Cell Tumors
+Disease	Adult granulosa cell tumor of the ovary
+Disease	Granulosa cell tumor of the ovary
+Disease	Graves ' disease
+Disease	HIT
+Disease	HITT
+Disease	HIV - infected
+Disease	HUS
+Disease	Hallucinations
+Disease	Headache
+Disease	Hearing Loss
+Disease	Hearing Impairment
+Disease	Myopathy With Cataract And Combined Respiratory Chain Deficiency
+Disease	Heart Block
+Disease	Atrioventricular Dissociation
+Disease	A V Dissociation
+Disease	Heart Blocks
+Disease	Atrial Cardiomyopathy with Heart Block
+Disease	Heart Diseases
+Disease	Cardiac Disease
+Disease	Cardiac Diseases
+Disease	Heart Disease
+Disease	Heart Failure
+Disease	Cardiac Failure
+Disease	Congestive Heart Failure
+Disease	Left Sided Heart Failure
+Disease	Myocardial Failure
+Disease	Right Sided Heart Failure
+Disease	Hepatic Insufficiency
+Disease	Liver Insufficiency
+Disease	Hepatitis B
+Disease	Hepatitis B Virus Infection
+Disease	Hepatitis C
+Disease	Hepatitis E
+Disease	Hepatorenal Syndrome
+Disease	Heroin Dependence
+Disease	Heroin Abuse
+Disease	Heroin Addiction
+Disease	Heroin Smoking
+Disease	Hodgkin Disease
+Disease	Adult Hodgkin Lymphoma
+Disease	HODGKIN DISEASE
+Disease	Hodgkin Lymphoma
+Disease	Malignant Granulomas
+Disease	Hypertension
+Disease	Hypoplastic Left Heart Syndrome
+Disease	HYPOPLASTIC LEFT HEART SYNDROME 1
+Disease	HYPOPLASTIC LEFT HEART SYNDROME 2
+Disease	Left Heart Hypoplasia Syndrome
+Disease	Hypotension
+Disease	Idiopathic orthostatic hypotension
+Disease	Infectious Mononucleosis
+Disease	Glandular Fever
+Disease	Insulin Resistance
+Disease	Insulin Sensitivity
+Disease	Intermittent Claudication
+Disease	Intracranial Hypertension
+Disease	Elevated Intracranial Pressure
+Disease	Intracranial Pressure Increase
+Disease	Iron Overload
+Disease	Irritable Bowel Syndrome
+Disease	Irritable Bowel Syndromes
+Disease	Irritable Colon
+Disease	Mucous Colitis
+Disease	Kaposi 's sarcoma
+Disease	Keratoconjunctivitis Sicca
+Disease	Kidney Diseases
+Disease	Kidney Disease
+Disease	Corneal crystals myopathy and nephropathy
+Disease	Factor H Deficiency
+Disease	Familial Gouty Nephropathy
+Disease	Medullary Cystic Kidney Disease Type 2
+Disease	Korsakoff Syndrome
+Disease	Korsakoff Psychoses
+Disease	Korsakoff Psychosis
+Disease	TRANSKETOLASE DEFECT
+Disease	Wernicke Korsakoff Syndrome
+Disease	LID
+Disease	LIDs
+Disease	Leukemic Infiltration
+Disease	Leukemic Infiltrations
+Disease	Leukemoid Reaction
+Disease	Leukemoid Reactions
+Disease	Liver Abscess
+Disease	Hepatic Abscess
+Disease	Liver Cirrhosis
+Disease	Hepatic Cirrhosis
+Disease	Liver Fibrosis
+Disease	Congenital Hepatic Fibrosis
+Disease	Idiopathic congestive splenomegaly
+Disease	Idiopathic portal hypertension
+Disease	Liver Failure
+Disease	Hepatic Failure
+Disease	Liver Neoplasms
+Disease	Cancer of Liver
+Disease	Cancer of the Liver
+Disease	Hepatic Cancer
+Disease	Hepatic Cancers
+Disease	Hepatic Neoplasm
+Disease	Hepatic Neoplasms
+Disease	Hepatocellular Cancer
+Disease	Hepatocellular Cancers
+Disease	Liver Cancer
+Disease	Liver Cancers
+Disease	Liver Neoplasm
+Disease	Long QT Syndrome
+Disease	Long Qt Syndrome 8
+Disease	Low Back Pain
+Disease	Low Back Ache
+Disease	Low Back Aches
+Disease	Low Back Pains
+Disease	Lower Back Pain
+Disease	Lower Back Pains
+Disease	Mechanical Low Back Pain
+Disease	Postural Low Back Pain
+Disease	Recurrent Low Back Pain
+Disease	Lupus Nephritis
+Disease	Lupus Glomerulonephritis
+Disease	MAHA
+Disease	MR
+Disease	Macular Edema
+Disease	Cystoid Macular Dystrophy
+Disease	Cystoid Macular Edema
+Disease	Malignant Hyperthermia
+Disease	Anesthesia Hyperthermia
+Disease	Anesthesia Related Hyperthermia
+Disease	Hyperthermia of Anesthesia
+Disease	King syndrome
+Disease	Malignant mesenchymal tumor
+Disease	Massive Hepatic Necrosis
+Disease	Acute Yellow Atrophy
+Disease	Acute Yellow Atrophy of Liver
+Disease	Mental Disorders
+Disease	Behavior Disorders
+Disease	Mental Disorder
+Disease	Psychiatric Diagnosis
+Disease	Severe Mental Disorder
+Disease	Severe Mental Disorders
+Disease	Migraine with Aura
+Disease	Acute Onset Aura Migraine
+Disease	Basilar Artery Migraine
+Disease	Basilar Migraine
+Disease	Basilar Migraines
+Disease	Basilar Type Migraine
+Disease	Classical Migraine
+Disease	Classic Migraine
+Disease	Complicated Migraine
+Disease	Familial Hemiplegic Migraine
+Disease	Familial Hemiplegic Migraines
+Disease	Migraine Aura without Headache
+Disease	Migraine with Acute Onset Aura
+Disease	Migraine with Prolonged Aura
+Disease	Migraine with Typical Aura
+Disease	Prolonged Aura Migraine
+Disease	Typical Aura without Headache
+Disease	Migraine without Aura
+Disease	Common Migraine
+Disease	Common Migraines
+Disease	Mitochondrial cytopathy
+Disease	Mitral Valve Prolapse
+Disease	Mitral Valve Prolapse Syndrome
+Disease	Mass phenotype
+Disease	Myxomatous Mitral Valve Prolapse 1
+Disease	Myxomatous Mitral Valve Prolapse 2
+Disease	Myxomatous Mitral Valve Prolapse 3
+Disease	Overlap connective tissue disease
+Disease	Mood Disorders
+Disease	Affective Disorder
+Disease	Affective Disorders
+Disease	Mood Disorder
+Disease	Movement Disorders
+Disease	Dyskinesia Syndrome
+Disease	Dyskinesia Syndromes
+Disease	Movement Disorder
+Disease	Movement Disorder Syndrome
+Disease	Movement Disorder Syndromes
+Disease	Multiple Myeloma
+Disease	Myeloma Multiple
+Disease	Plasma Cell Myeloma
+Disease	Multiple Sclerosis
+Disease	Disseminated Sclerosis
+Disease	MS
+Disease	Multiple System Atrophy
+Disease	Multiple System Atrophy Syndrome
+Disease	Multisystem Atrophy
+Disease	Muscle Rigidity
+Disease	Extrapyramidal Rigidity
+Disease	Muscular Rigidity
+Disease	Familial startle disease
+Disease	Muscle Weakness
+Disease	Muscular Weakness
+Disease	Coenzyme Q Deficiency
+Disease	Muscular Atrophy
+Disease	Muscle Atrophy
+Disease	Neurogenic Muscular Atrophy
+Disease	Neurotrophic Muscular Atrophy
+Disease	Dysmorphism multiple structural anomalies
+Disease	Mental retardation and muscular atrophy
+Disease	T3 Resistance
+Disease	Musculoskeletal Pain
+Disease	Musculoskeletal Pains
+Disease	Myasthenia Gravis
+Disease	Generalized Myasthenia Gravis
+Disease	Ocular Myasthenia Gravis
+Disease	Myasthenia familial infantile
+Disease	Myocardial Infarction
+Disease	Cardiovascular Stroke
+Disease	Cardiovascular Strokes
+Disease	Heart Attack
+Disease	Heart Attacks
+Disease	Myocardial Infarct
+Disease	Myocardial Infarctions
+Disease	Myocardial Infarcts
+Disease	Myocardial Ischemia
+Disease	Ischemic Heart Disease
+Disease	Ischemic Heart Diseases
+Disease	Myocardial Stunning
+Disease	Myotonia Congenita
+Disease	Congenital Myotonia
+Disease	Generalized Myotonia
+Disease	Sodium Channel Myotonia
+Disease	Myotonic Disorders
+Disease	Myotonic Disorder
+Disease	Myotonic Myopathies
+Disease	Myotonic Myopathy
+Disease	Myotonic Dystrophy
+Disease	Congenital Myotonic Dystrophy
+Disease	DM
+Disease	Myotonic Dystrophy 1
+Disease	Myotonic Dystrophy 2
+Disease	Proximal Myotonic Myopathies
+Disease	Proximal Myotonic Myopathy
+Disease	Steinert Disease
+Disease	Steinert Myotonic Dystrophy
+Disease	NSCLC
+Disease	Nephrotic Syndrome
+Disease	Nephrotic Syndromes
+Disease	Congenital nephrotic syndrome 1
+Disease	Diffuse isolated mesangial sclerosis
+Disease	Diffuse mesangial sclerosis
+Disease	Familial mesangial sclerosis
+Disease	Isolated diffuse mesangial sclerosis
+Disease	Nephrotoxicity
+Disease	Neurodegenerative Diseases
+Disease	Degenerative Neurologic Disease
+Disease	Degenerative Neurologic Diseases
+Disease	Degenerative Neurologic Disorder
+Disease	Degenerative Neurologic Disorders
+Disease	Nervous System Degenerative Diseases
+Disease	Neurodegenerative Disease
+Disease	Neurodegenerative Disorder
+Disease	Neurodegenerative Disorders
+Disease	Neurologic Degenerative Condition
+Disease	Neurologic Degenerative Conditions
+Disease	Neurologic Degenerative Disease
+Disease	Neurologic Degenerative Diseases
+Disease	Familial idiopathic basal ganglia calcification
+Disease	Neuroleptic Malignant Syndrome
+Disease	Neuroleptic Induced Neuroleptic Malignant Syndrome
+Disease	Neuroleptic Malignant Syndromes
+Disease	OCD
+Disease	Ocular Hypertension
+Disease	Suspect Glaucoma
+Disease	Opportunistic Infections
+Disease	Opportunistic Infection
+Disease	Optic Atrophy
+Disease	Deafness dystonia syndrome
+Disease	Micro Syndrome
+Disease	Optic atrophy plus syndrome
+Disease	Oral Manifestations
+Disease	Oral Manifestation
+Disease	PD
+Disease	PULMONARY FUNCTION
+Disease	Pain
+Disease	Panic Disorder
+Disease	Panic Attack
+Disease	Panic Attacks
+Disease	PANIC DISORDER 1
+Disease	PANIC DISORDER 2
+Disease	PANIC DISORDER 3
+Disease	Panic Disorders
+Disease	Parkinson 's Disease
+Disease	Parkinson 's disease
+Disease	Parkinson Disease
+Disease	Idiopathic Parkinson Disease
+Disease	Primary Parkinsonism
+Disease	Atypical PSP
+Disease	Atypical Parkinson Disease
+Disease	Basal Ganglion Disorder With Mental Retardation
+Disease	Basal ganglia disorder with mental retardation
+Disease	Pelvic Pain
+Disease	Pelvic Pains
+Disease	Peptic Ulcer
+Disease	Marginal Ulcer
+Disease	Marginal Ulcers
+Disease	Peptic Ulcers
+Disease	Pericardial Effusion
+Disease	Pericardial Effusions
+Disease	Cholesterol Pericarditis
+Disease	Peripheral neuropathy
+Disease	Philadelphia Chromosome
+Disease	Ph 1 Chromosome
+Disease	Ph 1 Chromosomes
+Disease	Pleural Effusion
+Disease	Pleural Effusions
+Disease	Polyarteritis Nodosa
+Disease	Essential Polyarteritis
+Disease	Necrotizing Arteritis
+Disease	Polycystic Ovary Syndrome
+Disease	PCOS
+Disease	Polycystic Ovarian Syndrome
+Disease	Polycystic Ovary Syndrome 1
+Disease	Postoperative Complications
+Disease	Postoperative Complication
+Disease	Postoperative Nausea and Vomiting
+Disease	Postoperative Emesis
+Disease	Postoperative Nausea
+Disease	Postoperative Vomiting
+Disease	Proteinuria
+Disease	Pseudomonas Infections
+Disease	Pseudomonas aeruginosa Infection
+Disease	Pseudomonas aeruginosa Infections
+Disease	Pseudomonas Infection
+Disease	Pseudotumor Cerebri
+Disease	Benign Intracranial Hypertension
+Disease	Idiopathic Intracranial Hypertension
+Disease	Psychomotor Agitation
+Disease	Akathisia
+Disease	Psychomotor Excitement
+Disease	Psychomotor Hyperactivity
+Disease	Psychomotor Restlessness
+Disease	Restlessness
+Disease	Psychotic Disorders
+Disease	Brief Reactive Psychoses
+Disease	Brief Reactive Psychosis
+Disease	Psychoses
+Disease	Psychosis
+Disease	Psychotic Disorder
+Disease	Schizoaffective Disorder
+Disease	Schizoaffective Disorders
+Disease	Schizophreniform Disorder
+Disease	Schizophreniform Disorders
+Disease	Pulmonary Edema
+Disease	Wet Lung
+Disease	Wet Lungs
+Disease	Pulmonary Embolism
+Disease	Pulmonary Thromboembolism
+Disease	Putaminal Hemorrhage
+Disease	Putamen Hemorrhage
+Disease	Putaminal Hematoma
+Disease	RPN
+Disease	Reflex Sympathetic Dystrophy
+Disease	Cervical Sympathetic Dystrophy
+Disease	Reflex Sympathetic Dystrophy Syndrome
+Disease	Shoulder Hand Syndrome
+Disease	Type I Complex Regional Pain Syndrome
+Disease	Renal Insufficiency
+Disease	Kidney Failure
+Disease	Kidney Insufficiency
+Disease	Renal Failure
+Disease	Biliary malformation with renal tubular insufficiency
+Disease	Cholestatic jaundice and renal tubular insufficiency
+Disease	Nephrolithiasis 1
+Disease	Reperfusion Injury
+Disease	Ischemia Reperfusion Injury
+Disease	Reperfusion Damage
+Disease	Reperfusion Damages
+Disease	Reperfusion Injuries
+Disease	Respiratory Insufficiency
+Disease	Respiratory Depression
+Disease	Respiratory Failure
+Disease	Ventilatory Depression
+Disease	Respiratory Paralysis
+Disease	Diaphragmatic Paralysis
+Disease	Respiratory Muscle Paralysis
+Disease	Restless Legs Syndrome
+Disease	PERIODIC LIMB MOVEMENTS IN SLEEP
+Disease	Restless Legs
+Disease	Restless Leg Syndrome
+Disease	Autosomal dominant restless legs syndrome
+Disease	Retinal Detachment
+Disease	Retinal Vasculitis
+Disease	Retinal Vein Occlusion
+Disease	Retinal Vein Occlusions
+Disease	Retinal Vein Thromboses
+Disease	Retinal Vein Thrombosis
+Disease	Reye Syndrome
+Disease	Adult Reye Syndrome
+Disease	Fatty Liver with Encephalopathy
+Disease	Reye Johnson Syndrome
+Disease	Reye Like Syndrome
+Disease	Rheumatic Fever
+Disease	Acute Rheumatic Arthritis
+Disease	Acute Rheumatic Fever
+Disease	Rheumatic Arthritis
+Disease	Rheumatic Heart Disease
+Disease	Rheumatic Heart Diseases
+Disease	SE
+Disease	Segmental glomerulosclerosis
+Disease	Focal sclerosis with hyalinosis
+Disease	Focal segmental glomerulosclerosis 1
+Disease	Seizure
+Disease	Seizures
+Disease	Serotonin Syndrome
+Disease	Serotonin Syndromes
+Disease	Severe Combined Immunodeficiency
+Disease	Bare Lymphocyte Syndrome
+Disease	Bare Lymphocyte Syndromes
+Disease	Severe Combined Immune Deficiency
+Disease	Severe Combined Immunodeficiencies
+Disease	Severe Combined Immunodeficiency Syndrome
+Disease	Severe Combined Immunologic Deficiency
+Disease	Bare lymphocyte syndrome type 2
+Disease	Bubble boy disease
+Disease	HLA Class I Deficiency
+Disease	Severe combined immunodeficiency with hypereosinophilia
+Disease	Severe combined immunodeficiency with leukopenia
+Disease	Signs and Symptoms
+Disease	Symptoms and Signs
+Disease	Sinoatrial Block
+Disease	Sinoatrial Blocks
+Disease	Sinoatrial Exit Block
+Disease	Sinoatrial Exit Blocks
+Disease	Skin Diseases
+Disease	Dermatoses
+Disease	Skin Disease
+Disease	Focal facial dermal dysplasia type 2
+Disease	Sleep Deprivation
+Disease	Insufficient Sleep Syndrome
+Disease	Insufficient Sleep Syndromes
+Disease	REM Sleep Deprivation
+Disease	Sleep Fragmentation
+Disease	Soft Tissue Infections
+Disease	Soft Tissue Infection
+Disease	Solitary Kidney
+Disease	Single Functioning Kidney
+Disease	Single Functioning Kidneys
+Disease	Single Kidney
+Disease	Single Kidneys
+Disease	Solitary Functioning Kidney
+Disease	Unilateral Renal Hypoplasia
+Disease	Spinal Cord Ischemia
+Disease	Experimental Spinal Cord Ischemia
+Disease	Ischemic Myelopathy
+Disease	Staphylococcal Infections
+Disease	Staphylococcal Infection
+Disease	Staphylococcus aureus Infection
+Disease	Staphylococcus aureus Infections
+Disease	Status Epilepticus
+Disease	Absence Status
+Disease	Complex Partial Status Epilepticus
+Disease	Electrographic Status Epilepticus
+Disease	Generalized Convulsive Status Epilepticus
+Disease	Generalized Status Epilepticus
+Disease	Grand Mal Status Epilepticus
+Disease	Non Convulsive Status Epilepticus
+Disease	Petit Mal Status
+Disease	Simple Partial Status Epilepticus
+Disease	Subclinical Status Epilepticus
+Disease	Subacute Combined Degeneration
+Disease	Subacute Combined Neuropathy Degeneration
+Disease	Subarachnoid Hemorrhage
+Disease	Aneurysmal Subarachnoid Hemorrhage
+Disease	Aneurysmal Subarachnoid Hemorrhages
+Disease	Intracranial Subarachnoid Hemorrhage
+Disease	Intracranial Subarachnoid Hemorrhages
+Disease	Perinatal Subarachnoid Hemorrhage
+Disease	Perinatal Subarachnoid Hemorrhages
+Disease	Spontaneous Subarachnoid Hemorrhage
+Disease	Spontaneous Subarachnoid Hemorrhages
+Disease	Subarachnoid Hemorrhages
+Disease	TDP
+Disease	TG
+Disease	TMA
+Disease	TNSs
+Disease	Takotsubo Cardiomyopathy
+Disease	Apical Ballooning Syndrome
+Disease	Broken Heart Syndrome
+Disease	Left Ventricular Apical Ballooning Syndrome
+Disease	Stress Cardiomyopathy
+Disease	Takotsubo Syndrome
+Disease	Transient Apical Ballooning Syndrome
+Disease	Tardive Dyskinesia
+Disease	Tardive Dyskinesias
+Disease	Tardive Dystonia
+Disease	Tardive Dystonias
+Disease	TdP
+Disease	Thiamine Deficiency
+Disease	Tic Disorders
+Disease	Childhood Tic Disorder
+Disease	Childhood Tic Disorders
+Disease	Chronic Motor or Vocal Tic Disorder
+Disease	Motor Tic Disorder
+Disease	Motor Tic Disorders
+Disease	Post Traumatic Tic Disorder
+Disease	Tic Disorder
+Disease	Transient Tic Disorder
+Disease	Transient Tic Disorders
+Disease	Vocal Tic Disorder
+Disease	Vocal Tic Disorders
+Disease	Tissue Adhesions
+Disease	Surgery Induced Tissue Adhesions
+Disease	Surgical Adhesions
+Disease	Tooth Wear
+Disease	Dental Wear
+Disease	Torsades de Pointes
+Disease	Torsade de Pointes
+Disease	Toxicity
+Disease	Transfusion Reaction
+Disease	Acute Hemolytic Transfusion Reaction
+Disease	Blood Transfusion Associated Adverse Reactions
+Disease	Delayed Hemolytic Transfusion Reaction
+Disease	Delayed Serologic Transfusion Reaction
+Disease	Febrile Non Hemolytic Transfusion Reaction
+Disease	Hemolytic Transfusion Reaction
+Disease	Hemolytic Transfusion Reactions
+Disease	Hypotensive Transfusion Reaction
+Disease	Post Transfusion Purpura
+Disease	Transfusion Associated Allergic Reaction
+Disease	Transfusion Associated Circulatory Overload
+Disease	Transfusion Associated Dyspnea
+Disease	Transfusion Associated Graft Vs. Host Disease
+Disease	Transfusion Reactions
+Disease	Transfusion Transmitted Infection
+Disease	Trigeminal Neuralgia
+Disease	Epileptiform Neuralgia
+Disease	Idiopathic Trigeminal Neuralgia
+Disease	Secondary Trigeminal Neuralgia
+Disease	Tumor Lysis Syndrome
+Disease	Tumor Lysis Syndromes
+Disease	Tumour Lysis Syndrome
+Disease	Tumour Lysis Syndromes
+Disease	Turner Syndrome
+Disease	Urinary Incontinence
+Disease	Urinary Tract Infections
+Disease	Urinary Tract Infection
+Disease	VTE
+Disease	Vascular Remodeling
+Disease	Pulmonary Arterial Remodeling
+Disease	Venous Thromboembolism
+Disease	Venous Thrombosis
+Disease	Deep Vein Thromboses
+Disease	Deep Vein Thrombosis
+Disease	Deep Venous Thromboses
+Disease	Deep Venous Thrombosis
+Disease	Venous Thromboses
+Disease	Ventricular Dysfunction
+Disease	Ventricular Dysfunctions
+Disease	Ventricular Fibrillation
+Disease	Ventricular Fibrillations
+Disease	Idiopathic ventricular fibrillation
+Disease	Paroxysmal familial ventricular fibrillation
+Disease	Ventricular Remodeling
+Disease	Left Ventricle Remodeling
+Disease	Left Ventricular Remodeling
+Disease	Ventricle Remodeling
+Disease	Ventricular Cardiac Remodeling
+Disease	Ventricular Myocardial Remodeling
+Disease	Ventricular Septal Rupture
+Disease	Ventricular Septal Perforation
+Disease	Visceral Pain
+Disease	Visceral Pains
+Disease	Vocal Cord Paralysis
+Disease	Acquired Vocal Cord Palsy
+Disease	Congenital Vocal Cord Palsy
+Disease	Laryngeal Paralysis
+Disease	Recurrent Laryngeal Nerve Palsy
+Disease	Total Vocal Cord Paralysis
+Disease	Unilateral Vocal Cord Paralysis
+Disease	Vocal Cord Palsies
+Disease	Vocal Cord Palsy
+Disease	Vocal Fold Palsies
+Disease	Vocal Fold Palsy
+Disease	Congenital bilateral recurrent nerve paralysis and ptosis
+Disease	Familial vocal cord dysfunction
+Disease	Laryngeal abductor paralysis
+Disease	Ptosis vocal cord paralysis
+Disease	Vocal Cord Paralysis And Ptosis
+Disease	Water Intoxication
+Disease	Wegener 's granulomatosis
+Disease	Weight Gain
+Disease	Weight Gains
+Disease	Weight Loss
+Disease	Weight Losses
+Disease	Weight Reduction
+Disease	Weight Reductions
+Disease	Wilms Tumor
+Disease	Bilateral Wilms Tumor
+Disease	Wilms Tumor 1
+Disease	Bilateral radial aplasia with Wilms tumor
+Disease	Familial Wilms Tumor 1
+Disease	Wilms tumor 5
+Disease	Wilson 's disease
+Disease	acidosis
+Disease	acne
+Disease	acute liver failure
+Disease	acute lymphoblastic leukemia
+Disease	acute myocardial infarction
+Disease	acute tubular necrosis
+Disease	aggression
+Disease	aggressive behavior
+Disease	aggressiveness
+Disease	agitation
+Disease	agoraphobia
+Disease	akinetic
+Disease	albuminuria
+Disease	allergic reaction
+Disease	allergic reactions
+Disease	amnesia
+Disease	anaphylaxis
+Disease	anemia
+Disease	anencephaly
+Disease	aneurysm
+Disease	aneurysms
+Disease	angioedema
+Disease	anuria
+Disease	aplastic anemia
+Disease	apnea
+Disease	apnoea
+Disease	arrhythmia
+Disease	arrhythmias
+Disease	artery calcification
+Disease	arthritis
+Disease	ascites
+Disease	asterixis
+Disease	asystole
+Disease	ataxia
+Disease	atherosclerosis
+Disease	atherosclerotic
+Disease	atrophy
+Disease	autoimmune hemolytic anemia
+Disease	autonomic neuropathy
+Disease	bipolar
+Disease	bladder cancer
+Disease	bleeding
+Disease	blood coagulation
+Disease	bone marrow suppression
+Disease	bradycardia
+Disease	brain damage
+Disease	breast cancer
+Disease	breast carcinoma
+Disease	bruising
+Disease	calcification
+Disease	cancer
+Disease	cancers
+Disease	carcinogenesis
+Disease	carcinoma
+Disease	cardiac arrest
+Disease	cardiac arrhythmias
+Disease	cardiac dysfunction
+Disease	cardiac hypertrophy
+Disease	cardiac toxicity
+Disease	cardiomyopathy
+Disease	cardiotoxic
+Disease	cardiotoxicity
+Disease	catalepsy
+Disease	cataract
+Disease	cataracts
+Disease	cerebral haemorrhage
+Disease	cholestasis
+Disease	chronic hepatitis C
+Disease	chronic renal failure
+Disease	cirrhosis
+Disease	coagulopathy
+Disease	cocaine abuse
+Disease	cognitive deficits
+Disease	coma
+Disease	confusion
+Disease	constipation
+Disease	convulsion
+Disease	convulsions
+Disease	convulsive
+Disease	coronary spasm
+Disease	cystitis
+Disease	death
+Disease	deaths
+Disease	dehydration
+Disease	delirium
+Disease	dementia
+Disease	depressed
+Disease	depression
+Disease	depressive
+Disease	dermatitis
+Disease	diabetes
+Disease	diabetic
+Disease	diabetic nephropathy
+Disease	diarrhea
+Disease	dilated cardiomyopathy
+Disease	dizziness
+Disease	drug abuse
+Disease	dry mouth
+Disease	dyskinesia
+Disease	dyskinesias
+Disease	dystonia
+Disease	edema
+Disease	encephalopathy
+Disease	end - stage renal disease
+Disease	endometrial cancer
+Disease	eosinophilia
+Disease	epilepsy
+Disease	epileptic
+Disease	exencephalic
+Disease	exencephaly
+Disease	extrapyramidal symptoms
+Disease	fasciculation
+Disease	fatigue
+Disease	fever
+Disease	fibrosis
+Disease	fractures
+Disease	fulminant hepatic failure
+Disease	gallbladder disease
+Disease	glaucoma
+Disease	glioblastoma
+Disease	glomerular sclerosis
+Disease	glomerulonephritis
+Disease	glomerulosclerosis
+Disease	glycosuria
+Disease	haemodilution
+Disease	hallucinations
+Disease	hand - foot syndrome
+Disease	headache
+Disease	hematoma
+Disease	hematuria
+Disease	hemolysis
+Disease	hemolytic anemia
+Disease	hemolytic uremic syndrome
+Disease	hemorrhage
+Disease	hemorrhagic
+Disease	hepatic damage
+Disease	hepatic injury
+Disease	hepatitis
+Disease	hepatitis B
+Disease	hepatocellular carcinoma
+Disease	hepatomegaly
+Disease	hepatotoxic
+Disease	hepatotoxicity
+Disease	hiccups
+Disease	hoarseness
+Disease	hyperactivity
+Disease	hyperalgesia
+Disease	hyperammonemia
+Disease	hypercalcemia
+Disease	hypercholesterolemia
+Disease	hyperemia
+Disease	hyperkalemia
+Disease	hyperprolactinemia
+Disease	hypersensitivity
+Disease	hypertension
+Disease	hypertensive
+Disease	hyperthermia
+Disease	hyperthyroidism
+Disease	hypertrophy
+Disease	hypocalcemia
+Disease	hyponatremia
+Disease	hypotension
+Disease	hypotensive
+Disease	hypothermia
+Disease	hypothyroid
+Disease	hypothyroidism
+Disease	hypoxia
+Disease	idiopathic Parkinson 's disease
+Disease	idiopathic epilepsy
+Disease	incontinence
+Disease	infarction
+Disease	infection
+Disease	infections
+Disease	inflammation
+Disease	interstitial nephritis
+Disease	irritability
+Disease	ischemia
+Disease	ischemic stroke
+Disease	jaundice
+Disease	leukoencephalopathy
+Disease	leukopenia
+Disease	liver damage
+Disease	liver disease
+Disease	liver injury
+Disease	locomotor hyperactivity
+Disease	low sexual desire
+Disease	lymphadenopathy
+Disease	major depression
+Disease	malignancies
+Disease	malignancy
+Disease	manic
+Disease	memory impairment
+Disease	meningitis
+Disease	metabolic acidosis
+Disease	meth mouth
+Disease	migraine
+Disease	milk fever
+Disease	mitochondrial dysfunction
+Disease	mitral regurgitation
+Disease	motor disability
+Disease	mucositis
+Disease	myalgia
+Disease	myelosuppression
+Disease	myocardial damage
+Disease	myocardial injury
+Disease	myocarditis
+Disease	myoclonic jerks
+Disease	myoclonus
+Disease	myopathy
+Disease	nausea
+Disease	necrosis
+Disease	necrotic
+Disease	nephrolithiasis
+Disease	nephropathy
+Disease	nephrosis
+Disease	nephrotic
+Disease	nephrotoxic
+Disease	nephrotoxicity
+Disease	neuronal damage
+Disease	neuropathic pain
+Disease	neuropathy
+Disease	neurotoxic
+Disease	neurotoxicity
+Disease	neutropenia
+Disease	non - small cell lung cancer
+Disease	orthostatic hypotension
+Disease	osteoporosis
+Disease	ototoxicity
+Disease	ovarian cancer
+Disease	overdose
+Disease	pain
+Disease	paralysis
+Disease	parkinsonian
+Disease	parkinsonism
+Disease	penile pain
+Disease	pericarditis
+Disease	peripheral neuropathy
+Disease	platelet aggregation
+Disease	poisoning
+Disease	polydipsia
+Disease	polyneuropathy
+Disease	polyuria
+Disease	primary pulmonary hypertension
+Disease	prolactinoma
+Disease	prostate cancer
+Disease	proteinuria
+Disease	pruritus
+Disease	pseudolithiasis
+Disease	psoriasis
+Disease	psychiatric
+Disease	psychotic symptoms
+Disease	pulmonary hypertension
+Disease	rash
+Disease	reduction in glomerular number
+Disease	renal damage
+Disease	renal dysfunction
+Disease	renal injury
+Disease	renal papillary necrosis
+Disease	renal toxicity
+Disease	rhabdomyolysis
+Disease	rheumatoid arthritis
+Disease	rigidity
+Disease	schizophrenia
+Disease	schizophrenic
+Disease	secondary hyperalgesia
+Disease	seizure
+Disease	seizures
+Disease	sensorineural hearing loss
+Disease	sepsis
+Disease	sexual dysfunction
+Disease	shock
+Disease	sinus bradycardia
+Disease	somnolence
+Disease	spasm
+Disease	stomatitis
+Disease	stress incontinence
+Disease	stroke
+Disease	strokes
+Disease	syncope
+Disease	tachycardia
+Disease	temporal lobe epilepsy
+Disease	tetany
+Disease	thrombi
+Disease	thrombocytopenia
+Disease	thromboembolic
+Disease	thrombosis
+Disease	thrombotic
+Disease	thrombotic microangiopathy
+Disease	tinnitus
+Disease	toxicities
+Disease	toxicity
+Disease	tremor
+Disease	tremors
+Disease	tuberculosis
+Disease	tubular necrosis
+Disease	tumor
+Disease	tumors
+Disease	ulcer
+Disease	urticaria
+Disease	valvular heart disease
+Disease	variant angina
+Disease	vasculitis
+Disease	vasospasm
+Disease	ventricular arrhythmias
+Disease	ventricular tachycardia
+Disease	visual field defects
+Disease	visual hallucinations
+Disease	visual loss
+Disease	vomiting
+Disease	weakness
