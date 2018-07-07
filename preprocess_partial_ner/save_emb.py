@@ -21,12 +21,20 @@ if __name__ == "__main__":
         line = line.split()
         vector = list(map(lambda t: float(t), filter(lambda n: n and not n.isspace(), line[1:])))
         if line[0] == args.unk:
-            word_dict['<unk>'] = len(word_dict)
-        else:
+            if '<unk>' not in word_dict:
+                # add <unk>
+                word_dict['<unk>'] = len(word_dict)
+                if len(embedding_array) > 0:
+                    assert len(embedding_array[0]) == len(vector), 'dimension mismatch!'
+                embedding_array.append(vector)
+        elif line[0] not in word_dict:
+            # add a new word
             word_dict[line[0]] = len(word_dict)
-        if len(embedding_array) > 0:
-            assert len(embedding_array[0]) == len(vector), 'dimension mismatch!'
-        embedding_array.append(vector)
+            if len(embedding_array) > 0:
+                assert len(embedding_array[0]) == len(vector), 'dimension mismatch!'
+            embedding_array.append(vector)
+
+    assert len(word_dict) == len(embedding_array)
 
     bias = 2 * np.sqrt(3.0 / len(embedding_array[0]))
 
@@ -44,6 +52,8 @@ if __name__ == "__main__":
     embedding_array.append([random.random() * bias - bias for tup in embedding_array[0]])
     embedding_array.append([random.random() * bias - bias for tup in embedding_array[0]])
     embedding_array.append([random.random() * bias - bias for tup in embedding_array[0]])
+
+    assert len(word_dict) == len(embedding_array)
 
     with open(args.output_embedding, 'wb') as f:
         pickle.dump({'w_map': word_dict, 'emb_array': embedding_array}, f)

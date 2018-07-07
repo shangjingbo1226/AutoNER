@@ -8,6 +8,7 @@ import torch.optim as optim
 import codecs
 import pickle
 import math
+import numpy as np
 
 from model_partial_ner.ner import NER
 from model_partial_ner.basic import BasicRNN
@@ -51,6 +52,10 @@ if __name__ == "__main__":
 
     w_map, c_map, model, tl_map = checkpoint['w_map'], checkpoint['c_map'], checkpoint['model'], checkpoint['tl_map']
 
+    id2label = {}
+    for (label, idx) in tl_map.items():
+        id2label[idx] = label
+
     raw_data = pickle.load(open(args.input_corpus, 'rb'))
 
     data_loader = RawDataset(raw_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
@@ -61,7 +66,7 @@ if __name__ == "__main__":
     rnn_layer = rnn_map[args.rnn_layer](args.layer_num, args.rnn_unit, args.word_dim + args.char_dim, args.hid_dim, args.droprate, args.batch_norm)
 
     ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate, args.bi_type)
-    
+
     ner_model.load_state_dict(model)
 
     ner_model.cuda()
@@ -76,7 +81,7 @@ if __name__ == "__main__":
     max_score = -1000000000000
     min_score = 1000000000000
 
-    for word_t, char_t, chunk_mask, chunk_index in iterator:
+    for word_t, char_t, chunk_mask, chunk_index, chunk_surface in iterator:
         output = ner_model(word_t, char_t, chunk_mask)
         chunk_score = ner_model.chunking(output)
 
@@ -92,9 +97,16 @@ if __name__ == "__main__":
         output = ner_model.typing(output, pred_chunk)
 
         output = output.data.cpu()
-
+        offset = chunk_index[0]
         for ind in range(0, output.size(0)):
-            fout.write(str(chunk_index[ind]) + '\t' + str(chunk_index[ind+1]) + '\t' + '\t'.join([str(v) for v in output[ind]]) +'\n')
+            st, ed = chunk_index[ind], chunk_index[ind + 1]
+            surface = ' '.join(chunk_surface[st - offset : ed - offset])
+            ent_type_id = np.argmax(output[ind])
+            ent_type = id2label[ent_type_id]
+
+            values = [st, ed, surface, ent_type_id, ent_type]
+            str_values = [str(v) for v in values]
+            fout.write('\t'.join(str_values) + '\n')
         fout.write('\n')
 
     print('max: '+str(max_score))

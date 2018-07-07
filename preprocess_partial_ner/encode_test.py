@@ -47,8 +47,12 @@ def encode_dataset(input_file, w_map, c_map):
         tmp_c = [c_st, c_con]
         tmp_mc = [0, 1]
 
-        for i_f in f_l[1:-1]:
-            tmp_w = tmp_w + [w_map.get(i_f.lower(), w_unk)] * len(i_f) + [w_con]
+        assert len(f_l) > 0
+        assert f_l[0] != '<s>'
+        assert f_l[-1] != '<eof>'
+
+        for i_f in f_l:
+            tmp_w = tmp_w + [w_map.get(i_f, w_map.get(i_f.lower(), w_unk))] * len(i_f) + [w_con]
             tmp_c = tmp_c + [c_map.get(t, c_unk) for t in i_f] + [c_con]
             tmp_mc = tmp_mc + [0] * len(i_f) + [1]
 
@@ -56,9 +60,9 @@ def encode_dataset(input_file, w_map, c_map):
         tmp_c.append(c_pad)
         tmp_mc.append(0)
 
-        tmp_idx = f_idx[1:]
+        tmp_idx = f_idx + [f_idx[-1] + 1] # add an extra one for the end of this chunk
 
-        dataset.append([tmp_w, tmp_c, tmp_mc, tmp_idx])
+        dataset.append([tmp_w, tmp_c, tmp_mc, tmp_idx, f_l])
 
     return dataset
 

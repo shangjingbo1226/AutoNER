@@ -45,9 +45,10 @@ class RawDataset(object):
         char_t = autograd.Variable(torch.LongTensor([batch[1]])).cuda()
         chunk_mask = autograd.Variable(torch.ByteTensor([batch[2]])).cuda()
         chunk_index = autograd.Variable(torch.LongTensor(batch[3])).cuda()
+        chunk_surface = batch[4]
 
         self.cur_idx += 1
-        return word_t, char_t, chunk_mask, chunk_index
+        return word_t, char_t, chunk_mask, chunk_index, chunk_surface
 
 
 class NERDataset(object):

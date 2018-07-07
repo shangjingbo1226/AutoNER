@@ -60,6 +60,7 @@ if __name__ == "__main__":
     key_list = ['emb_array', 'w_map', 'c_map', 'tl_map', 'cl_map', 'range', 'test_data', 'dev_data']
     dataset = pickle.load(open(args.dataset_folder+'test.pk', 'rb'))
     emb_array, w_map, c_map, tl_map, cl_map, range_idx, test_data, dev_data = [dataset[tup] for tup in key_list]
+    assert len(emb_array) == len(w_map)
 
     train_loader = LargeDataset(args.dataset_folder, range_idx, w_map['<\n>'], c_map['<\n>'], args.batch_token_number, sample_ratio = args.sample_ratio)
     test_loader = NERDataset(test_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)

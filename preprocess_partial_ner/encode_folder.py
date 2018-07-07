@@ -20,15 +20,34 @@ def filter_words(w_map, emb_array, ck_filenames):
     new_w_map = {}
     new_emb_array = []
     for (word, idx) in w_map.items():
-        if word in vocab:
+        if word in vocab or word in ['<unk>', '<s>', '< >', '<\n>']:
+            assert word not in new_w_map
             new_w_map[word] = len(new_emb_array)
             new_emb_array.append(emb_array[idx])
-    for word in ['<unk>', '<s>', '< >', '<\n>']:
-        idx = w_map[word]
-        new_w_map[word] = len(new_emb_array)
-        new_emb_array.append(emb_array[idx])
     print('filtered %d --> %d' % (len(emb_array), len(new_emb_array)))
     return new_w_map, new_emb_array
+
+
+def build_label_mapping(train_file, dev_file, test_file):
+    ret = {'None': 0} # None must be 0
+    for filename in [train_file, dev_file, test_file]:
+        for line in open(filename):
+            if not (line.isspace() or (len(line) > 10 and line[0:10] == '-DOCSTART-')):
+                line = line.rstrip('\n').split()
+                assert len(line) >= 3 and len(line) <= 4, "the format of noisy corpus"
+                # The format should be
+                # 0. Token
+                # 1. I/O (I means Break, O means Connected)
+                # 2. Type (separated by comma)
+                # 3. Safe or dangerous?   <-- this is optional
+                token = line[0]
+                chunk_boundary = line[1]
+                entity_type = line[2]
+                if entity_type not in ret:
+                    type_id = len(ret)
+                    ret[entity_type] = type_id
+                    print('\tlabel mapping: %s --> %d' % (entity_type, type_id))
+    return ret
 
 
 def read_noisy_corpus(lines):
@@ -245,13 +264,15 @@ if __name__ == "__main__":
         emb_array = w_emb['emb_array']
 
     w_map, emb_array = filter_words(w_map, emb_array, [args.input_train, args.input_testa, args.input_testb])
+    assert len(w_map) == len(emb_array)
     
     #four special char/word, <s>, <unk>, < > and <\n>
     c_map = {'<s>': 0, '<unk>': 1, '< >': 2, '<\n>': 3}
-    tl_map = {'None': 0,
-              'PER': 1, 'ORG': 2, 'LOC': 3,
-              'Chemical': 1, 'Disease': 2,
-              'AspectTerm': 1}
+    # tl_map = {'None': 0,
+    #           'PER': 1, 'ORG': 2, 'LOC': 3,
+    #           'Chemical': 1, 'Disease': 2, 'Gene' : 3, 'Pathway' : 4, 'Protein' : 5, 'Mutation' : 6, 'Species': 7,
+    #           'AspectTerm': 1}
+    tl_map = build_label_mapping(args.input_train, args.input_testa, args.input_testb)
     cl_map = {'I': 0, 'O': 1}
 
     range_ind = encode_folder(args.input_train, args.output_folder, w_map, c_map, cl_map, tl_map, 5)

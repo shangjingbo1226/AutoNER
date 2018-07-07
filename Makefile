@@ -1,4 +1,4 @@
-CXX = g++-6
+CXX = g++
 CFLAGS = -std=c++11 -Wall -O3 -msse2  -fopenmp  -I..
 
 BIN = ./bin/generate
