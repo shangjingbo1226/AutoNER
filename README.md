@@ -29,9 +29,29 @@ Please cite the following two papers if you are using our tool. Thanks!
       - From domain-specific dictionaries.
       - Applying the high-quality phrase mining tool on domain-specific corpus.
         - [AutoPhrase](https://github.com/shangjingbo1226/AutoPhrase) 
-3. **[Optional]** Development & Test Sets.
+3. **Pre-trained word embeddings**
+  - Train your own or download from the web.
+4. **[Optional]** Development & Test Sets.
   - Example: ```data/BC5CDR/truth_dev.ck``` and ```data/BC5CDR/truth_test.ck```
     - Three columns (i.e., token, ```Tie or Break``` label, entity type).
     - ```I``` is ```Berak```.
     - ```O``` is ```Tie```.
     - Two special tokens ```<s>``` and ```<eof>``` mean the start and end of the sentence.
+
+## Dependencies
+
+TODO(shangjingbo): conda install with specific pytorch version.
+
+## Run
+
+To train an AutoNER model, please run
+```
+./autoner_train.sh
+```
+
+To apply the trained AutoNER model, please run
+```
+./autoner_test.sh
+```
+
+You can specify the parameters in the bash files. The variables names are self-explained.
