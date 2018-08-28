@@ -40,7 +40,19 @@ Please cite the following two papers if you are using our tool. Thanks!
 
 ## Dependencies
 
-TODO(shangjingbo): conda install with specific pytorch version.
+First, let's create a conda environment using Python 3 and pytorch 0.3.0.
+```
+conda create -n env_autoner python=3 mkl=2018 pytorch=0.3.0 -c pytorch -c intel
+```
+Then, activate this environment.
+```
+source activate env_autoner
+```
+Install some more packages (i.e., ```tqdm``` and ```tensorboardx```).
+```
+conda install -c conda-forge tqdm
+conda install -c conda-forge tensorboardx
+```
 
 ## Run
 
