@@ -8,6 +8,9 @@ Please cite the following two papers if you are using our tool. Thanks!
 - Jingbo Shang, Jialu Liu, Meng Jiang, Xiang Ren, Clare R Voss, Jiawei Han, "**[Automated Phrase Mining from Massive Text Corpora](https://arxiv.org/abs/1702.04457)**", accepted by IEEE Transactions on Knowledge and Data Engineering, Feb. 2018.
 
 
+![AutoNER-Framework](AutoNER-Framework.png)
+
+
 ## Required Inputs
 
 1. **Tokenized Raw Texts**
