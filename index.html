@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Empower Sequence Labeling with Task-Aware Language Model" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,700italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <title>AutoNER</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/shangjingbo1226/AutoNER">View on GitHub</a>
+
+          <h2 id="project_tagline">Learning Named Entity Tagger using Domain-Specific Dictionary</h2>
+            
+          <h3 id="project_author">
+            <a href="http://shangjingbo1226.github.io/">Jingbo Shang</a>,
+            <a href="https://liyuanlucasliu.github.io/">Liyuan Liu</a>, 
+            <a href="http://xren7.web.engr.illinois.edu/">Xiang Ren</a>, 
+            <a href="https://xgeric.github.io/">Xiaotao Gu</a>,
+            Teng Ren,
+            <a href="http://hanj.cs.illinois.edu/">Jiawei Han</a>
+          </h3>
+        </header>
+    </div>
+
+    <section class="outer">
+      <div class="downloads inner">
+        <a class="zip_download_link" href="https://arxiv.org/pdf/1709.04109.pdf">Paper</a>
+        <a class="tar_download_link" href="#Ref">Bib Tex</a>
+        <!-- <a class="zip_download_link" href="http://lm-lstm-crf.readthedocs.io/en/latest/">Documentation</a> -->
+      </div>
+      <p>
+    </section>
+
+
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+      <h1>Problem Setting</h1>
+        <p>
+          The input only contains a domain-specific entity dictionary and <em>raw</em> texts. There is <em>no</em> human annotations.
+        </p>
+
+        <p>
+          Specifically, we require two dictionaries as input. 
+          <ul>
+            <li>The first one contains those highly confident entity mentions with their types. Their matches in raw texts are very likely of the specified type. </li>
+            <li>The second dictionary contains a list of high-quality phrases (i.e., no type info), which could possibly be entities of the interested types. The second dictionary can be obtained through a phrase mining on a massive corpus in the same domain.</li>
+          </ul>
+        </p>
+
+      <h1>Challenges</h1>
+        <p>
+          We obtain the distant supervision through a string match between the dictionary and the corpus. When some high-quality phrase is matched, we mark the corresponding token span as "unknown". Such token span can be an entity of the interested type, an entity of another type, a part of some entity, or a non-entity token span.
+        </p>
+
+        <p>
+          The state-of-the-art NER models mainly follow the BIO/BIOES labeling scheme, which is not compatible with the "unknown" token spans. We tried to extend the BIOES labeling scheme and propose a fuzzy CRF layer (as below) to model "unknown" token spans, but the performance is not satisfiable. 
+        </p>
+
+        <p align="center"><img width="100%" alt="framework" src="figures/FuzzyCRF.png"/></p>
+
+
+      <h1>Our Solution</h1>
+
+      <p>
+        We propose a new labeling scheme, i.e., <em>Tie or Break</em>, as well as a new neural framework, i.e., <em>AutoNER</em> to better leverage the distant supervision.
+      </p>
+
+      <p>
+        <b>Tie or Break</b>. Instead of annotating each token, we choose to annotate the gap between two adjacent tokens.
+        <ul>
+          <li><em>Tie</em>: The two tokens are tied within an entity.</li>
+          <li><em>Break</em>: The two tokens are not tied within an entity.</li>
+          <li><em>Unknown</em>: At least one of the token belongs to an "unknown" token span. We are not sure about this position. </li>
+        </ul>
+        Then, a token span can be defined by two adjacent <em>Break</em>'s. For each token span, we treat its type as a multi-label multi-class classification problem. We also add a new <em>None</em> type for those non-entity span.
+      </p>
+
+      <p>
+        There are two important observations:
+        <ul>
+          <li>String match-based supervision may generate partially labeled entity mentions. However, most of their inner ties are correct. Our <em>Tie or Break</em> labeling scheme can utilize these correct information effectively.</li>
+          <li>Unigram entity mentions are probably the most noisy part of the string match-based supervision. However, in <em>Tie or Break</em>, both unigram entity span and unigram non-entity span generate two <em>Break</em>'s around them. This makes the entity boundary detection more robust.</li>
+        </ul>
+      </p>
+
+      <p>
+        <b>AutoNER</b>. Using our <em>Tie or Break</em> labeling scheme, we design a new neural framework that leverages both character- and word-level information, as shown below.
+      </p>
+
+      <p align="center"><img width="100%" alt="framework" src="figures/AutoNER.png"/></p>
+
+      <h1>Experiments</h1>
+
+        We conduct experiments on the following three datasets in the biomedical and technical review domains.
+        <p align="center"><img width="50%" alt="framework" src="figures/Dataset.png"/></p>
+
+        The results listed in the following two tables demonstrate that (1) AutoNER achieves the best performance when there is no human effort other than the dictionary; (2) AutoNER achieves competitive performance as the supervised benchmark method.
+
+        <p align="center"><img width="100%" alt="framework" src="figures/Bio.png"/></p>
+
+        <p align="center"><img width="50%" alt="framework" src="figures/Tech.png"/></p>
+
+
+
+      <h1 id="Ref">Bib Tex</h1>
+
+      <p>
+      Please cite the following papers if you find the codes and datasets useful.
+      </p>
+
+      <p id="reference">
+      @inproceedings{shang2018learning,<br/>
+      &nbsp title = {Learning Named Entity Tagger using Domain-Specific Dictionary}, <br/>
+      &nbsp author = {Shang, Jingbo and Liu, Liyuan and Ren, Xiang and Gu, Xiaotao and Ren, Teng and Han, Jiawei}, <br/>
+      &nbsp booktitle = {EMNLP}, <br/>
+      &nbsp year = 2018, <br/>
+      }</p>
+      <p id="reference">
+      @article{shang2018automated,<br/>
+      &nbsp title = {Automated phrase mining from massive text corpora},<br/>
+      &nbsp author = {Shang, Jingbo and Liu, Jialu and Jiang, Meng and Ren, Xiang and Voss, Clare R and Han, Jiawei},<br/>
+      &nbsp  journal = {IEEE Transactions on Knowledge and Data Engineering},<br/>
+      &nbsp  year = {2018},<br/>
+      &nbsp publisher = {IEEE}<br/>
+      }</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">    
+        <p>
+          <!-- hitwebcounter Code START -->
+          <a href="http://www.hitwebcounter.com" target="_blank">
+          <img src="http://hitwebcounter.com/counter/counter.php?page=6991034&style=0006&nbdigits=6&type=page&initCount=0" title="Free track counters" Alt="Free track counters"   border="0" >
+          </a>
+        </p>
+        <p class="copyright">Page style designed by <a href="https://github.com/jasoncostello">Slate Theme</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+  </body>
+</html>
