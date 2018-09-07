@@ -56,15 +56,52 @@
 
       <h1>Benchmark Results</h1>
 
-        We conduct experiments on the following three datasets in the biomedical and technical review domains.
-        <p align="center"><img width="50%" alt="framework" src="figures/Dataset.png"/></p>
+        <p>
+          We conduct experiments on the three datasets across the biomedical and technical review domains. For example, on the BC5CDR dataset, we are tagging the Diseases and Chemicals. 
+        </p>
 
-        The results listed in the following two tables demonstrate that (1) AutoNER achieves the best performance when there is no human effort other than the dictionary; (2) AutoNER achieves competitive performance as the supervised benchmark method.
+        <p>
+          The results listed in the following two tables demonstrate that (1) AutoNER achieves the best performance when there is no human effort other than the dictionary; (2) AutoNER achieves competitive performance as the supervised benchmark method.
+        </p>
 
-        <p align="center"><img width="100%" alt="framework" src="figures/Bio.png"/></p>
+        <center>
+          <table style="width:65%">
+            <tr>
+              <th>Method</th>
+              <th>Precision</th> 
+              <th>Recall</th>
+              <th>F1</th>
+            </tr>
+            <tr>
+              <td>Supervised Benchmark</td>
+              <td>88.84</td> 
+              <td>85.16</td>
+              <td><b>86.96</b></td>
+            </tr>
+            <tr>
+              <td>Dictionary Match</td>
+              <td>93.93</td> 
+              <td>58.35</td>
+              <td>71.98</td>
+            </tr>
+            <tr>
+              <td>Fuzzy-LSTM-CRF</td>
+              <td>88.27</td>
+              <td>76.75</td>
+              <td>82.11</td>
+            </tr>
+            <tr>
+              <td>AutoNER</td>
+              <td>88.96</td>
+              <td>81.00</td>
+              <td><b>84.80</b></td>
+            </tr>
+          </table>
+        </center>
 
-        <p align="center"><img width="50%" alt="framework" src="figures/Tech.png"/></p>
-
+        <p>
+          There is a brief introduction in the following sections. For more details, please refer to our paper.
+        </p>
 
       <h1>Problem Setting</h1>
         <p>
