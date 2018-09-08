@@ -59,12 +59,12 @@ class softCE(nn.Module):
         target : ``torch.ByteTensor`` , required.
             The target as the mask for the softmax input.
         """
-    	supervision_p = softCE.soft_max(scores, target)
-    	scores_logp = self.logSoftmax(scores)
-    	CE = (-supervision_p * scores_logp).sum()
-    	if self.if_average:
-    		CE = CE / scores.size(0)
-    	return CE
+        supervision_p = softCE.soft_max(scores, target)
+        scores_logp = self.logSoftmax(scores)
+        CE = (-supervision_p * scores_logp).sum()
+        if self.if_average:
+            CE = CE / scores.size(0)
+        return CE
 
 
 def hinge_loss(score, label):

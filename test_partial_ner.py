@@ -72,8 +72,8 @@ if __name__ == "__main__":
     fout = open(args.output_text, 'w')
 
     iterator = data_loader.get_tqdm(device)
-    max_score = -1000000000000
-    min_score = 1000000000000
+    max_score = -float('inf')
+    min_score = float('inf')
 
     for word_t, char_t, chunk_mask, chunk_index, chunk_surface in iterator:
         output = ner_model(word_t, char_t, chunk_mask)
