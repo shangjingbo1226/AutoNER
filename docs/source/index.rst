@@ -15,7 +15,6 @@ Details about AutoNER can be accessed at: https://arxiv.org/abs/1804.07827.
 
    seq
 
-
 Indices and tables
 ==================
 

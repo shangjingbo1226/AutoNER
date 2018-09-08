@@ -1,5 +1,7 @@
 # AutoNER: Learning Named Entity Tagger using Domain-Specific Dictionary
 
+
+[![Documentation Status](https://readthedocs.org/projects/autoner/badge/?version=latest)](http://autoner.readthedocs.io/en/latest/?badge=latest)
 ![AutoNER-Framework](docs/AutoNER-Framework.png)
 
 ## Publications
