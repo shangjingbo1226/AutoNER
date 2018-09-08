@@ -1,6 +1,6 @@
 # AutoNER: Learning Named Entity Tagger using Domain-Specific Dictionary
 
-![AutoNER-Framework](AutoNER-Framework.png)
+![AutoNER-Framework](docs/AutoNER-Framework.png)
 
 ## Publications
 

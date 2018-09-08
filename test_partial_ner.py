@@ -15,7 +15,7 @@ from model_partial_ner.basic import BasicRNN
 from model_partial_ner.dataset import RawDataset
 import model_partial_ner.utils as utils
 
-from tensorboardX import SummaryWriter
+import torch_scope.basic_wrapper as bw
 
 import argparse
 import json
@@ -26,9 +26,11 @@ import functools
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('--gpu', type=str, default=0)
+    parser.add_argument('--checkpoint_folder', default='./checkpoint/autoner0')
+
     parser.add_argument('--input_corpus', default='./data/target.pk')
     parser.add_argument('--output_text', default='./data/output_text.tsv')
-    parser.add_argument('--load_checkpoint', default='./checkpoint/ner_basic.model')
     parser.add_argument('--batch_token_number', type=int, default=3000)
     parser.add_argument('--label_dim', type=int, default=50)
     parser.add_argument('--hid_dim', type=int, default=300)
@@ -36,48 +38,40 @@ if __name__ == "__main__":
     parser.add_argument('--char_dim', type=int, default=30)
     parser.add_argument('--layer_num', type=int, default=2)
     parser.add_argument('--droprate', type=float, default=0.5)
-    parser.add_argument('--gpu', type=int, default=0)
     parser.add_argument('--rnn_layer', choices=['Basic'], default='Basic')
     parser.add_argument('--rnn_unit', choices=['gru', 'lstm', 'rnn'], default='lstm')
     parser.add_argument('--batch_norm', action='store_true')
-    parser.add_argument('--bi_type', action='store_true')
     parser.add_argument('--threshold', type=float, default=0.0)
     args = parser.parse_args()
+    
+    gpu_index = bw.auto_device() if 'auto' == args.gpu else int(args.gpu)
+    device = torch.device("cuda:" + str(gpu_index) if gpu_index >= 0 else "cpu")
+    if gpu_index >= 0:
+        torch.cuda.set_device(gpu_index)
 
-    if args.gpu >= 0:
-        torch.cuda.set_device(args.gpu)
+    print('loading checkpoint')
+    dictionary = bw.restore_configue(args.checkpoint_folder, name = 'dict.json')
+    w_map, c_map, tl_map = dictionary['w_map'], dictionary['c_map'], dictionary['tl_map']
+    id2label = {v: k for k, v in tl_map.items()}
+    model = bw.restore_best_checkpoint(args.checkpoint_folder)['model']
 
     print('loading dataset')
-    checkpoint = torch.load(open(args.load_checkpoint, 'rb'), map_location=lambda storage, loc: storage)
-
-    w_map, c_map, model, tl_map = checkpoint['w_map'], checkpoint['c_map'], checkpoint['model'], checkpoint['tl_map']
-
-    id2label = {}
-    for (label, idx) in tl_map.items():
-        id2label[idx] = label
-
     raw_data = pickle.load(open(args.input_corpus, 'rb'))
-
     data_loader = RawDataset(raw_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
 
     print('building model')
-
-    rnn_map = {'Basic': BasicRNN}#, 'DenseNet': DenseRNN}
+    rnn_map = {'Basic': BasicRNN}
     rnn_layer = rnn_map[args.rnn_layer](args.layer_num, args.rnn_unit, args.word_dim + args.char_dim, args.hid_dim, args.droprate, args.batch_norm)
-
-    ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate, args.bi_type)
-
+    ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate)
     ner_model.load_state_dict(model)
-
-    ner_model.cuda()
-
+    ner_model.to(device)
     ner_model.eval()
 
     output_list = list()
 
     fout = open(args.output_text, 'w')
 
-    iterator = data_loader.get_tqdm()
+    iterator = data_loader.get_tqdm(device)
     max_score = -1000000000000
     min_score = 1000000000000
 

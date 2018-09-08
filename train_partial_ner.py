@@ -13,10 +13,9 @@ from model_partial_ner.ner import NER
 import model_partial_ner.utils as utils
 from model_partial_ner.object import softCE
 from model_partial_ner.basic import BasicRNN
-from model_partial_ner.resnet import ResRNN
 from model_partial_ner.dataset import NERDataset, LargeDataset
 
-from tensorboardX import SummaryWriter
+import torch_scope.wrapper as wrapper
 
 import argparse
 import json
@@ -27,9 +26,13 @@ import functools
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--log_dir', default='ner_0')
-    parser.add_argument('--dataset_folder', default='./data/hqner/')
-    parser.add_argument('--checkpoint', default='./checkpoint/ner_basic_new.model')
+    parser.add_argument('--gpu', type=str, default="auto")
+    parser.add_argument('--cp_root', default='./checkpoint')
+    parser.add_argument('--checkpoint_name', default='autoner0')
+    parser.add_argument('--git_tracking', action='store_true')
+
+    parser.add_argument('--eval_dataset', default='./data/hqner/train_0.pk')
+    parser.add_argument('--train_dataset', default='./data/hqner/test.pk')
     parser.add_argument('--batch_token_number', type=int, default=3000)
     parser.add_argument('--label_dim', type=int, default=50)
     parser.add_argument('--hid_dim', type=int, default=300)
@@ -43,35 +46,37 @@ if __name__ == "__main__":
     parser.add_argument('--epoch', type=int, default=500)
     parser.add_argument('--clip', type=float, default=5)
     parser.add_argument('--update', choices=['Adam', 'Adagrad', 'Adadelta', 'SGD'], default='Adam')
-    parser.add_argument('--rnn_layer', choices=['Basic', 'ResNet'], default='Basic')
+    parser.add_argument('--rnn_layer', choices=['Basic'], default='Basic')
     parser.add_argument('--rnn_unit', choices=['gru', 'lstm', 'rnn'], default='lstm')
     parser.add_argument('--lr', type=float, default=-1)
     parser.add_argument('--tolerance', type=int, default=5)
     parser.add_argument('--lr_decay', type=float, default=0.05)
     parser.add_argument('--interval', type=int, default=30)
     parser.add_argument('--check', type=int, default=1000)
-    parser.add_argument('--bi_type', action='store_true')
     args = parser.parse_args()
 
-    if args.gpu >= 0:
-        torch.cuda.set_device(args.gpu)
+    pw = wrapper(os.path.join(args.cp_root, args.checkpoint_name), args.checkpoint_name, enable_git_track=args.git_tracking)
+    pw.set_level('info')
 
-    print('loading dataset')
+    gpu_index = pw.auto_device() if 'auto' == args.gpu else int(args.gpu)
+    device = torch.device("cuda:" + str(gpu_index) if gpu_index >= 0 else "cpu")
+    
+    pw.info('loading dataset')
     key_list = ['emb_array', 'w_map', 'c_map', 'tl_map', 'cl_map', 'range', 'test_data', 'dev_data']
-    dataset = pickle.load(open(args.dataset_folder+'test.pk', 'rb'))
+    dataset = pickle.load(open(args.eval_dataset, 'rb'))
     emb_array, w_map, c_map, tl_map, cl_map, range_idx, test_data, dev_data = [dataset[tup] for tup in key_list]
     assert len(emb_array) == len(w_map)
 
-    train_loader = LargeDataset(args.dataset_folder, range_idx, w_map['<\n>'], c_map['<\n>'], args.batch_token_number, sample_ratio = args.sample_ratio)
+    train_loader = LargeDataset(args.train_dataset, range_idx, w_map['<\n>'], c_map['<\n>'], args.batch_token_number, sample_ratio = args.sample_ratio)
     test_loader = NERDataset(test_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
     dev_loader = NERDataset(dev_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
 
-    print('building model')
+    pw.info('building model')
 
-    rnn_map = {'Basic': BasicRNN, 'ResNet': ResRNN}
+    rnn_map = {'Basic': BasicRNN}
     rnn_layer = rnn_map[args.rnn_layer](args.layer_num, args.rnn_unit, args.word_dim + args.char_dim, args.hid_dim, args.droprate, args.batch_norm)
 
-    ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate, args.bi_type)
+    ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate)
 
     ner_model.rand_ini()
     ner_model.load_pretrained_word_embedding(torch.FloatTensor(emb_array))
@@ -83,14 +88,20 @@ if __name__ == "__main__":
     else:
         optimizer=optim_map[args.update](ner_model.parameters())
 
-    # crit_chunk = utils.hinge_loss
     crit_chunk = nn.BCEWithLogitsLoss()
     crit_type = softCE()
 
-    writer = SummaryWriter(log_dir='./partial/'+args.log_dir)
-    name_list = ['loss_chunk', 'loss_type', 'scores_chunking', 'scores_typing', 'scores_ner']
-    c_loss, t_loss, chunk_sco, type_sco, ner_sco = [args.log_dir+'/'+tup for tup in name_list]
+    # writer = SummaryWriter(log_dir='./partial/'+args.log_dir)
+    # name_list = ['loss_chunk', 'loss_type', 'scores_chunking', 'scores_typing', 'scores_ner']
+    # c_loss, t_loss, chunk_sco, type_sco, ner_sco = [args.log_dir+'/'+tup for tup in name_list]
 
+    pw.info('Saving configues.')
+
+    pw.save_configue(args)
+    pw.save_configue({'w_map': w_map, 'c_map': c_map, 'tl_map': tl_map, 'cl_map': cl_map}, 'dict.json')
+
+    pw.info('Setting up training environ.')
+                        
     batch_index = 0
     best_eval = float('-inf')
     best_f1, best_pre, best_rec = -1, -1, -1
@@ -104,13 +115,13 @@ if __name__ == "__main__":
 
         for indexs in range(args.epoch):
 
-            updated = False
-
-            iterator = train_loader.get_tqdm()
+            pw.info('############')
+            pw.info('Epoch: {}'.format(indexs))
+            pw.nvidia_memory_map()
 
             ner_model.train()
 
-            for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in iterator:
+            for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in train_loader.get_tqdm(device):
                 ner_model.zero_grad()
                 output = ner_model(word_t, char_t, chunk_mask)
 
@@ -128,38 +139,30 @@ if __name__ == "__main__":
                 batch_index += 1 
 
                 if 0 == batch_index % args.interval:
-
-                    writer.add_scalar(c_loss, utils.to_scalar(chunk_loss), batch_index)
-                    writer.add_scalar(t_loss, utils.to_scalar(type_loss), batch_index)
+                    pw.add_loss_vs_batch({'loss_chunk': utils.to_scalar(chunk_loss), 'loss_type': utils.to_scalar(type_loss)}, batch_index, use_logger = False)
+                
 
                 if 0 == batch_index % args.check:
 
-                    # Chunking evaluation
-                    # pre_dev, rec_dev, f1_dev = utils.evaluate_chunking(dev_loader.get_tqdm(), ner_model, tl_map['None'])
-                    # pre_test, rec_test, f1_test = utils.evaluate_chunking(test_loader.get_tqdm(), ner_model, tl_map['None'])
-                    # writer.add_scalars(chunk_sco, {'dev_f1': f1_dev, 'dev_pre': pre_dev, 'dev_rec': rec_dev, 'test_f1': f1_test, 'test_pre': pre_test, 'test_rec': rec_test}, batch_index)
-                    # print ('\n[chunking, test] f1 = %.6f, pre = %.6f, rec = %.6f' % (f1_test, pre_test, rec_test))
-
-                    # Typing evaluation
-                    # pre_dev, rec_dev, f1_dev = utils.evaluate_typing(dev_loader.get_tqdm(), ner_model, tl_map['None'])
-                    # pre_test, rec_test, f1_test = utils.evaluate_typing(test_loader.get_tqdm(), ner_model, tl_map['None'])
-                    # writer.add_scalars(type_sco, {'dev_f1': f1_dev, 'dev_pre': pre_dev, 'dev_rec': rec_dev, 'test_f1': f1_test, 'test_pre': pre_test, 'test_rec': rec_test}, batch_index)
-                    # print ('\n[typing, test] f1 = %.6f, pre = %.6f, rec = %.6f' % (f1_test, pre_test, rec_test))
-
                     # NER evaluation
                     pre_dev, rec_dev, f1_dev, type2pre_dev, type2rec_dev, type2f1_dev = utils.evaluate_ner(dev_loader.get_tqdm(), ner_model, tl_map['None'])
-                    pre_test, rec_test, f1_test, type2pre_test, type2rec_test, type2f1_test = utils.evaluate_ner(test_loader.get_tqdm(), ner_model, tl_map['None'])
-                    writer.add_scalars(ner_sco, {'dev_f1': f1_dev, 'dev_pre': pre_dev, 'dev_rec': rec_dev, 'test_f1': f1_test, 'test_pre': pre_test, 'test_rec': rec_test}, batch_index)
-                    print ('\n[ner, test] f1 = %.6f, pre = %.6f, rec = %.6f' % (f1_test, pre_test, rec_test))
+                    pw.add_loss_vs_batch({'dev_pre': pre_dev, 'dev_rec': rec_dev}, batch_index, use_logger = False)
+                    pw.add_loss_vs_batch({'dev_f1': f1_dev}, batch_index, use_logger = True)
 
+                    pw.save_checkpoint(model = ner_model, is_best = f1_dev > best_eval)
+                    
                     if f1_dev > best_eval:
-                        torch.save({'model': ner_model.state_dict(), 'w_map': w_map, 'c_map': c_map, 'tl_map': tl_map, 'cl_map': cl_map}, args.checkpoint)
                         best_eval = f1_dev
-                        best_f1 = f1_test
-                        best_pre = pre_test
-                        best_rec = rec_test
-                        best_type2f1, best_type2pre, best_type2rec = type2f1_test, type2pre_test, type2rec_test
+                        best_f1, best_pre, best_rec, best_type2pre, best_type2rec, best_type2f1 = utils.evaluate_ner(test_loader.get_tqdm(), ner_model, tl_map['None'])
+                        pw.add_loss_vs_batch({'test_pre': best_f1, 'test_rec': best_pre}, batch_index, use_logger = False)
+                        pw.add_loss_vs_batch({'test_f1': best_rec}, batch_index, use_logger = True)
                         patience = 0
+                        for entity_type in best_type2f1:
+                            pw.add_loss_vs_batch({'per_{}_f1'.format(entity_type): best_type2f1[entity_type], 
+                                                    'per_{}_pre'.format(entity_type): best_type2pre[entity_type],
+                                                    'per_{}_rec'.format(entity_type): best_type2rec[entity_type]}, batch_index, use_logger = False)
+                            pw.info('\ttype: %s, f1: %.6f, pre: %.6f, rec: %.6f' % (entity_type, best_type2f1[entity_type], best_type2pre[entity_type], best_type2rec[entity_type]))
+
                     else:
                         patience += 1
                         if patience >= tolerance:
@@ -167,30 +170,31 @@ if __name__ == "__main__":
                             current_lr *= 0.9 ** tolerance
                             if args.update == 'SGD':
                                 utils.adjust_learning_rate(optimizer, current_lr)
-                                print ('current_lr = %.10f' % current_lr)
-                    print ('\nbest dev f1: %.6f, corresponding test f1: %.6f, pre: %.6f, rec: %.6f' % (best_eval, best_f1, best_pre, best_rec))
-                    for entity_type in best_type2f1:
-                        print('\ttype: %s, f1: %.6f, pre: %.6f, rec: %.6f' % (entity_type, best_type2f1[entity_type], best_type2pre[entity_type], best_type2rec[entity_type]))
-
-            # if args.update == 'SGD':
-            #     current_lr = args.lr / (1 + (indexs + 1) * args.lr_decay)
-            #     utils.adjust_learning_rate(optimizer, current_lr)
-            #     print ('current_lr = %.10f' % current_lr)
+                                pw.info('current_lr = %.10f' % current_lr)
 
     except KeyboardInterrupt:
 
         print('Exiting from training early')
 
         # NER evaluation
-        pre_dev, rec_dev, f1_dev = utils.evaluate_ner(dev_loader.get_tqdm(), ner_model, tl_map['None'])
-        pre_test, rec_test, f1_test = utils.evaluate_ner(test_loader.get_tqdm(), ner_model, tl_map['None'])
-        writer.add_scalars(ner_sco, {'dev_f1': f1_dev, 'dev_pre': pre_dev, 'dev_rec': rec_dev, 'test_f1': f1_test, 'test_pre': pre_test, 'test_rec': rec_test}, batch_index)
+        pre_dev, rec_dev, f1_dev, type2pre_dev, type2rec_dev, type2f1_dev = utils.evaluate_ner(dev_loader.get_tqdm(), ner_model, tl_map['None'])
+        pw.add_loss_vs_batch({'dev_pre': pre_dev, 'dev_rec': rec_dev}, batch_index, use_logger = False)
+        pw.add_loss_vs_batch({'dev_f1': f1_dev}, batch_index, use_logger = True)
+
+        pw.save_checkpoint(model = ner_model, is_best = f1_dev > best_eval)
 
         if f1_dev > best_eval:
-            torch.save({'model': ner_model.state_dict(), 'w_map': w_map, 'c_map': c_map, 'tl_map': tl_map, 'cl_map': cl_map}, args.checkpoint)
             best_eval = f1_dev
-            best_f1 = f1_test
+            best_f1, best_pre, best_rec, best_type2pre, best_type2rec, best_type2f1 = utils.evaluate_ner(test_loader.get_tqdm(), ner_model, tl_map['None'])
+            pw.add_loss_vs_batch({'test_pre': best_f1, 'test_rec': best_pre}, batch_index, use_logger = False)
+            pw.add_loss_vs_batch({'test_f1': best_rec}, batch_index, use_logger = True)
+            patience = 0
+            for entity_type in best_type2f1:
+                pw.add_loss_vs_batch({'per_%s_f1'.format(entity_type): best_type2f1[entity_type], 
+                                        'per_%s_pre'.format(entity_type): best_type2pre[entity_type],
+                                        'per_%s_rec'.format(entity_type): best_type2rec[entity_type]}, batch_index, use_logger = False)
+                pw.info('\ttype: %s, f1: %.6f, pre: %.6f, rec: %.6f' % (entity_type, best_type2f1[entity_type], best_type2pre[entity_type], best_type2rec[entity_type]))
 
     print ('\nbest dev f1: %.6f, corresponding test f1: %.6f' % (best_eval, best_f1))
 
-    writer.close()
+    pw.close()

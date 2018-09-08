@@ -1,4 +1,9 @@
-
+"""
+.. module:: Utils
+    :synopsis: Utils
+    
+.. moduleauthor:: Liyuan Liu, Jingbo Shang
+"""
 import numpy as np
 import torch
 import json
@@ -9,22 +14,30 @@ import torch.nn.init
 
 def adjust_learning_rate(optimizer, lr):
     """
-    shrink learning rate for pytorch
+    Shrink learning rate for pytorch
     """
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
 
 def to_scalar(var):
-    """change the first element of a tensor to scalar
     """
-    return var.view(-1).data.tolist()[0]
-
-def hinge_loss(score, label):
-    ins_num = label.size(0)
-    score = 1 - score * label
-    return score.masked_select(score > 0).sum() / ins_num
+    Turn the first element of a tensor to scalar
+    """
+    return var.view(-1).item()
 
 def evaluate_chunking(iterator, ner_model, none_idx):
+    """
+    Evaluate the chunking performance.
+
+    Parameters
+    ----------
+    iterator : ``iterator``, required.
+        Dataset loader.
+    ner_model : ``torch.nn.Module`` , required.
+        Sequence labeling model for evaluation.
+    none_idx: ``int``, required.
+        The index for the not-target-type entities.
+    """
 
     gold_count = 0
     guess_count = 0
@@ -59,6 +72,18 @@ def evaluate_chunking(iterator, ner_model, none_idx):
     return pre, rec, f1
 
 def evaluate_typing(iterator, ner_model, none_idx):
+    """
+    Evaluate the typing performance.
+
+    Parameters
+    ----------
+    iterator : ``iterator``, required.
+        Dataset loader.
+    ner_model : ``torch.nn.Module`` , required.
+        Sequence labeling model for evaluation.
+    none_idx: ``int``, required.
+        The index for the not-target-type entities.
+    """
 
     gold_count = 0
     guess_count = 0
@@ -92,7 +117,18 @@ def evaluate_typing(iterator, ner_model, none_idx):
     return pre, rec, f1
 
 def evaluate_ner(iterator, ner_model, none_idx):
+    """
+    Evaluate the NER performance.
 
+    Parameters
+    ----------
+    iterator : ``iterator``, required.
+        Dataset loader.
+    ner_model : ``torch.nn.Module`` , required.
+        Sequence labeling model for evaluation.
+    none_idx: ``int``, required.
+        The index for the not-target-type entities.
+    """
     gold_count = 0
     guess_count = 0
     overlap_count = 0
@@ -130,7 +166,6 @@ def evaluate_ner(iterator, ner_model, none_idx):
             for label in golden_labels & pred_labels:
                 entity_type = label.split('@')[0]
                 type2overlap[entity_type] = type2overlap.get(entity_type, 0) + 1
-
 
     pre = overlap_count / (float(guess_count) + 0.000001)
     rec = overlap_count / (float(gold_count) + 0.000001)

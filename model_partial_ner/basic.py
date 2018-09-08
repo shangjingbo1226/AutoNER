@@ -1,9 +1,31 @@
+"""
+.. module:: basic
+    :synopsis: basic rnn
+ 
+.. moduleauthor:: Liyuan Liu, Jingbo Shang
+"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import model_partial_ner.utils as utils
 
 class BasicUnit(nn.Module):
+    """
+    The basic recurrent unit for the vanilla stacked RNNs.
+
+    Parameters
+    ----------
+    unit : ``torch.nn.Module``, required.
+        The type of rnn unit.
+    input_dim : ``int``, required.
+        The input dimension fo the unit.
+    hid_dim : ``int``, required.
+        The hidden dimension fo the unit.
+    droprate : ``float``, required.
+        The dropout ratrio.
+    batch_norm: ``bool``, required.
+        Incorporate batch norm or not. 
+    """
     def __init__(self, unit, input_dim, hid_dim, droprate, batch_norm):
         super(BasicUnit, self).__init__()
 
@@ -20,15 +42,31 @@ class BasicUnit(nn.Module):
         self.init_hidden()
 
     def init_hidden(self):
-
+        """
+        Initialize hidden states.
+        """
         self.hidden_state = None
 
     def rand_ini(self):
-
+        """
+        Random Initialization.
+        """
         utils.init_lstm(self.layer)
 
     def forward(self, x):
+        """
+        Calculate the output.
 
+        Parameters
+        ----------
+        x : ``torch.LongTensor``, required.
+            the input tensor, of shape (seq_len, batch_size, input_dim).
+
+        Returns
+        ----------
+        output: ``torch.FloatTensor``.   
+            The output of RNNs.
+        """
         out, _ = self.layer(x)
 
         if self.batch_norm:
@@ -41,6 +79,24 @@ class BasicUnit(nn.Module):
         return out
 
 class BasicRNN(nn.Module):
+    """
+    The multi-layer recurrent networks for the vanilla stacked RNNs.
+
+    Parameters
+    ----------
+    layer_num: ``int``, required.
+        The number of layers. 
+    unit : ``torch.nn.Module``, required.
+        The type of rnn unit.
+    input_dim : ``int``, required.
+        The input dimension fo the unit.
+    hid_dim : ``int``, required.
+        The hidden dimension fo the unit.
+    droprate : ``float``, required.
+        The dropout ratrio.
+    batch_norm: ``bool``, required.
+        Incorporate batch norm or not. 
+    """
     def __init__(self, layer_num, unit, emb_dim, hid_dim, droprate, batch_norm):
         super(BasicRNN, self).__init__()
 
@@ -51,14 +107,31 @@ class BasicRNN(nn.Module):
         self.init_hidden()
 
     def init_hidden(self):
-
+        """
+        Initialize hidden states.
+        """
         for tup in self.layer_list:
             tup.init_hidden()
 
     def rand_ini(self):
-
+        """
+        Random Initialization.
+        """
         for tup in self.layer_list:
             tup.rand_ini()
 
     def forward(self, x):
+        """
+        Calculate the output.
+
+        Parameters
+        ----------
+        x : ``torch.LongTensor``, required.
+            the input tensor, of shape (seq_len, batch_size, input_dim).
+
+        Returns
+        ----------
+        output: ``torch.FloatTensor``.
+            The output of RNNs.
+        """
         return self.layer(x)
