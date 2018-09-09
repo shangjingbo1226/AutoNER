@@ -15,7 +15,7 @@ from model_partial_ner.basic import BasicRNN
 from model_partial_ner.dataset import RawDataset
 import model_partial_ner.utils as utils
 
-import torch_scope.basic_wrapper as bw
+from torch_scope import basic_wrapper as bw
 
 import argparse
 import json
@@ -26,7 +26,7 @@ import functools
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--gpu', type=str, default=0)
+    parser.add_argument('--gpu', type=str, default="auto")
     parser.add_argument('--checkpoint_folder', default='./checkpoint/autoner0')
 
     parser.add_argument('--input_corpus', default='./data/target.pk')
@@ -93,15 +93,17 @@ if __name__ == "__main__":
         output = output.data.cpu()
         offset = chunk_index[0]
         for ind in range(0, output.size(0)):
-            st, ed = chunk_index[ind], chunk_index[ind + 1]
+            st, ed = chunk_index[ind].item(), chunk_index[ind + 1].item()
             surface = ' '.join(chunk_surface[st - offset : ed - offset])
-            ent_type_id = np.argmax(output[ind])
+            ent_type_id = np.argmax(output[ind]).item()
             ent_type = id2label[ent_type_id]
 
             values = [st, ed, surface, ent_type_id, ent_type]
             str_values = [str(v) for v in values]
             fout.write('\t'.join(str_values) + '\n')
+            # print('\t'.join(str_values) + '\n')
         fout.write('\n')
+        # print('\n')
 
     print('max: '+str(max_score))
     print('min: '+str(min_score))

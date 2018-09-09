@@ -57,13 +57,13 @@ class highway(nn.Module):
         """
         
         
-        g = nn.functional.sigmoid(self.gate[0](x))
+        g = torch.sigmoid(self.gate[0](x))
         h = nn.functional.relu(self.trans[0](x))
         x = g * h + (1 - g) * x
 
         for i in range(1, self.num_layers):
             x = self.dropout(x)
-            g = nn.functional.sigmoid(self.gate[i](x))
+            g = torch.sigmoid(self.gate[i](x))
             h = nn.functional.relu(self.trans[i](x))
             x = g * h + (1 - g) * x
 

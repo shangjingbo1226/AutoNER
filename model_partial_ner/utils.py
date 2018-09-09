@@ -116,7 +116,7 @@ def evaluate_typing(iterator, ner_model, none_idx):
 
     return pre, rec, f1
 
-def evaluate_ner(iterator, ner_model, none_idx):
+def evaluate_ner(iterator, ner_model, none_idx, id2label):
     """
     Evaluate the NER performance.
 
@@ -143,15 +143,15 @@ def evaluate_ner(iterator, ner_model, none_idx):
         pred_chunk = (chunk_score < 0.0)
 
         if pred_chunk.data.float().sum() <= 1:
-            golden_labels = ner_model.to_typed_span(type_mask.cpu(), type_label.cpu(), none_idx)
+            golden_labels = ner_model.to_typed_span(type_mask.cpu(), type_label.cpu(), none_idx, id2label)
             gold_count += len(golden_labels)
         else:
             type_score = ner_model.typing(output, pred_chunk)
             max_score, pred_type = type_score.max(dim = 1)
 
-            pred_labels = ner_model.to_typed_span(pred_chunk.long().cpu(), pred_type.long().cpu(), none_idx)
+            pred_labels = ner_model.to_typed_span(pred_chunk.long().cpu(), pred_type.long().cpu(), none_idx, id2label)
 
-            golden_labels = ner_model.to_typed_span(type_mask.long().cpu(), type_label.long().cpu(), none_idx)
+            golden_labels = ner_model.to_typed_span(type_mask.long().cpu(), type_label.long().cpu(), none_idx, id2label)
 
             gold_count += len(golden_labels)
             guess_count += len(pred_labels)
@@ -184,14 +184,14 @@ def init_embedding(input_embedding):
     Initialize embedding
     """
     bias = np.sqrt(3.0 / input_embedding.size(1))
-    nn.init.uniform(input_embedding, -bias, bias)
+    nn.init.uniform_(input_embedding, -bias, bias)
 
 def init_linear(input_linear):
     """
     Initialize linear transformation
     """
     bias = np.sqrt(6.0 / (input_linear.weight.size(0) + input_linear.weight.size(1)))
-    nn.init.uniform(input_linear.weight, -bias, bias)
+    nn.init.uniform_(input_linear.weight, -bias, bias)
     if input_linear.bias is not None:
         input_linear.bias.data.zero_()
 
@@ -202,10 +202,10 @@ def init_lstm(input_lstm):
     for ind in range(0, input_lstm.num_layers):
         weight = eval('input_lstm.weight_ih_l'+str(ind))
         bias = np.sqrt(6.0 / (weight.size(0)/4 + weight.size(1)))
-        nn.init.uniform(weight, -bias, bias)
+        nn.init.uniform_(weight, -bias, bias)
         weight = eval('input_lstm.weight_hh_l'+str(ind))
         bias = np.sqrt(6.0 / (weight.size(0)/4 + weight.size(1)))
-        nn.init.uniform(weight, -bias, bias)
+        nn.init.uniform_(weight, -bias, bias)
     
     if input_lstm.bias:
         for ind in range(0, input_lstm.num_layers):

@@ -13,9 +13,9 @@ from model_partial_ner.ner import NER
 import model_partial_ner.utils as utils
 from model_partial_ner.object import softCE
 from model_partial_ner.basic import BasicRNN
-from model_partial_ner.dataset import NERDataset, LargeDataset
+from model_partial_ner.dataset import NERDataset, TrainDataset
 
-import torch_scope.wrapper as wrapper
+from torch_scope import wrapper
 
 import argparse
 import json
@@ -42,7 +42,6 @@ if __name__ == "__main__":
     parser.add_argument('--droprate', type=float, default=0.5)
     parser.add_argument('--sample_ratio', type=float, default=1.0)
     parser.add_argument('--batch_norm', action='store_true')
-    parser.add_argument('--gpu', type=int, default=0)
     parser.add_argument('--epoch', type=int, default=500)
     parser.add_argument('--clip', type=float, default=5)
     parser.add_argument('--update', choices=['Adam', 'Adagrad', 'Adadelta', 'SGD'], default='Adam')
@@ -65,9 +64,10 @@ if __name__ == "__main__":
     key_list = ['emb_array', 'w_map', 'c_map', 'tl_map', 'cl_map', 'range', 'test_data', 'dev_data']
     dataset = pickle.load(open(args.eval_dataset, 'rb'))
     emb_array, w_map, c_map, tl_map, cl_map, range_idx, test_data, dev_data = [dataset[tup] for tup in key_list]
+    id2label = {v: k for k, v in tl_map.items()}
     assert len(emb_array) == len(w_map)
 
-    train_loader = LargeDataset(args.train_dataset, range_idx, w_map['<\n>'], c_map['<\n>'], args.batch_token_number, sample_ratio = args.sample_ratio)
+    train_loader = TrainDataset(args.train_dataset, w_map['<\n>'], c_map['<\n>'], args.batch_token_number, sample_ratio = args.sample_ratio)
     test_loader = NERDataset(test_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
     dev_loader = NERDataset(dev_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
 
@@ -80,7 +80,7 @@ if __name__ == "__main__":
 
     ner_model.rand_ini()
     ner_model.load_pretrained_word_embedding(torch.FloatTensor(emb_array))
-    ner_model.cuda()
+    ner_model.to(device)
     
     optim_map = {'Adam' : optim.Adam, 'Adagrad': optim.Adagrad, 'Adadelta': optim.Adadelta, 'SGD': functools.partial(optim.SGD, momentum=0.9)}
     if args.lr > 0:
@@ -133,7 +133,7 @@ if __name__ == "__main__":
 
                 loss = type_loss + chunk_loss
                 loss.backward()
-                torch.nn.utils.clip_grad_norm(ner_model.parameters(), args.clip)
+                torch.nn.utils.clip_grad_norm_(ner_model.parameters(), args.clip)
                 optimizer.step()
 
                 batch_index += 1 
@@ -145,7 +145,7 @@ if __name__ == "__main__":
                 if 0 == batch_index % args.check:
 
                     # NER evaluation
-                    pre_dev, rec_dev, f1_dev, type2pre_dev, type2rec_dev, type2f1_dev = utils.evaluate_ner(dev_loader.get_tqdm(), ner_model, tl_map['None'])
+                    pre_dev, rec_dev, f1_dev, type2pre_dev, type2rec_dev, type2f1_dev = utils.evaluate_ner(dev_loader.get_tqdm(device), ner_model, tl_map['None'], id2label)
                     pw.add_loss_vs_batch({'dev_pre': pre_dev, 'dev_rec': rec_dev}, batch_index, use_logger = False)
                     pw.add_loss_vs_batch({'dev_f1': f1_dev}, batch_index, use_logger = True)
 
@@ -153,9 +153,10 @@ if __name__ == "__main__":
                     
                     if f1_dev > best_eval:
                         best_eval = f1_dev
-                        best_f1, best_pre, best_rec, best_type2pre, best_type2rec, best_type2f1 = utils.evaluate_ner(test_loader.get_tqdm(), ner_model, tl_map['None'])
-                        pw.add_loss_vs_batch({'test_pre': best_f1, 'test_rec': best_pre}, batch_index, use_logger = False)
-                        pw.add_loss_vs_batch({'test_f1': best_rec}, batch_index, use_logger = True)
+                        # best_f1, best_pre, best_rec, best_type2pre, best_type2rec, best_type2f1 = utils.evaluate_ner(test_loader.get_tqdm(device), ner_model, tl_map['None'])
+                        best_pre, best_rec, best_f1, best_type2pre, best_type2rec, best_type2f1 = utils.evaluate_ner(test_loader.get_tqdm(device), ner_model, tl_map['None'], id2label)
+                        pw.add_loss_vs_batch({'test_pre': best_pre, 'test_rec': best_rec}, batch_index, use_logger = False)
+                        pw.add_loss_vs_batch({'test_f1': best_f1}, batch_index, use_logger = True)
                         patience = 0
                         for entity_type in best_type2f1:
                             pw.add_loss_vs_batch({'per_{}_f1'.format(entity_type): best_type2f1[entity_type], 
@@ -172,12 +173,14 @@ if __name__ == "__main__":
                                 utils.adjust_learning_rate(optimizer, current_lr)
                                 pw.info('current_lr = %.10f' % current_lr)
 
+                    ner_model.train()
+
     except KeyboardInterrupt:
 
         print('Exiting from training early')
 
         # NER evaluation
-        pre_dev, rec_dev, f1_dev, type2pre_dev, type2rec_dev, type2f1_dev = utils.evaluate_ner(dev_loader.get_tqdm(), ner_model, tl_map['None'])
+        pre_dev, rec_dev, f1_dev, type2pre_dev, type2rec_dev, type2f1_dev = utils.evaluate_ner(dev_loader.get_tqdm(device), ner_model, tl_map['None'], id2label)
         pw.add_loss_vs_batch({'dev_pre': pre_dev, 'dev_rec': rec_dev}, batch_index, use_logger = False)
         pw.add_loss_vs_batch({'dev_f1': f1_dev}, batch_index, use_logger = True)
 
@@ -185,7 +188,7 @@ if __name__ == "__main__":
 
         if f1_dev > best_eval:
             best_eval = f1_dev
-            best_f1, best_pre, best_rec, best_type2pre, best_type2rec, best_type2f1 = utils.evaluate_ner(test_loader.get_tqdm(), ner_model, tl_map['None'])
+            best_pre, best_rec, best_f1, best_type2pre, best_type2rec, best_type2f1 = utils.evaluate_ner(test_loader.get_tqdm(device), ner_model, tl_map['None'], id2label)
             pw.add_loss_vs_batch({'test_pre': best_f1, 'test_rec': best_pre}, batch_index, use_logger = False)
             pw.add_loss_vs_batch({'test_f1': best_rec}, batch_index, use_logger = True)
             patience = 0

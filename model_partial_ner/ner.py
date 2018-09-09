@@ -147,13 +147,8 @@ class NER(nn.Module):
         """
         mask = mask.unsqueeze(1).expand_as(z_in)
 
-        if self.bi_type:
-            z_in = z_in.masked_select(mask).view(-1, self.rnn_outdim)
-
-            z_in = torch.cat([z_in[0:-1], z_in[1:]], dim = 1)
-        else:
-            z_in = z_in.masked_select(mask).view(-1, 2, self.one_direction_dim)
-            z_in = torch.cat([z_in[0:-1, 1, :].squeeze(1), z_in[1:, 0, :].squeeze(1)], dim = 1)
+        z_in = z_in.masked_select(mask).view(-1, 2, self.one_direction_dim)
+        z_in = torch.cat([z_in[0:-1, 1, :].squeeze(1), z_in[1:, 0, :].squeeze(1)], dim = 1)
 
         z_in = self.drop(z_in)
 
@@ -194,7 +189,7 @@ class NER(nn.Module):
         return set(span_list)
 
 
-    def to_typed_span(self, chunk_label, type_label, none_idx):
+    def to_typed_span(self, chunk_label, type_label, none_idx, id2label):
         """
         Convert word-level labels to typed entity spans.
 
@@ -213,11 +208,11 @@ class NER(nn.Module):
         cur_idx = 0
         type_idx = 0
         while cur_idx < len(chunk_label):
-            if chunk_label[cur_idx].data[0] == 1:
+            if chunk_label[cur_idx].item() == 1:
                 if pre_idx >= 0:
-                    cur_type = type_label[type_idx].data[0]
-                    if cur_type != none_idx:
-                        span_list.append(str(cur_type)+'@('+str(pre_idx)+','+str(cur_idx)+')')
+                    cur_type_idx = type_label[type_idx].item()
+                    if cur_type_idx != none_idx:
+                        span_list.append(id2label[cur_type_idx]+'@('+str(pre_idx)+','+str(cur_idx)+')')
                     type_idx += 1
                 pre_idx = cur_idx
             cur_idx += 1
