@@ -44,18 +44,12 @@ Please cite the following two papers if you are using our tool. Thanks!
 
 ## Dependencies
 
-First, let's create a conda environment using Python 3 and pytorch 0.3.0.
+The dependent package for this project is listed as below:
 ```
-conda create -n env_autoner python=3 mkl=2018 pytorch=0.3.0 -c pytorch -c intel
-```
-Then, activate this environment.
-```
-source activate env_autoner
-```
-Install some more packages (i.e., ```tqdm``` and ```tensorboardx```).
-```
-conda install -c conda-forge tqdm
-conda install -c conda-forge tensorboardx
+numpy==1.13.1
+tqdm
+torch-scope
+pytorch==0.4.1
 ```
 
 ## Command
