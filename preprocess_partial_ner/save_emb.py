@@ -33,6 +33,21 @@ if __name__ == "__main__":
             if len(embedding_array) > 0:
                 assert len(embedding_array[0]) == len(vector), 'dimension mismatch!'
             embedding_array.append(vector)
+            
+        line[0] = line[0].lower()    
+        if line[0] == args.unk:
+            if '<unk>' not in word_dict:
+                # add <unk>
+                word_dict['<unk>'] = len(word_dict)
+                if len(embedding_array) > 0:
+                    assert len(embedding_array[0]) == len(vector), 'dimension mismatch!'
+                embedding_array.append(vector)
+        elif line[0] not in word_dict:
+            # add a new word
+            word_dict[line[0]] = len(word_dict)
+            if len(embedding_array) > 0:
+                assert len(embedding_array[0]) == len(vector), 'dimension mismatch!'
+            embedding_array.append(vector)
 
     assert len(word_dict) == len(embedding_array)
 

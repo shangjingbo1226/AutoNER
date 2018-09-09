@@ -3,7 +3,7 @@ MODEL_NAME="BC5CDR"
 RAW_TEXT="data/BC5CDR/raw_text.txt"
 DICT_CORE="data/BC5CDR/dict_core.txt"
 DICT_FULL="data/BC5CDR/dict_full.txt"
-EMBEDDING_TXT_FILE="./models/BC5CDR/embedding.pk"
+EMBEDDING_TXT_FILE="embedding/bio_embedding.txt"
 FIRST_RUN=1
 
 green=`tput setaf 2`
@@ -21,14 +21,14 @@ echo ${green}=== Compilation ===${reset}
 make
 
 echo ${green}=== Downloading pre-trained embedding ===${reset}
-curl http://dmserv4.cs.illinois.edu/bio_embedding.pk -o $MODEL_ROOT/embedding.pk
+# curl http://dmserv4.cs.illinois.edu/bio_embedding.pk -o $MODEL_ROOT/embedding.pk
 # or generate the pickel file from scratch.
 # curl http://dmserv4.cs.illinois.edu/bio_embedding.txt -o embedding/bio_embedding.txt
 
-# if [ $FIRST_RUN == 1 ] && [ ! -e $MODEL_ROOT/embedding.pk ]; then
-#     echo ${green}=== Encoding Embeddings ===${reset}
-#     python preprocess_partial_ner/save_emb.py --input_embedding $EMBEDDING_TXT_FILE --output_embedding $MODEL_ROOT/embedding.pk
-# fi
+if [ $FIRST_RUN == 1 ] && [ ! -e $MODEL_ROOT/embedding.pk ]; then
+    echo ${green}=== Encoding Embeddings ===${reset}
+    python preprocess_partial_ner/save_emb.py --input_embedding $EMBEDDING_TXT_FILE --output_embedding $MODEL_ROOT/embedding.pk
+fi
 
 echo ${green}=== Generating Distant Supervision ===${reset}
 bin/generate $RAW_TEXT $DICT_CORE $DICT_FULL $TRAINING_SET
