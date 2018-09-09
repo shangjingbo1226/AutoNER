@@ -373,9 +373,7 @@ struct AnnotatedData
                 continue; // whitespace
             }
             if (token.type == FILTERED_TYPE) {
-                if (lastType != "ENTITY") {
-                    ret[token.l] = 0;
-                }
+                ret[token.l] = 0;
                 // assert(token.l + 1 == token.r);
                 for (int j = token.l + 1; j <= token.r; ++ j) {
                     ret[j] = 0; // 0 means "not sure"
