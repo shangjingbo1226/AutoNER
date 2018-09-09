@@ -92,34 +92,8 @@ AnnotatedData getDistantSupervision(const vector<string>& tokens)
 {
     vector<Token> matchedTokens = StringMatching::segmentDP(tokens);
 
-    // // filter uncertain boundaries
-    // vector<Token> filteredTokens;
-    // for (int i = 0; i < matchedTokens.size(); ++ i) {
-    //     bool valid = false;
-    //     if (matchedTokens[i].type != "") {
-    //         if (isSafeEntity(matchedTokens, i)) {
-    //             valid = true;
-    //         }
-    //     } else {
-    //         if (isSafeO(matchedTokens, i)) {
-    //             valid = true;
-    //         }
-    //     }
-    //     if (valid) {
-    //         filteredTokens.push_back(matchedTokens[i]);
-    //     } else {
-    //         for (int j = matchedTokens[i].l; j < matchedTokens[i].r; ++ j) {
-    //             Token token(tokens[j], FILTERED_TYPE);
-    //             token.l = j;
-    //             token.r = j + 1;
-    //             filteredTokens.push_back(token);
-    //         }
-    //     }
-    // }
-
     AnnotatedData ret;
     ret.rawTokens = tokens;
-    // ret.annotatedTokens = filteredTokens;
     ret.annotatedTokens = matchedTokens;
     return ret;
 }
