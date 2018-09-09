@@ -259,110 +259,10 @@ struct Token
     Token(string token, string type) : token(token), type(type) {}
 };
 
-// inline string combine(const string& prefix, const vector<string> &types)
-// {
-//     string ret = "";
-//     for (const string& type : types) {
-//         if (ret.size() > 0) {
-//             ret += ",";
-//         }
-//         ret += prefix + type;
-//     }
-//     return ret;
-// }
-
-// bool isSafeO(const vector<Token>& tokens, int i)
-// {
-//     if (tokens[i].type != "") {
-//         return false;
-//     }
-//     if (isupper(tokens[i].token[0])
-//             && (!isUpper(tokens[i].token)
-//                     || i > 0 && !isUpper(tokens[i - 1].token)
-//                     || i + 1 < tokens.size() && !isUpper(tokens[i + 1].token))) {
-//         return false;
-//     }
-//     return true;
-// }
-
-// inline bool isBreakSeparator(string token)
-// {
-//     const string s = ".,!? \n";
-//     return token.size() == 1 && s.find(token) != -1;
-// }
-
-// bool canBreak(const Token& token)
-// {
-//     return token.type != "" || isBreakSeparator(token.token) || islower(token.token[0]) || isdigit(token.token[0]);
-// }
-
-// bool isSafeEntity(const vector<Token>& tokens, int i)
-// {
-//     // looks afterwards
-//     for (int delta = 1; delta <= HALF_WINDOW_SIZE && i + delta < tokens.size(); ++ delta) {
-//         if (canBreak(tokens[i + delta])) {
-//             break;
-//         }
-//         if (!isSafeO(tokens, i + delta)) {
-//             return false;
-//         }
-//     }
-
-//     // looks forwards
-//     for (int delta = 1; delta <= HALF_WINDOW_SIZE && i - delta >= 0; ++ delta) {
-//         if (canBreak(tokens[i - delta])) {
-//             break;
-//         }
-//         if (!isSafeO(tokens, i - delta)) {
-//             if (i - delta > 0 && !isRealSeparator(tokens[i - delta - 1].token)) {
-//                 return false;
-//             }
-//         }
-//     }
-//     return true;
-// }
-
 struct AnnotatedData
 {
     vector<string> rawTokens;
     vector<Token> annotatedTokens;
-
-    // bool filter() const {
-    //     int entityCnt = 0;
-    //     for (int i = 0; i < annotatedTokens.size(); ++ i) {
-    //         if (annotatedTokens[i].type != "" && annotatedTokens[i].type != FILTERED_TYPE) {
-    //             ++ entityCnt;
-    //         }
-    //     }
-    //     int noise = 0;
-    //     for (int i = 0; i < annotatedTokens.size(); ++ i) {
-    //         if (annotatedTokens[i].type == "" && i > 0 && !isRealSeparator(annotatedTokens[i - 1].token)) {
-    //             if (isupper(annotatedTokens[i].token[0]) && !isUpper(annotatedTokens[i].token)) {
-    //                 noise += 1;
-    //             }
-    //         }
-    //     }
-    //     int digit = 0, alpha = 0;
-    //     for (const string& token : rawTokens) {
-    //         for (char ch : token) {
-    //             if (isdigit(ch)) {
-    //                 ++ digit;
-    //             } else {
-    //                 alpha += isalpha(ch);
-    //             }
-    //         }
-    //     }
-    //     if (alpha == 0 || (double)digit / (alpha + digit) > 0.5) {
-    //         return true;
-    //     }
-    //     if (entityCnt == 0) {
-    //         return true;
-    //     }
-    //     if ((double)noise / (noise + entityCnt) > 0.5) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
 
     vector<int> getBoundary() const { // 1 means Break, -1 means Connect, 0 means Unknown
         vector<int> ret(rawTokens.size(), 1);
@@ -569,34 +469,8 @@ AnnotatedData getDistantSupervision(const string& filename)
     }
     fclose(in);
 
-    // vector<Token> filteredTokens;
-    // // filter uncertain boundaries
-    // for (int i = 0; i < matchedTokens.size(); ++ i) {
-    //     bool valid = false;
-    //     if (matchedTokens[i].type != "") {
-    //         if (isSafeEntity(matchedTokens, i)) {
-    //             valid = true;
-    //         }
-    //     } else {
-    //         if (isSafeO(matchedTokens, i)) {
-    //             valid = true;
-    //         }
-    //     }
-    //     if (valid) {
-    //         filteredTokens.push_back(matchedTokens[i]);
-    //     } else {
-    //         for (int j = matchedTokens[i].l; j < matchedTokens[i].r; ++ j) {
-    //             Token token(rawTokens[j], FILTERED_TYPE);
-    //             token.l = j;
-    //             token.r = j + 1;
-    //             filteredTokens.push_back(token);
-    //         }
-    //     }
-    // }
-
     AnnotatedData ret;
     ret.rawTokens = rawTokens;
-    // ret.annotatedTokens = filteredTokens;
     ret.annotatedTokens = matchedTokens;
     return ret;
 }
