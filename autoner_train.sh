@@ -20,10 +20,12 @@ mkdir -p $MODEL_ROOT
 echo ${green}=== Compilation ===${reset}
 make
 
-echo ${green}=== Downloading pre-trained embedding ===${reset}
-# curl http://dmserv4.cs.illinois.edu/bio_embedding.pk -o $MODEL_ROOT/embedding.pk
-# or generate the pickel file from scratch.
-# curl http://dmserv4.cs.illinois.edu/bio_embedding.txt -o embedding/bio_embedding.txt
+if [ ! -e $EMBEDDING_TXT_FILE ]; then
+    echo ${green}=== Downloading pre-trained embedding ===${reset}
+    if [ $EMBEDDING_TXT_FILE == "embedding/bio_embedding.txt" ]; then
+        curl http://dmserv4.cs.illinois.edu/bio_embedding.txt -o embedding/bio_embedding.txt
+    fi
+fi
 
 if [ $FIRST_RUN == 1 ] && [ ! -e $MODEL_ROOT/embedding.pk ]; then
     echo ${green}=== Encoding Embeddings ===${reset}
@@ -52,6 +54,6 @@ CHECKPOINT_DIR=$MODEL_ROOT/checkpoint/
 CHECKPOINT_NAME=autoner
 
 echo ${green}=== Training AutoNER Model ===${reset}
-python train_partial_ner.py --cp_root $CHECKPOINT_DIR --checkpoint_name $CHECKPOINT_NAME --eval_dataset $MODEL_ROOT/encoded_data/test.pk --train_dataset $MODEL_ROOT/encoded_data/train_0.pk --update SGD --lr 0.05 --hid_dim 300 --droprate 0.5 --sample_ratio 1.0 --word_dim 200 --epoch 20
+python train_partial_ner.py --cp_root $CHECKPOINT_DIR --checkpoint_name $CHECKPOINT_NAME --eval_dataset $MODEL_ROOT/encoded_data/test.pk --train_dataset $MODEL_ROOT/encoded_data/train_0.pk --update SGD --lr 0.05 --hid_dim 300 --droprate 0.5 --sample_ratio 1.0 --word_dim 200 --epoch 50
 
 # echo ${green}Done.${reset}
