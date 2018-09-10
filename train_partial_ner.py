@@ -52,13 +52,10 @@ if __name__ == "__main__":
     parser.add_argument('--lr_decay', type=float, default=0.05)
     parser.add_argument('--interval', type=int, default=30)
     parser.add_argument('--check', type=int, default=1000)
-    parser.add_argument('--seed', type=int, default=-1)
+    parser.add_argument('--seed', type=int, default=None)
     args = parser.parse_args()
 
-    if args.seed == -1:
-        pw = wrapper(os.path.join(args.cp_root, args.checkpoint_name), args.checkpoint_name, enable_git_track=args.git_tracking)
-    else:
-        pw = wrapper(os.path.join(args.cp_root, args.checkpoint_name), args.checkpoint_name, enable_git_track=args.git_tracking, seed = args.seed)
+    pw = wrapper(os.path.join(args.cp_root, args.checkpoint_name), args.checkpoint_name, enable_git_track=args.git_tracking, seed = args.seed)
     pw.set_level('info')
 
     gpu_index = pw.auto_device() if 'auto' == args.gpu else int(args.gpu)
@@ -121,7 +118,7 @@ if __name__ == "__main__":
 
             pw.info('############')
             pw.info('Epoch: {}'.format(indexs))
-            pw.nvidia_memory_map()
+            pw.nvidia_memory_map(gpu_index = gpu_index)
 
             ner_model.train()
 
