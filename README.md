@@ -10,7 +10,7 @@ Details about AutoNER can be accessed at: TBD
 
 - [Model notes](#model-notes)
 - [Benchmarks](#benchmarks)
-- [Pretrained model](#pretrained-model)
+- [Pretrained Models](#pretrained-model)
 - [Training](#training)
 	- [Required Inputs](#required-inputs)
 	- [Dependencies](#dependencies)
