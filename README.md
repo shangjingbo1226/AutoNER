@@ -1,36 +1,42 @@
-# AutoNER: Learning Named Entity Tagger using Domain-Specific Dictionary
+# AutoNER
 
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Documentation Status](https://readthedocs.org/projects/autoner/badge/?version=latest)](http://autoner.readthedocs.io/en/latest/?badge=latest)
 
+**No line-by-line annotations**, AutoNER trains named entity taggers with distant supervision.
+
+Details about AutoNER can be accessed at: TBD
+
+- [Model notes](#model-notes)
+- [Benchmarks](#benchmarks)
+- [Pretrained Models](#pretrained-model)
+- [Training](#training)
+	- [Required Inputs](#required-inputs)
+	- [Dependencies](#dependencies)
+	- [Command](#command)
+- [Citation](#citation)
+
+## Model Notes
+
 ![AutoNER-Framework](docs/AutoNER-Framework.png)
 
-## Publications
+## Benchmarks
 
-Please cite the following two papers if you are using our tool. Thanks!
+| Method | Precision | Recall | F1 |
+| ------------- |-------------| -----| -----|
+| Supervised Benchmark | 88.84 | 85.16 | **86.96** |
+| Dictionary Match | 93.93 | 58.35 | 71.98 |
+| Fuzzy-LSTM-CRF | 88.27 | 76.75 | 82.11 |
+| AutoNER | 88.96 | 81.00 | **84.80** |
 
-- Jingbo Shang*, Liyuan Liu*, Xiaotao Gu, Xiang Ren, Teng Ren and Jiawei Han, "**[Learning Named Entity Tagger using Domain-Specific Dictionary](https://shangjingbo1226.github.io/AutoNER/paper/AutoNER.pdf)**", in Proc. of 2018 Conf. on Empirical Methods in Natural Language Processing (EMNLP'18), Brussels, Belgium, Oct. 2018. (* Equal Contribution)
-- Jingbo Shang, Jialu Liu, Meng Jiang, Xiang Ren, Clare R Voss, Jiawei Han, "**[Automated Phrase Mining from Massive Text Corpora](https://arxiv.org/abs/1702.04457)**", accepted by IEEE Transactions on Knowledge and Data Engineering, Feb. 2018.
+## Pretrained Models
 
-```
-@inproceedings{shang2018learning,
-  title = {Learning Named Entity Tagger using Domain-Specific Dictionary}, 
-  author = {Shang, Jingbo and Liu, Liyuan and Ren, Xiang and Gu, Xiaotao and Ren, Teng and Han, Jiawei}, 
-  booktitle = {EMNLP}, 
-  year = 2018, 
-}
+TODO
 
-@article{shang2018automated,
-  title = {Automated phrase mining from massive text corpora},
-  author = {Shang, Jingbo and Liu, Jialu and Jiang, Meng and Ren, Xiang and Voss, Clare R and Han, Jiawei},
-  journal = {IEEE Transactions on Knowledge and Data Engineering},
-  year = {2018},
-  publisher = {IEEE}
-}
-```
+## Training
 
-## Required Inputs
+### Required Inputs
 
 - **Tokenized Raw Texts**
   - Example: ```data/BC5CDR/raw_text.txt```
@@ -60,7 +66,7 @@ Please cite the following two papers if you are using our tool. Thanks!
     - ```O``` is ```Tie```.
     - Two special tokens ```<s>``` and ```<eof>``` mean the start and end of the sentence.
 
-## Dependencies
+### Dependencies
 
 The dependent package for this project is listed as below:
 ```
@@ -70,7 +76,7 @@ torch-scope
 pytorch==0.4.1
 ```
 
-## Command
+### Command
 
 To train an AutoNER model, please run
 ```
@@ -83,3 +89,29 @@ To apply the trained AutoNER model, please run
 ```
 
 You can specify the parameters in the bash files. The variables names are self-explained.
+
+
+## Citation
+
+Please cite the following two papers if you are using our tool. Thanks!
+
+- Jingbo Shang*, Liyuan Liu*, Xiaotao Gu, Xiang Ren, Teng Ren and Jiawei Han, "**[Learning Named Entity Tagger using Domain-Specific Dictionary](https://shangjingbo1226.github.io/AutoNER/paper/AutoNER.pdf)**", in Proc. of 2018 Conf. on Empirical Methods in Natural Language Processing (EMNLP'18), Brussels, Belgium, Oct. 2018. (* Equal Contribution)
+- Jingbo Shang, Jialu Liu, Meng Jiang, Xiang Ren, Clare R Voss, Jiawei Han, "**[Automated Phrase Mining from Massive Text Corpora](https://arxiv.org/abs/1702.04457)**", accepted by IEEE Transactions on Knowledge and Data Engineering, Feb. 2018.
+
+```
+@inproceedings{shang2018learning,
+  title = {Learning Named Entity Tagger using Domain-Specific Dictionary}, 
+  author = {Shang, Jingbo and Liu, Liyuan and Ren, Xiang and Gu, Xiaotao and Ren, Teng and Han, Jiawei}, 
+  booktitle = {EMNLP}, 
+  year = 2018, 
+}
+
+@article{shang2018automated,
+  title = {Automated phrase mining from massive text corpora},
+  author = {Shang, Jingbo and Liu, Jialu and Jiang, Meng and Ren, Xiang and Voss, Clare R and Han, Jiawei},
+  journal = {IEEE Transactions on Knowledge and Data Engineering},
+  year = {2018},
+  publisher = {IEEE}
+}
+```
+
