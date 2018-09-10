@@ -10,7 +10,6 @@ Details about AutoNER can be accessed at: TBD
 
 - [Model notes](#model-notes)
 - [Benchmarks](#benchmarks)
-- [Pretrained Models](#pretrained-model)
 - [Training](#training)
 	- [Required Inputs](#required-inputs)
 	- [Dependencies](#dependencies)
@@ -29,10 +28,6 @@ Details about AutoNER can be accessed at: TBD
 | Dictionary Match | 93.93 | 58.35 | 71.98 |
 | Fuzzy-LSTM-CRF | 88.27 | 76.75 | 82.11 |
 | AutoNER | 88.96 | 81.00 | **84.80** |
-
-## Pretrained Models
-
-TODO
 
 ## Training
 
@@ -114,4 +109,3 @@ Please cite the following two papers if you are using our tool. Thanks!
   publisher = {IEEE}
 }
 ```
-
