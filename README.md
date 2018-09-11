@@ -53,7 +53,7 @@ Details about AutoNER can be accessed at: TBD
         - [AutoPhrase](https://github.com/shangjingbo1226/AutoPhrase) 
 - **Pre-trained word embeddings**
   - Train your own or download from the web.
-  - The example run uses ```embedding/bio_embedding.txt```, which can be downloaded from [our group's server](http://dmserv4.cs.illinois.edu/bio_embedding.txt). For example, ```curl http://dmserv4.cs.illinois.edu/bio_embedding.txt -o embedding/bio_embedding.txt```.
+  - The example run uses ```embedding/bio_embedding.txt```, which can be downloaded from [our group's server](http://dmserv4.cs.illinois.edu/bio_embedding.txt). For example, ```curl http://dmserv4.cs.illinois.edu/bio_embedding.txt -o embedding/bio_embedding.txt```. Since the embedding encoding step consumes quite a lot of memory, we also provide the encoded file in the ```autoner_train.sh```.
 - **[Optional]** Development & Test Sets.
   - Example: ```data/BC5CDR/truth_dev.ck``` and ```data/BC5CDR/truth_test.ck```
     - Three columns (i.e., token, ```Tie or Break``` label, entity type).
