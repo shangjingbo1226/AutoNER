@@ -1,15 +1,26 @@
+"""
+.. module:: highway
+    :synopsis: highway layers 
+    
+.. moduleauthor:: Liyuan Liu, Jingbo Shang
+"""
 import torch
 import torch.nn as nn
 import model_partial_ner.utils as utils
 
 class highway(nn.Module):
-    """Highway layers
-
-    args: 
-        size: input and output dimension
-        droprate: dropout ratio
     """
-   
+    Highway layers
+
+    Parameters
+    ----------
+    size: ``int``, required.
+        Input and output dimension.
+    num_layers: ``int``, required.
+        Number of layers.
+    droprate: ``float``, required.
+        Dropout ratio
+    """  
     def __init__(self, size, num_layers = 1, droprate = 0.5):
         super(highway, self).__init__()
         self.size = size
@@ -36,20 +47,23 @@ class highway(nn.Module):
         """
         update statics for f1 score
 
-        args: 
+        Parameters
+        ----------
             x (ins_num, hidden_dim): input tensor
-        return:
+        Returns
+        ----------
+        output: ``torch.FloatTensor``.
             output tensor (ins_num, hidden_dim)
         """
         
         
-        g = nn.functional.sigmoid(self.gate[0](x))
+        g = torch.sigmoid(self.gate[0](x))
         h = nn.functional.relu(self.trans[0](x))
         x = g * h + (1 - g) * x
 
         for i in range(1, self.num_layers):
             x = self.dropout(x)
-            g = nn.functional.sigmoid(self.gate[i](x))
+            g = torch.sigmoid(self.gate[i](x))
             h = nn.functional.relu(self.trans[i](x))
             x = g * h + (1 - g) * x
 
