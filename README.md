@@ -6,7 +6,7 @@
 
 **No line-by-line annotations**, AutoNER trains named entity taggers with distant supervision.
 
-Details about AutoNER can be accessed at: TBD
+Details about AutoNER can be accessed at: [https://arxiv.org/abs/1809.03599](https://arxiv.org/abs/1809.03599)
 
 - [Model notes](#model-notes)
 - [Benchmarks](#benchmarks)
