@@ -90,7 +90,7 @@ You can specify the parameters in the bash files. The variables names are self-e
 
 Please cite the following two papers if you are using our tool. Thanks!
 
-- Jingbo Shang*, Liyuan Liu*, Xiaotao Gu, Xiang Ren, Teng Ren and Jiawei Han, "**[Learning Named Entity Tagger using Domain-Specific Dictionary](https://shangjingbo1226.github.io/AutoNER/paper/AutoNER.pdf)**", in Proc. of 2018 Conf. on Empirical Methods in Natural Language Processing (EMNLP'18), Brussels, Belgium, Oct. 2018. (* Equal Contribution)
+- Jingbo Shang*, Liyuan Liu*, Xiaotao Gu, Xiang Ren, Teng Ren and Jiawei Han, "**[Learning Named Entity Tagger using Domain-Specific Dictionary](https://arxiv.org/abs/1809.03599)**", in Proc. of 2018 Conf. on Empirical Methods in Natural Language Processing (EMNLP'18), Brussels, Belgium, Oct. 2018. (* Equal Contribution)
 - Jingbo Shang, Jialu Liu, Meng Jiang, Xiang Ren, Clare R Voss, Jiawei Han, "**[Automated Phrase Mining from Massive Text Corpora](https://arxiv.org/abs/1702.04457)**", accepted by IEEE Transactions on Knowledge and Data Engineering, Feb. 2018.
 
 ```
