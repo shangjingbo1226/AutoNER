@@ -1,3 +1,9 @@
+"""
+.. module:: dataset
+    :synopsis: dataset for sequence labeling
+ 
+.. moduleauthor:: Liyuan Liu, Jingbo Shang
+"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -11,9 +17,25 @@ import random
 from torch.utils.data import Dataset
 
 class RawDataset(object):
-#[tmp_w, tmp_c, tmp_mc, tmp_idx]
+    """    
+    Raw Dataset for Sequence Labeling
 
-    def __init__(self, dataset, w_pad, c_pad, token_per_batch):
+    Parameters
+    ----------
+    dataset : ``list``, required.
+        The encoded dataset (outputs of preprocess scripts).
+    w_pad : ``int``, required.
+        The pad index for the word-level inputs.
+    c_pad : ``int``, required.
+        The pad index for the character-level inputs.
+    token_per_batch: ``int``, required.
+        Batch size.
+    """
+    def __init__(self, 
+                dataset: list, 
+                w_pad: int, 
+                c_pad: int, 
+                token_per_batch: int):
         super(RawDataset, self).__init__()
         self.dataset = dataset
         self.w_pad = w_pad
@@ -22,39 +44,77 @@ class RawDataset(object):
 
         self.construct_index()
 
-    def get_tqdm(self):
-        return tqdm(self, mininterval=2, total=self.index_length, leave=False, file=sys.stdout)
+    def get_tqdm(self, device):
+        """
+        construct dataset reader and the corresponding tqdm.
+
+        Parameters
+        ----------
+        device: ``torch.device``, required.
+            the target device for the dataset loader.
+
+        """
+        return tqdm(self.reader(device), mininterval=2, total=self.index_length, leave=False, file=sys.stdout)
 
     def construct_index(self):
+        """
+        construct index for the dataset.
 
+        Parameters
+        ----------
+        dataset: ``list``, required.
+            the encoded dataset (outputs of preprocess scripts).        
+        """
         self.index_length =len(self.dataset)
 
-        self.cur_idx = 0
+    def reader(self, device):
+        """
+        construct dataset reader.
 
-    def __iter__(self):
-        return self
+        Parameters
+        ----------
+        device: ``torch.device``, required.
+            the target device for the dataset loader.
 
-    def __next__(self):
-        if self.cur_idx == self.index_length:
-            self.cur_idx = 0
-            raise StopIteration
+        Returns
+        -------
+        reader: ``iterator``.
+            A lazy iterable object        
+        """
+        cur_idx = 0
+        while cur_idx < self.index_length:
 
-        batch = self.dataset[self.cur_idx]
+            batch = self.dataset[cur_idx]
 
-        word_t = autograd.Variable(torch.LongTensor([batch[0]])).cuda()
-        char_t = autograd.Variable(torch.LongTensor([batch[1]])).cuda()
-        chunk_mask = autograd.Variable(torch.ByteTensor([batch[2]])).cuda()
-        chunk_index = autograd.Variable(torch.LongTensor(batch[3])).cuda()
-        chunk_surface = batch[4]
+            word_t = torch.LongTensor([batch[0]]).to(device)
+            char_t = torch.LongTensor([batch[1]]).to(device)
+            chunk_mask = torch.ByteTensor([batch[2]]).to(device)
+            chunk_index = torch.LongTensor(batch[3]).to(device)
+            chunk_surface = batch[4]
+            cur_idx += 1
 
-        self.cur_idx += 1
-        return word_t, char_t, chunk_mask, chunk_index, chunk_surface
-
+            yield word_t, char_t, chunk_mask, chunk_index, chunk_surface
 
 class NERDataset(object):
-#[tmp_w, tmp_c, tmp_mc, tmp_lc, tmp_mt, tmp_lt]
+    """
+    Evaluation Dataset for Sequence Labeling
 
-    def __init__(self, dataset, w_pad, c_pad, token_per_batch):
+    Parameters
+    ----------
+    dataset : ``list``, required.
+        The encoded dataset (outputs of preprocess scripts).
+    w_pad : ``int``, required.
+        The pad index for the word-level inputs.
+    c_pad : ``int``, required.
+        The pad index for the character-level inputs.
+    token_per_batch: ``int``, required.
+        Batch size.
+    """
+    def __init__(self, 
+                dataset: list, 
+                w_pad: int, 
+                c_pad: int, 
+                token_per_batch: int):
         super(NERDataset, self).__init__()
         self.dataset = dataset
         self.w_pad = w_pad
@@ -64,13 +124,27 @@ class NERDataset(object):
         self.construct_index()
 
     def shuffle(self):
+        """
+        shuffle dataset
+        """
         random.shuffle(self.shuffle_list)
 
-    def get_tqdm(self):
-        return tqdm(self, mininterval=2, total=self.index_length, leave=False, file=sys.stdout)
+    def get_tqdm(self, device):
+        """
+        construct dataset reader and the corresponding tqdm.
+
+        Parameters
+        ----------
+        device: ``torch.device``, required.
+            the target device for the dataset loader.
+
+        """
+        return tqdm(self.reader(device), mininterval=2, total=self.index_length, leave=False, file=sys.stdout)
 
     def construct_index(self):
-
+        """
+        construct index for the dataset.    
+        """
         dataset_size = len(self.dataset)
         self.index_list = list()
         start_index = 0
@@ -83,43 +157,64 @@ class NERDataset(object):
         self.index_list.append(dataset_size)
         self.shuffle_list = list(range(self.index_length-1, -1, -1))
 
-        self.cur_idx = 0
+    def reader(self, device):
+        """
+        construct dataset reader.
 
-    def __iter__(self):
-        return self
+        Parameters
+        ----------
+        device: ``torch.device``, required.
+            the target device for the dataset loader.
 
-    def __next__(self):
-        if self.cur_idx == self.index_length:
-            self.cur_idx = 0
-            self.shuffle()
-            raise StopIteration
+        Returns
+        -------
+        reader: ``iterator``.
+            A lazy iterable object        
+        """
+        cur_idx = 0
+        while cur_idx < self.index_length:
+            batch_idx = self.shuffle_list[cur_idx]
+            batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
+            cur_seq_length = len(batch[0][0])
+            word_t = torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
+            char_t = torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
+            chunk_mask = torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch]).to(device)
+            chunk_label = torch.FloatTensor([label for tup in batch for label in tup[3]]).to(device)
+            type_mask = torch.ByteTensor([mask for tup in batch for mask in tup[4]]).to(device)
+            label_list = [label for tup in batch for label in tup[5]]
+            type_label = torch.FloatTensor(label_list[0:-1]).to(device)
+            cur_idx += 1
+            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
+        self.shuffle()
+            
+class TrainDataset(object):
+    """
+    Training Dataset for Sequence Labeling
 
-        batch_idx = self.shuffle_list[self.cur_idx]
-        batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
-
-
-        cur_seq_length = len(batch[0][0])
-        word_t = autograd.Variable(torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch])).cuda()
-        char_t = autograd.Variable(torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch])).cuda()
-        chunk_mask = autograd.Variable(torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch])).cuda()
-        chunk_label = autograd.Variable(torch.FloatTensor([label for tup in batch for label in tup[3]])).cuda()
-        type_mask = autograd.Variable(torch.ByteTensor([mask for tup in batch for mask in tup[4]])).cuda()
-        label_list = [label for tup in batch for label in tup[5]]
-        type_label = autograd.Variable(torch.FloatTensor(label_list[0:-1])).cuda()
-
-        self.cur_idx += 1
-
-        return word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
-
-class LargeDataset(object):
-
-    def __init__(self, root, range_idx, w_pad, c_pad, token_per_batch, sample_ratio=1.0):
+    Parameters
+    ----------
+    dataset_name : ``str``, required.
+        The name of dataset (outputs of preprocess scripts).
+    w_pad : ``int``, required.
+        The pad index for the word-level inputs.
+    c_pad : ``int``, required.
+        The pad index for the character-level inputs.
+    token_per_batch: ``int``, required.
+        Batch size.
+    sample_ratio: ``float``, optional (default = 1.0)
+        The ratio for sampling.
+    """
+    def __init__(self, 
+                dataset_name: str, 
+                w_pad: int, 
+                c_pad: int, 
+                token_per_batch: int, 
+                sample_ratio: float = 1.0):
         
-        super(LargeDataset, self).__init__()
+        super(TrainDataset, self).__init__()
         self.sample_ratio = sample_ratio
 
-        self.root = root
-        self.range_idx = range_idx
+        self.dataset_name = dataset_name
 
         self.w_pad = w_pad
         self.c_pad = c_pad
@@ -129,46 +224,59 @@ class LargeDataset(object):
 
         self.open_file()
 
-    def get_tqdm(self):
+    def get_tqdm(self, device):
+        """
+        construct dataset reader and the corresponding tqdm.
 
-        return tqdm(self, mininterval=2, total=self.total_batch_num, leave=False, file=sys.stdout).__iter__()
+        Parameters
+        ----------
+        device: ``torch.device``, required.
+            the target device for the dataset loader.
 
-    def __iter__(self):
+        """
+        return tqdm(self.reader(device), mininterval=2, total=self.total_batch_num, leave=False, file=sys.stdout).__iter__()
 
-        self.cur_idx = 0
-        return self
+    def reader(self, device):
+        """
+        construct dataset reader.
 
-    def __next__(self):
+        Parameters
+        ----------
+        device: ``torch.device``, required.
+            the target device for the dataset loader.
 
-        if self.cur_idx >= self.index_length:
-            self.open_next()
+        Returns
+        -------
+        reader: ``iterator``.
+            A lazy iterable object        
+        """
+        cur_idx = 0
 
-        batch_idx = self.shuffle_list[self.cur_idx]
-        batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
+        while cur_idx < self.index_length:
 
-        cur_seq_length = len(batch[0][0])
-        word_t = autograd.Variable(torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch])).cuda()
-        char_t = autograd.Variable(torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch])).cuda()
-        chunk_mask = autograd.Variable(torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch])).cuda()
-        chunk_label = autograd.Variable(torch.FloatTensor([label for tup in batch for label in tup[3]])).cuda()
-        type_mask = autograd.Variable(torch.ByteTensor([mask for tup in batch for mask in tup[4]])).cuda()
-        label_list = [label for tup in batch for label in tup[5]]
-        type_label = autograd.Variable(torch.FloatTensor(label_list[0:-1])).cuda()
+            batch_idx = self.shuffle_list[cur_idx]
+            batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
 
-        self.cur_idx += 1
+            cur_seq_length = len(batch[0][0])
+            word_t = torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
+            char_t = torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
+            chunk_mask = torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch]).to(device)
+            chunk_label = torch.FloatTensor([label for tup in batch for label in tup[3]]).to(device)
+            type_mask = torch.ByteTensor([mask for tup in batch for mask in tup[4]]).to(device)
+            label_list = [label for tup in batch for label in tup[5]]
+            type_label = torch.FloatTensor(label_list[0:-1]).to(device)
 
-        return word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
+            cur_idx += 1
 
-    def open_next(self):
+            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
 
         random.shuffle(self.shuffle_list)
-        self.cur_idx = 0
-
-        raise StopIteration
 
     def open_file(self):
-
-        self.dataset = pickle.load(open(self.root + 'train_0.pk', 'rb'))
+        """
+        Open the dataset by name.      
+        """
+        self.dataset = pickle.load(open(self.dataset_name, 'rb'))
 
         self.dataset = list(filter(lambda t: random.uniform(0, 1) <= self.sample_ratio, self.dataset))
 
@@ -185,19 +293,36 @@ class LargeDataset(object):
         
         self.shuffle_list = list(range(self.index_length-1, -1, -1))
 
-        self.cur_idx = 0
-
         self.total_batch_num = self.index_length
 
 class DS_GOLD_MIXED_Dataset(object):
+    """
+    Training Dataset for Sequence Labeling
 
-    def __init__(self, root, range_idx, w_pad, c_pad, token_per_batch, sample_ratio=1.0):
+    Parameters
+    ----------
+    dataset_name : ``str``, required.
+        The name of dataset (outputs of preprocess scripts).
+    w_pad : ``int``, required.
+        The pad index for the word-level inputs.
+    c_pad : ``int``, required.
+        The pad index for the character-level inputs.
+    token_per_batch: ``int``, required.
+        Batch size.
+    sample_ratio: ``float``, optional (default = 1.0)
+        The ratio for sampling.
+    """    
+    def __init__(self, 
+                dataset_name: str, 
+                w_pad: int, 
+                c_pad: int, 
+                token_per_batch: int, 
+                sample_ratio: float = 1.0):
         
         super(DS_GOLD_MIXED_Dataset, self).__init__()
         self.sample_ratio = sample_ratio
 
-        self.root = root
-        self.range_idx = range_idx
+        self.dataset_name = dataset_name
 
         self.w_pad = w_pad
         self.c_pad = c_pad
@@ -207,46 +332,59 @@ class DS_GOLD_MIXED_Dataset(object):
 
         self.open_file()
 
-    def get_tqdm(self):
+    def get_tqdm(self, device):
+        """
+        construct dataset reader and the corresponding tqdm.
 
-        return tqdm(self, mininterval=2, total=self.total_batch_num, leave=False, file=sys.stdout).__iter__()
+        Parameters
+        ----------
+        device: ``torch.device``, required.
+            the target device for the dataset loader.
 
-    def __iter__(self):
+        """
+        return tqdm(self.reader(device), mininterval=2, total=self.total_batch_num, leave=False, file=sys.stdout).__iter__()
 
-        self.cur_idx = 0
-        return self
+    def reader(self, device):
+        """
+        construct dataset reader.
 
-    def __next__(self):
+        Parameters
+        ----------
+        device: ``torch.device``, required.
+            the target device for the dataset loader.
 
-        if self.cur_idx >= self.index_length:
-            self.open_next()
+        Returns
+        -------
+        reader: ``iterator``.
+            A lazy iterable object        
+        """
+        cur_idx = 0
 
-        batch_idx = self.shuffle_list[self.cur_idx]
-        batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
+        while cur_idx < self.index_length:
 
-        cur_seq_length = len(batch[0][0])
-        word_t = autograd.Variable(torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch])).cuda()
-        char_t = autograd.Variable(torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch])).cuda()
-        chunk_mask = autograd.Variable(torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch])).cuda()
-        chunk_label = autograd.Variable(torch.FloatTensor([label for tup in batch for label in tup[3]])).cuda()
-        type_mask = autograd.Variable(torch.ByteTensor([mask for tup in batch for mask in tup[4]])).cuda()
-        label_list = [label for tup in batch for label in tup[5]]
-        type_label = autograd.Variable(torch.FloatTensor(label_list[0:-1])).cuda()
+            batch_idx = self.shuffle_list[cur_idx]
+            batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
 
-        self.cur_idx += 1
+            cur_seq_length = len(batch[0][0])
+            word_t = torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
+            char_t = torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
+            chunk_mask = torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch]).to(device)
+            chunk_label = torch.FloatTensor([label for tup in batch for label in tup[3]]).to(device)
+            type_mask = torch.ByteTensor([mask for tup in batch for mask in tup[4]]).to(device)
+            label_list = [label for tup in batch for label in tup[5]]
+            type_label = torch.FloatTensor(label_list[0:-1]).to(device)
 
-        return word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
+            cur_idx += 1
 
-    def open_next(self):
+            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
 
         random.shuffle(self.shuffle_list)
-        self.cur_idx = 0
-
-        raise StopIteration
 
     def open_file(self):
-
-        self.dataset = pickle.load(open(self.root + 'train_0.pk', 'rb'))
+        """
+        Open the dataset by name.      
+        """
+        self.dataset = pickle.load(open(self.dataset_name, 'rb'))
         self.dataset = list(filter(lambda t: t[6] or random.uniform(0, 1) <= self.sample_ratio, self.dataset))
 
         dataset_size = len(self.dataset)
@@ -262,7 +400,5 @@ class DS_GOLD_MIXED_Dataset(object):
         self.index_list.append(dataset_size)
         
         self.shuffle_list = list(range(self.index_length-1, -1, -1))
-
-        self.cur_idx = 0
 
         self.total_batch_num = self.index_length

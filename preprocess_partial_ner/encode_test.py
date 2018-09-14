@@ -8,6 +8,8 @@ import torch
 import itertools
 import functools
 
+from torch_scope import basic_wrapper as bw
+
 def read_corpus(lines):
     line_idx, features = list(), list()
 
@@ -68,15 +70,13 @@ def encode_dataset(input_file, w_map, c_map):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('--checkpoint_folder', default="./data/ner/eng.total.ck")
     parser.add_argument('--input_data', default="./data/ner/eng.total.ck")
-    parser.add_argument('--check_point', default="./checkpoint/ner_basic.model")
     parser.add_argument('--output_file', default="./data/target.pk")
     args = parser.parse_args()
 
-    with open(args.check_point, 'rb') as f:
-        pd = torch.load(f)
-        w_map = pd['w_map']
-        c_map = pd['c_map']
+    dictionary = bw.restore_configue(args.checkpoint_folder, name = 'dict.json')
+    w_map, c_map = dictionary['w_map'], dictionary['c_map']
 
     target_dataset = encode_dataset(args.input_data, w_map, c_map)
     
