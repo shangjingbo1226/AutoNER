@@ -27,7 +27,7 @@ import functools
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--gpu', type=str, default="auto")
-    parser.add_argument('--checkpoint_folder', default='./checkpoint/autoner0')
+    parser.add_argument('--checkpoint_folder', default='models/BC5DR/checkpoint/autoner/')
 
     parser.add_argument('--input_corpus', default='./data/target.pk')
     parser.add_argument('--output_text', default='./data/output_text.tsv')
@@ -50,10 +50,11 @@ if __name__ == "__main__":
         torch.cuda.set_device(gpu_index)
 
     print('loading checkpoint')
-    dictionary = bw.restore_configue(args.checkpoint_folder, name = 'dict.json')
-    w_map, c_map, tl_map = dictionary['w_map'], dictionary['c_map'], dictionary['tl_map']
+    # dictionary = bw.restore_configue(args.checkpoint_folder, name = 'dict.json')
+    # w_map, c_map, tl_map = dictionary['w_map'], dictionary['c_map'], dictionary['tl_map']
+    checkpoint_file = bw.restore_best_checkpoint(args.checkpoint_folder)
+    w_map, c_map, tl_map, model = [checkpoint_folder[name] for name in ['w_map', 'c_map', 'tl_map', 'model']]
     id2label = {v: k for k, v in tl_map.items()}
-    model = bw.restore_best_checkpoint(args.checkpoint_folder)['model']
 
     print('loading dataset')
     raw_data = pickle.load(open(args.input_corpus, 'rb'))

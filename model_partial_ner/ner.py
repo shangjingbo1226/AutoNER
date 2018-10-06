@@ -67,6 +67,23 @@ class NER(nn.Module):
             self.chunk_layer = nn.Sequential(self.to_chunk, self.drop, self.chunk_weight)
             self.type_layer = nn.Sequential(self.to_type, self.drop, self.type_weight)
 
+    def to_params(self):
+        """
+        To parameters.
+        """
+        return {
+            "model_type": "char-lstm-two-level",
+            "rnn_params": self.rnn.to_params(),
+            "word_embed_num": self.word_embed.num_embeddings,
+            "word_embed_dim": self.word_embed.embedding_dim,
+            "char_embed_num": self.char_embed.num_embeddings,
+            "char_embed_dim": self.char_embed.embedding_dim,
+            "type_dim": self.type_weight.in_features if self.add_proj else -1,
+            "type_num": self.type_weight.out_features,
+            "droprate": self.drop.p,
+            "label_schema": "tie-or-break"
+        }
+
     def load_pretrained_word_embedding(self, pre_word_embeddings):
         """
         Load pre-trained word embedding.
