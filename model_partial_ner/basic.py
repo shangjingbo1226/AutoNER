@@ -29,8 +29,8 @@ class BasicUnit(nn.Module):
     def __init__(self, unit, input_dim, hid_dim, droprate, batch_norm):
         super(BasicUnit, self).__init__()
 
+        self.unit_type = unit
         rnnunit_map = {'rnn': nn.RNN, 'lstm': nn.LSTM, 'gru': nn.GRU}
-
         self.layer = rnnunit_map[unit](input_dim, hid_dim//2, 1, batch_first=True, bidirectional=True)
         
         self.droprate = droprate
@@ -105,6 +105,20 @@ class BasicRNN(nn.Module):
         self.output_dim = self.layer_list[-1].output_dim
 
         self.init_hidden()
+
+    def to_params(self):
+        """
+        To parameters.
+        """
+        return {
+            "rnn_type": "Basic",
+            "unit_type": self.layer_list[0].unit_type,
+            "layer_num": len(self.layer_list),
+            "emb_dim": self.layer_list[0].layer.input_size,
+            "hid_dim": self.layer_list[0].layer.hidden_size,
+            "droprate": self.layer_list[0].droprate,
+            "batch_norm": self.layer_list[0].batch_norm
+        }
 
     def init_hidden(self):
         """

@@ -81,6 +81,7 @@ if __name__ == "__main__":
 
     ner_model.rand_ini()
     ner_model.load_pretrained_word_embedding(torch.FloatTensor(emb_array))
+    ner_config = ner_model.to_params()
     ner_model.to(device)
     
     optim_map = {'Adam' : optim.Adam, 'Adagrad': optim.Adagrad, 'Adadelta': optim.Adadelta, 'SGD': functools.partial(optim.SGD, momentum=0.9)}
@@ -150,8 +151,8 @@ if __name__ == "__main__":
                     pw.add_loss_vs_batch({'dev_pre': pre_dev, 'dev_rec': rec_dev}, batch_index, use_logger = False)
                     pw.add_loss_vs_batch({'dev_f1': f1_dev}, batch_index, use_logger = True)
 
-                    pw.save_checkpoint(model = ner_model, is_best = f1_dev > best_eval)
-                    
+                    pw.save_checkpoint(model = ner_model, is_best = f1_dev > best_eval, s_dict = {'config': ner_config, 'w_map': w_map, 'c_map': c_map, 'tl_map': tl_map, 'cl_map': cl_map})
+
                     if f1_dev > best_eval:
                         best_eval = f1_dev
                         # best_f1, best_pre, best_rec, best_type2pre, best_type2rec, best_type2f1 = utils.evaluate_ner(test_loader.get_tqdm(device), ner_model, tl_map['None'])
@@ -185,7 +186,7 @@ if __name__ == "__main__":
         pw.add_loss_vs_batch({'dev_pre': pre_dev, 'dev_rec': rec_dev}, batch_index, use_logger = False)
         pw.add_loss_vs_batch({'dev_f1': f1_dev}, batch_index, use_logger = True)
 
-        pw.save_checkpoint(model = ner_model, is_best = f1_dev > best_eval)
+        pw.save_checkpoint(model = ner_model, is_best = f1_dev > best_eval, s_dict = {'config': ner_config, 'w_map': w_map, 'c_map': c_map, 'tl_map': tl_map, 'cl_map': cl_map})
 
         if f1_dev > best_eval:
             best_eval = f1_dev
