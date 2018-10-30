@@ -7,32 +7,10 @@
 import numpy as np
 import torch
 import json
-import os
-import glob
-from torch_scope import basic_wrapper
 
 import torch
 import torch.nn as nn
 import torch.nn.init
-
-def checkpoint_average(root_folder):
-    root_folder = os.path.join(root_folder, 'autoner*.th')
-    checkpoint_list = glob.glob(root_folder)
-
-    assert(len(checkpoint_list) > 0)
-
-    cp_model = basic_wrapper.restore_checkpoint(checkpoint_list[0])['model']
-    counter = 1
-
-    for file in checkpoint_list[1:]:
-        new_model = basic_wrapper.restore_checkpoint(file)['model']
-        for k, v in new_model.items():
-            cp_model[k] += v
-        counter += 1
-
-    cp_model = {k: v / (counter) for k, v in cp_model.items()}
-    
-    return cp_model, checkpoint_list
 
 def adjust_learning_rate(optimizer, lr):
     """

@@ -50,7 +50,7 @@ if [ $MUST_RE_RUN == 1 ] || [ ! -e $MODEL_ROOT/encoded_data/test.pk ]; then
 fi
 
 CHECKPOINT_DIR=$MODEL_ROOT/checkpoint/
-CHECKPOINT_NAME=autoner0
+CHECKPOINT_NAME=autoner
 
 echo ${green}=== Training AutoNER Model ===${reset}
 python train_partial_ner.py \
@@ -59,7 +59,6 @@ python train_partial_ner.py \
     --eval_dataset $MODEL_ROOT/encoded_data/test.pk \
     --train_dataset $MODEL_ROOT/encoded_data/train_0.pk \
     --update SGD --lr 0.05 --hid_dim 300 --droprate 0.5 \
-    --sample_ratio 1.0 --word_dim 200 --epoch 50 \
-    --restore_checkpoint ./models/BC5CDR/checkpoint/autoner/
+    --sample_ratio 1.0 --word_dim 200 --epoch 50
 
 echo ${green}Done.${reset}
