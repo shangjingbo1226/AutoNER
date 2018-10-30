@@ -31,6 +31,8 @@ if __name__ == "__main__":
     parser.add_argument('--checkpoint_name', default='autoner0')
     parser.add_argument('--git_tracking', action='store_true')
 
+    parser.add_argument('--restore_checkpoint')
+
     parser.add_argument('--eval_dataset', default='./data/hqner/train_0.pk')
     parser.add_argument('--train_dataset', default='./data/hqner/test.pk')
     parser.add_argument('--batch_token_number', type=int, default=3000)
@@ -79,8 +81,22 @@ if __name__ == "__main__":
 
     ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate)
 
-    ner_model.rand_ini()
-    ner_model.load_pretrained_word_embedding(torch.FloatTensor(emb_array))
+    if args.restore_checkpoint:
+        if os.path.isfile(args.restore_checkpoint):
+            pw.info("loading checkpoint: '{}'".format(args.restore_checkpoint))
+            model_file = wrapper.restore_checkpoint(args.restore_checkpoint)['model']
+            ner_model.load_state_dict(model_file, False)
+        elif os.path.isdir(args.restore_checkpoint):
+            model_file, file_list = utils.checkpoint_average(args.restore_checkpoint)
+            for file_ins in file_list:
+                pw.info("averaging checkpoint includes: '{}'".format(file_ins))
+            ner_model.load_state_dict(model_file, False)
+        else:
+            pw.info("no checkpoint found at: '{}'".format(args.restore_checkpoint))
+    else:
+        ner_model.rand_ini()
+        ner_model.load_pretrained_word_embedding(torch.FloatTensor(emb_array))
+
     ner_config = ner_model.to_params()
     ner_model.to(device)
     
