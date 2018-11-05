@@ -73,7 +73,7 @@ Details about AutoNER can be accessed at: [https://arxiv.org/abs/1809.03599](htt
 
 ### Dependencies
 
-The dependent package for this project is listed as below:
+This project is based on ```python>=3.6```. The dependent package for this project is listed as below:
 ```
 numpy==1.13.1
 tqdm
