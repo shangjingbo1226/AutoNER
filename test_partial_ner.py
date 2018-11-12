@@ -48,13 +48,14 @@ if __name__ == "__main__":
     device = torch.device("cuda:" + str(gpu_index) if gpu_index >= 0 else "cpu")
     if gpu_index >= 0:
         torch.cuda.set_device(gpu_index)
-
+    
     print('loading checkpoint')
-    # dictionary = bw.restore_configue(args.checkpoint_folder, name = 'dict.json')
-    # w_map, c_map, tl_map = dictionary['w_map'], dictionary['c_map'], dictionary['tl_map']
-    checkpoint_file = bw.restore_best_checkpoint(args.checkpoint_folder)
-    w_map, c_map, tl_map, model = [checkpoint_folder[name] for name in ['w_map', 'c_map', 'tl_map', 'model']]
+    dictionary = bw.restore_configue(args.checkpoint_folder, name = 'dict.json')
+    w_map, c_map, tl_map = dictionary['w_map'], dictionary['c_map'], dictionary['tl_map']
+    #checkpoint_file = bw.restore_best_checkpoint(args.checkpoint_folder)
+    #w_map, c_map, tl_map, model = [checkpoint_folder[name] for name in ['w_map', 'c_map', 'tl_map', 'model']]
     id2label = {v: k for k, v in tl_map.items()}
+    model = bw.restore_best_checkpoint(args.checkpoint_folder)['model']
 
     print('loading dataset')
     raw_data = pickle.load(open(args.input_corpus, 'rb'))
