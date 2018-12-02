@@ -67,7 +67,7 @@ Details about AutoNER can be accessed at: [https://arxiv.org/abs/1809.03599](htt
 - **[Optional]** Development & Test Sets.
   - Example: ```data/BC5CDR/truth_dev.ck``` and ```data/BC5CDR/truth_test.ck```
     - Three columns (i.e., token, ```Tie or Break``` label, entity type).
-    - ```I``` is ```Berak```.
+    - ```I``` is ```Break```.
     - ```O``` is ```Tie```.
     - Two special tokens ```<s>``` and ```<eof>``` mean the start and end of the sentence.
 
