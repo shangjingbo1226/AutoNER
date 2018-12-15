@@ -18,11 +18,14 @@ import model_partial_ner.utils as utils
 from torch_scope import basic_wrapper as bw
 
 import argparse
+import logging
 import json
 import os
 import sys
 import itertools
 import functools
+
+logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -49,18 +52,18 @@ if __name__ == "__main__":
     if gpu_index >= 0:
         torch.cuda.set_device(gpu_index)
 
-    print('loading checkpoint')
+    logger.info('loading checkpoint')
     # dictionary = bw.restore_configue(args.checkpoint_folder, name = 'dict.json')
     # w_map, c_map, tl_map = dictionary['w_map'], dictionary['c_map'], dictionary['tl_map']
     checkpoint_file = bw.restore_best_checkpoint(args.checkpoint_folder)
     w_map, c_map, tl_map, model = [checkpoint_folder[name] for name in ['w_map', 'c_map', 'tl_map', 'model']]
     id2label = {v: k for k, v in tl_map.items()}
 
-    print('loading dataset')
+    logger.info('loading dataset')
     raw_data = pickle.load(open(args.input_corpus, 'rb'))
     data_loader = RawDataset(raw_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
 
-    print('building model')
+    logger.info('building model')
     rnn_map = {'Basic': BasicRNN}
     rnn_layer = rnn_map[args.rnn_layer](args.layer_num, args.rnn_unit, args.word_dim + args.char_dim, args.hid_dim, args.droprate, args.batch_norm)
     ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate)
@@ -102,10 +105,10 @@ if __name__ == "__main__":
             values = [st, ed, surface, ent_type_id, ent_type]
             str_values = [str(v) for v in values]
             fout.write('\t'.join(str_values) + '\n')
-            # print('\t'.join(str_values) + '\n')
+            # logger.info('\t'.join(str_values) + '\n')
         fout.write('\n')
-        # print('\n')
+        # logger.info('\n')
 
-    print('max: '+str(max_score))
-    print('min: '+str(min_score))
+    logger.info('max: '+str(max_score))
+    logger.info('min: '+str(min_score))
     fout.close()
