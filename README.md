@@ -77,7 +77,7 @@ This project is based on ```python>=3.6```. The dependent package for this proje
 ```
 numpy==1.13.1
 tqdm
-torch-scope
+torch-scope>=0.5.0
 pytorch==0.4.1
 ```
 
