@@ -56,7 +56,7 @@ if __name__ == "__main__":
     # dictionary = bw.restore_configue(args.checkpoint_folder, name = 'dict.json')
     # w_map, c_map, tl_map = dictionary['w_map'], dictionary['c_map'], dictionary['tl_map']
     checkpoint_file = bw.restore_best_checkpoint(args.checkpoint_folder)
-    w_map, c_map, tl_map, model = [checkpoint_folder[name] for name in ['w_map', 'c_map', 'tl_map', 'model']]
+    w_map, c_map, tl_map, model = [checkpoint_file[name] for name in ['w_map', 'c_map', 'tl_map', 'model']]
     id2label = {v: k for k, v in tl_map.items()}
 
     logger.info('loading dataset')
