@@ -17,6 +17,8 @@ def filter_words(w_map, emb_array, ck_filenames):
                 assert len(line) >= 3, 'wrong ck file format'
                 word = line[0]
                 vocab.add(word)
+                word = word.lower()
+                vocab.add(word)
     new_w_map = {}
     new_emb_array = []
     for (word, idx) in w_map.items():
