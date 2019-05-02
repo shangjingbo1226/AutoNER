@@ -16,7 +16,7 @@ from model_partial_ner.basic import BasicRNN
 from model_partial_ner.dataset import NERDataset, TrainDataset
 
 from model_word_ada.LM import LM
-from model_word_ada.basic import BasicRNN
+# from model_word_ada.basic import BasicRNN
 from model_word_ada.densenet import DenseRNN
 from model_word_ada.ldnet import LDRNN
 
@@ -72,7 +72,8 @@ if __name__ == "__main__":
     parser.add_argument('--lm_rnn_layer', choices=['Basic', 'DenseNet', 'LDNet'], default='LDNet')
     parser.add_argument('--lm_rnn_unit', choices=['gru', 'lstm', 'rnn'], default='lstm')
     parser.add_argument('--lm_hid_dim', type=int, default=300)
-    
+    parser.add_argument('--lm_layer_num', type=int, default=10)
+ 
     args = parser.parse_args()
 
     pw = wrapper(os.path.join(args.cp_root, args.checkpoint_name), args.checkpoint_name, enable_git_track=args.git_tracking, seed = args.seed)
