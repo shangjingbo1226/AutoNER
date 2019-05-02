@@ -19,6 +19,7 @@ from model_word_ada.LM import LM
 # from model_word_ada.basic import BasicRNN
 from model_word_ada.densenet import DenseRNN
 from model_word_ada.ldnet import LDRNN
+from model_seq.seqlabel import SeqLabel, Vanilla_SeqLabel
 
 from torch_scope import wrapper
 
