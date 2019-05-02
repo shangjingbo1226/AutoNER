@@ -56,6 +56,18 @@ if __name__ == "__main__":
     parser.add_argument('--interval', type=int, default=30)
     parser.add_argument('--check', type=int, default=1000)
     parser.add_argument('--seed', type=int, default=None)
+
+    parser.add_argument('--model', choices=['NER', "ContextNER"], default='NER');
+    parser.add_argument('--context_data', default='./lm/ner_data.pk')
+    parser.add_argument('--forward_lm', default='./lm/ld0.th')
+    parser.add_argument('--backward_lm', default='./lm/ld_0.th')
+    parser.add_argument('--lm_label_dim', type=int, default=-1)
+    parser.add_argument('--lm_word_dim', type=int, default=300)
+    parser.add_argument('--lm_droprate', type=float, default=0.5)
+    parser.add_argument('--lm_rnn_layer', choices=['Basic', 'DenseNet', 'LDNet'], default='LDNet')
+    parser.add_argument('--lm_rnn_unit', choices=['gru', 'lstm', 'rnn'], default='lstm')
+    parser.add_argument('--lm_hid_dim', type=int, default=300)
+    
     args = parser.parse_args()
 
     pw = wrapper(os.path.join(args.cp_root, args.checkpoint_name), args.checkpoint_name, enable_git_track=args.git_tracking, seed = args.seed)
@@ -79,7 +91,27 @@ if __name__ == "__main__":
     rnn_map = {'Basic': BasicRNN}
     rnn_layer = rnn_map[args.rnn_layer](args.layer_num, args.rnn_unit, args.word_dim + args.char_dim, args.hid_dim, args.droprate, args.batch_norm)
 
-    ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate)
+    ct_dataset = pickle.load(open(args.context_data, 'rb'))
+    ct_name_list = ['flm_map', 'blm_map', 'gw_map', 'c_map', 'y_map', 'emb_array', 'train_data', 'test_data', 'dev_data']
+    flm_map, blm_map, _, _, _, _, _, _, _ = [ct_dataset[tup] for tup in ct_name_list ]
+    lm_rnn_map = {'Basic': BasicRNN, 'LDNet': functools.partial(LDRNN, layer_drop = 0)}
+    flm_rnn_layer = lm_rnn_map[args.lm_rnn_layer](args.lm_layer_num, args.lm_rnn_unit, args.lm_word_dim, args.lm_hid_dim, args.lm_droprate)
+    blm_rnn_layer = lm_rnn_map[args.lm_rnn_layer](args.lm_layer_num, args.lm_rnn_unit, args.lm_word_dim, args.lm_hid_dim, args.lm_droprate)
+    flm_model = LM(flm_rnn_layer, None, len(flm_map), args.lm_word_dim, args.lm_droprate, label_dim = args.lm_label_dim)
+    blm_model = LM(blm_rnn_layer, None, len(blm_map), args.lm_word_dim, args.lm_droprate, label_dim = args.lm_label_dim)
+    flm_file = wrapper.restore_checkpoint(args.forward_lm)['model']
+    flm_model.load_state_dict(flm_file, False)
+    blm_file = wrapper.restore_checkpoint(args.backward_lm)['model']
+    blm_model.load_state_dict(blm_file, False)
+    slm_map = {'vanilla': BasicSeqLM, 'sparse-lm': SparseSeqLM}
+    flm_model_seq = slm_map[args.seq_lm_model](flm_model, False, args.lm_droprate, True)
+    blm_model_seq = slm_map[args.seq_lm_model](blm_model, True, args.lm_droprate, True)
+    slm_map = {'vanilla': BasicSeqLM, 'sparse-lm': SparseSeqLM}
+    flm_model_seq = slm_map[args.seq_lm_model](flm_model, False, args.lm_droprate, True)
+    blm_model_seq = slm_map[args.seq_lm_model](blm_model, True, args.lm_droprate, True)
+
+    model_map = {'NER': NER, 'ContextNER', ContextNER}
+    ner_model = model_map[args.model](rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate, flm_model_seq, blm_model_seq)
 
     ner_model.rand_ini()
     ner_model.load_pretrained_word_embedding(torch.FloatTensor(emb_array))
@@ -127,7 +159,7 @@ if __name__ == "__main__":
 
             for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in train_loader.get_tqdm(device):
                 ner_model.zero_grad()
-                output = ner_model(word_t, char_t, chunk_mask)
+                output = ner_model(flm_w, blm_w, blm_ind, word_t, char_t, chunk_mask)
 
                 chunk_score = ner_model.chunking(output)
                 chunk_loss = crit_chunk(chunk_score, chunk_label)

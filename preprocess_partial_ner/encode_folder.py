@@ -253,11 +253,11 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_train', default="./annotations/debug.ck")
-    parser.add_argument('--input_testa', default="./data/ner/eng.testa.ck")
-    parser.add_argument('--input_testb', default="./data/ner/eng.testb.ck")
+    parser.add_argument('--input_train', default="./data/CONLL03/eng.train")
+    parser.add_argument('--input_testa', default="./data/CONLL03/eng.testa")
+    parser.add_argument('--input_testb', default="./data/CONLL03/eng.testb")
     parser.add_argument('--pre_word_emb', default="./data/glove.100.pk")
-    parser.add_argument('--output_folder', default="./data/hqner/")
+    parser.add_argument('--output_folder', default="./data/ner/")
     args = parser.parse_args()
 
     with open(args.pre_word_emb, 'rb') as f:

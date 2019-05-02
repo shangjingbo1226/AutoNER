@@ -110,7 +110,7 @@ class NER(nn.Module):
             utils.init_linear(self.to_chunk_proj)
             utils.init_linear(self.to_type_proj)
 
-    def forward(self, w_in, c_in, mask):
+    def forward(flm_w, blm_w, blm_ind, self, w_in, c_in, mask):
         """
         Sequence labeling model.
 
@@ -284,6 +284,8 @@ class Context_NER(nn.Module):
         self.word_embed = nn.Embedding(w_num, w_dim)
         self.char_embed = nn.Embedding(c_num, c_dim)
         self.drop = nn.Dropout(p=droprate)
+        self.lm_seq = nn.Linear(f_lm.output_dim + b_lm.output_dim, w_dim)
+        self.relu = nn.ReLU()
         self.add_proj = y_dim > 0
         self.to_chunk = highway(self.rnn_outdim)
         self.to_type = highway(self.rnn_outdim)
@@ -345,7 +347,7 @@ class Context_NER(nn.Module):
             utils.init_linear(self.to_chunk_proj)
             utils.init_linear(self.to_type_proj)
 
-    def forward(self, w_in, c_in, mask):
+    def forward(self, flm_w, blm_w, blm_ind, w_in, c_in, mask):
         """
         Sequence labeling model.
 
