@@ -114,12 +114,16 @@ class NERDataset(object):
                 dataset: list, 
                 w_pad: int, 
                 c_pad: int, 
-                token_per_batch: int):
+                token_per_batch: int,
+                flm_pad: int,
+                blm_pad: int):
         super(NERDataset, self).__init__()
         self.dataset = dataset
         self.w_pad = w_pad
         self.c_pad = c_pad
         self.token_per_batch = token_per_batch
+        self.flm_pad = flm_pad
+        self.blm_pad = blm_pad
 
         self.construct_index()
 
@@ -183,8 +187,10 @@ class NERDataset(object):
             type_mask = torch.ByteTensor([mask for tup in batch for mask in tup[4]]).to(device)
             label_list = [label for tup in batch for label in tup[5]]
             type_label = torch.FloatTensor(label_list[0:-1]).to(device)
+            flm_t = torch.LongTensor([tup[6] + [self.flm_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
+            blm_t = torch.LongTensor([tup[7] + [self.blm_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
             cur_idx += 1
-            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
+            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t
         self.shuffle()
             
 class TrainDataset(object):
@@ -209,7 +215,9 @@ class TrainDataset(object):
                 w_pad: int, 
                 c_pad: int, 
                 token_per_batch: int, 
-                sample_ratio: float = 1.0):
+                sample_ratio: float = 1.0,
+                flm_pad: int,
+                blm_pad: int):
         
         super(TrainDataset, self).__init__()
         self.sample_ratio = sample_ratio
@@ -266,9 +274,13 @@ class TrainDataset(object):
             label_list = [label for tup in batch for label in tup[5]]
             type_label = torch.FloatTensor(label_list[0:-1]).to(device)
 
+            # adding tensors for flm and blm
+            flm_t = torch.LongTensor([tup[6] + [self.flm_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
+            blm_t = torch.LongTensor([[self.blm_pad] * (cur_seq_length - len(tup[0])) + tup[7][::-1] for tup in batch]).to(device)
+            blm_ind = torch.LongTensor([])
             cur_idx += 1
 
-            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
+            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t, blm_ind
 
         random.shuffle(self.shuffle_list)
 
