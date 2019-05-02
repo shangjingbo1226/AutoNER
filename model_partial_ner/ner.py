@@ -110,7 +110,7 @@ class NER(nn.Module):
             utils.init_linear(self.to_chunk_proj)
             utils.init_linear(self.to_type_proj)
 
-    def forward(flm_w, blm_w, blm_ind, self, w_in, c_in, mask):
+    def forward(self, flm_w, blm_w, blm_ind, self, w_in, c_in, mask):
         """
         Sequence labeling model.
 

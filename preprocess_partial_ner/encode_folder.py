@@ -146,10 +146,12 @@ def read_corpus(lines):
     return features, labels_chunk, labels_point, labels_typing
 
 
-def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, c_threshold = -1):
+def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, c_threshold = -1, flm_map, blm_map):
 
     w_st, w_unk, w_con, w_pad = w_map['<s>'], w_map['<unk>'], w_map['< >'], w_map['<\n>']
     c_st, c_unk, c_con, c_pad = c_map['<s>'], c_map['<unk>'], c_map['< >'], c_map['<\n>']
+    flm_unk, flm_pad= flm_map['<unk>'], flm_map['\n']
+    blm_unk, blm_pad= blm_map['<unk>'], blm_map['\n']
 
     # list_dirs = os.walk(input_folder)
 
@@ -181,18 +183,24 @@ def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, c_t
         tmp_w = [w_st, w_con]
         tmp_c = [c_st, c_con]
         tmp_mc = [0, 1]
+        tmp_flm = []
+        tmp_blm = []
 
         for i_f, i_m in zip(f_l[1:-1], l_c_m[1:-1]):
             tmp_w = tmp_w + [w_map.get(i_f, w_map.get(i_f.lower(), w_unk))] * len(i_f) + [w_con]
             tmp_c = tmp_c + [c_map.get(t, c_unk) for t in i_f] + [c_con]
             tmp_mc = tmp_mc + [0] * len(i_f) + [i_m]
 
+            # encoding flm and blm mapping, not sure about this format
+            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_unk)] * len(i_f)
+            tmp_blm = tmp_blm + [blm_map.get(i_f, blm_unk)] * len(i_f)
+
         tmp_w.append(w_pad)
         tmp_c.append(c_pad)
         tmp_mc.append(0)
+        tmp_flm.append(flm_pad)
+        tmp_blm.append(blm_pad)
 
-        # print(l_c[1:])
-        # print(cl_map)
         tmp_lc = [cl_map[tup] for tup in l_c[1:]]
         tmp_mt = l_m[1:]
         tmp_lt = list()
@@ -202,7 +210,7 @@ def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, c_t
                 tmp_mask[tl_map[tup]] = 1
             tmp_lt.append(tmp_mask)
 
-        dataset.append([tmp_w, tmp_c, tmp_mc, tmp_lc, tmp_mt, tmp_lt])
+        dataset.append([tmp_w, tmp_c, tmp_mc, tmp_lc, tmp_mt, tmp_lt, tmp_flm, tmp_blm])
 
     dataset.sort(key=lambda t: len(t[0]), reverse=True)
 
@@ -214,7 +222,7 @@ def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, c_t
     return range_ind
 
 
-def encode_dataset(input_file, w_map, c_map, cl_map, tl_map):
+def encode_dataset(input_file, w_map, c_map, cl_map, tl_map, flm_map, blm_map):
 
     print('loading from ' + input_file)
 
@@ -225,6 +233,8 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map):
 
     w_st, w_unk, w_con, w_pad = w_map['<s>'], w_map['<unk>'], w_map['< >'], w_map['<\n>']
     c_st, c_unk, c_con, c_pad = c_map['<s>'], c_map['<unk>'], c_map['< >'], c_map['<\n>']
+    flm_unk, flm_pad= flm_map['<unk>'], flm_map['\n']
+    blm_unk, blm_pad= blm_map['<unk>'], blm_map['\n']
 
     dataset = list()
 
@@ -234,6 +244,8 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map):
         tmp_mc = [0, 1]
         # print(l_c)
         tmp_lc = [cl_map[l_c[1]]]
+        tmp_flm = []
+        tmp_blm = []
 
         for i_f, i_c in zip(f_l[1:-1], l_c[2:]):
             tmp_w = tmp_w + [w_map.get(i_f, w_map.get(i_f.lower(), w_unk))] * len(i_f) + [w_con]
@@ -241,14 +253,20 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map):
             tmp_mc = tmp_mc + [0] * len(i_f) + [1]
             tmp_lc = tmp_lc + [cl_map[i_c]]
 
+            # encoding flm and blm mapping, not sure about this format
+            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_unk)] * len(i_f)
+            tmp_blm = tmp_blm + [blm_map.get(i_f, blm_unk)] * len(i_f)
+
         tmp_w.append(w_pad)
         tmp_c.append(c_pad)
         tmp_mc.append(0)
 
         tmp_mt = l_m[1:]
         tmp_lt = [tl_map[tup] for tup in l_t]
+        tmp_flm.append(flm_pad)
+        tmp_blm.append(blm_pad)
 
-        dataset.append([tmp_w, tmp_c, tmp_mc, tmp_lc, tmp_mt, tmp_lt])
+        dataset.append([tmp_w, tmp_c, tmp_mc, tmp_lc, tmp_mt, tmp_lt, tmp_flm, tmp_blm])
 
     dataset.sort(key=lambda t: len(t[0]), reverse=True)
 
@@ -262,12 +280,18 @@ if __name__ == "__main__":
     parser.add_argument('--input_testb', default="./data/ner/eng.testb.pre")
     parser.add_argument('--pre_word_emb', default="./data/glove.100.pk")
     parser.add_argument('--output_folder', default="./data/ner/")
+    parser.add_argument('--lm_maps', default = "./lm/lm_maps.pk")
     args = parser.parse_args()
 
     with open(args.pre_word_emb, 'rb') as f:
         w_emb = pickle.load(f)
         w_map = w_emb['w_map']
         emb_array = w_emb['emb_array']
+
+    with open(args.lm_maps, 'rb') as f:
+        lm_maps = pickle.load(f)
+        flm_map = lm_maps['flm_map']
+        blm_map = lm_maps['blm_map']
 
     w_map, emb_array = filter_words(w_map, emb_array, [args.input_train, args.input_testa, args.input_testb])
     assert len(w_map) == len(emb_array)
@@ -281,9 +305,9 @@ if __name__ == "__main__":
     tl_map = build_label_mapping(args.input_train, args.input_testa, args.input_testb)
     cl_map = {'I': 0, 'O': 1}
 
-    range_ind = encode_folder(args.input_train, args.output_folder, w_map, c_map, cl_map, tl_map, 5)
-    testa_dataset = encode_dataset(args.input_testa, w_map, c_map, cl_map, tl_map)
-    testb_dataset = encode_dataset(args.input_testb, w_map, c_map, cl_map, tl_map)
+    range_ind = encode_folder(args.input_train, args.output_folder, w_map, c_map, cl_map, tl_map, 5, flm_map, blm_map)
+    testa_dataset = encode_dataset(args.input_testa, w_map, c_map, cl_map, tl_map, flm_map, blm_map)
+    testb_dataset = encode_dataset(args.input_testb, w_map, c_map, cl_map, tl_map, flm_map, blm_map)
 
     with open(args.output_folder+'test.pk', 'wb') as f:
         pickle.dump({'emb_array': emb_array, 'w_map': w_map, 'c_map': c_map, 'tl_map': tl_map, 'cl_map': cl_map, 'range': range_ind, 'test_data':testb_dataset, 'dev_data': testa_dataset}, f)
