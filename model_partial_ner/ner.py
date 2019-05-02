@@ -240,7 +240,7 @@ class NER(nn.Module):
         return set(span_list)
 
 
-class Context_NER(nn.Module):
+class ContextNER(nn.Module):
     """
     Sequence Labeling model augumented with language model.
 
@@ -273,7 +273,7 @@ class Context_NER(nn.Module):
                 droprate: float,
                 f_lm, b_lm):
 
-        super(Context_NER, self).__init__()
+        super(ContextNER, self).__init__()
 
         self.f_lm = f_lm
         self.b_lm = b_lm

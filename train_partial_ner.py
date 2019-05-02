@@ -9,7 +9,7 @@ import codecs
 import pickle
 import math
 
-from model_partial_ner.ner import NER
+from model_partial_ner.ner import NER, ContextNER
 import model_partial_ner.utils as utils
 from model_partial_ner.object import softCE
 from model_partial_ner.basic import BasicRNN
@@ -19,7 +19,7 @@ from model_word_ada.LM import LM
 # from model_word_ada.basic import BasicRNN
 from model_word_ada.densenet import DenseRNN
 from model_word_ada.ldnet import LDRNN
-from model_seq.seqlabel import SeqLabel, Vanilla_SeqLabel
+from model_seq.seqlm import BasicSeqLM 
 
 from torch_scope import wrapper
 
@@ -110,12 +110,9 @@ if __name__ == "__main__":
     flm_model.load_state_dict(flm_file, False)
     blm_file = wrapper.restore_checkpoint(args.backward_lm)['model']
     blm_model.load_state_dict(blm_file, False)
-    slm_map = {'vanilla': BasicSeqLM, 'sparse-lm': SparseSeqLM}
-    flm_model_seq = slm_map[args.seq_lm_model](flm_model, False, args.lm_droprate, True)
-    blm_model_seq = slm_map[args.seq_lm_model](blm_model, True, args.lm_droprate, True)
-    slm_map = {'vanilla': BasicSeqLM, 'sparse-lm': SparseSeqLM}
-    flm_model_seq = slm_map[args.seq_lm_model](flm_model, False, args.lm_droprate, True)
-    blm_model_seq = slm_map[args.seq_lm_model](blm_model, True, args.lm_droprate, True)
+    flm_model_seq = BasicSeqLM(flm_model, False, args.lm_droprate, True)
+    blm_model_seq = BasicSeqLM(blm_model, True, args.lm_droprate, True)
+    
 
     model_map = {'NER': NER, 'ContextNER': ContextNER}
     ner_model = model_map[args.model](rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate, flm_model_seq, blm_model_seq)
@@ -165,6 +162,10 @@ if __name__ == "__main__":
             ner_model.train()
 
             for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in train_loader.get_tqdm(device):
+                print(chunk_mask)
+                print(chunk_label)
+                print(type_mask)
+                print(type_label)
                 ner_model.zero_grad()
                 output = ner_model(flm_w, blm_w, blm_ind, word_t, char_t, chunk_mask)
 
