@@ -15,6 +15,11 @@ from model_partial_ner.object import softCE
 from model_partial_ner.basic import BasicRNN
 from model_partial_ner.dataset import NERDataset, TrainDataset
 
+from model_word_ada.LM import LM
+from model_word_ada.basic import BasicRNN
+from model_word_ada.densenet import DenseRNN
+from model_word_ada.ldnet import LDRNN
+
 from torch_scope import wrapper
 
 import argparse
