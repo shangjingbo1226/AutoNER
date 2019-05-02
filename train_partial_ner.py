@@ -58,7 +58,7 @@ if __name__ == "__main__":
     parser.add_argument('--seed', type=int, default=None)
 
     parser.add_argument('--model', choices=['NER', "ContextNER"], default='NER');
-    parser.add_argument('--context_data', default='./lm/ner_data.pk')
+    parser.add_argument('--context_data', default='./lm/ner_dataset.pk')
     parser.add_argument('--forward_lm', default='./lm/ld0.th')
     parser.add_argument('--backward_lm', default='./lm/ld_0.th')
     parser.add_argument('--lm_label_dim', type=int, default=-1)
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     flm_model_seq = slm_map[args.seq_lm_model](flm_model, False, args.lm_droprate, True)
     blm_model_seq = slm_map[args.seq_lm_model](blm_model, True, args.lm_droprate, True)
 
-    model_map = {'NER': NER, 'ContextNER', ContextNER}
+    model_map = {'NER': NER, 'ContextNER': ContextNER}
     ner_model = model_map[args.model](rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate, flm_model_seq, blm_model_seq)
 
     ner_model.rand_ini()

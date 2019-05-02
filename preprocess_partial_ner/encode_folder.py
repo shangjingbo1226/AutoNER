@@ -35,7 +35,7 @@ def build_label_mapping(train_file, dev_file, test_file):
     for filename in [train_file, dev_file, test_file]:
         for line in open(filename):
             if not (line.isspace() or (len(line) > 10 and line[0:10] == '-DOCSTART-')):
-                line = line.rstrip('\n').split()
+                line = line.rstrip('\n').split() 
                 assert len(line) >= 3 and len(line) <= 4, "the format of noisy corpus"
                 # The format should be
                 # 0. Token
@@ -69,6 +69,8 @@ def read_noisy_corpus(lines):
             # 3. Safe or dangerous?   <-- this is optional
             token = line[0]
             chunk_boundary = line[1]
+            if chunk_boundary == 'B':
+                chunk_boundary = 'I'
             entity_types = line[2]
 
             if len(line) == 3:
@@ -189,7 +191,8 @@ def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, c_t
         tmp_c.append(c_pad)
         tmp_mc.append(0)
 
-
+        # print(l_c[1:])
+        # print(cl_map)
         tmp_lc = [cl_map[tup] for tup in l_c[1:]]
         tmp_mt = l_m[1:]
         tmp_lt = list()
@@ -229,6 +232,7 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map):
         tmp_w = [w_st, w_con]
         tmp_c = [c_st, c_con]
         tmp_mc = [0, 1]
+        print(l_c)
         tmp_lc = [cl_map[l_c[1]]]
 
         for i_f, i_c in zip(f_l[1:-1], l_c[2:]):
@@ -253,9 +257,9 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_train', default="./data/CONLL03/eng.train")
-    parser.add_argument('--input_testa', default="./data/CONLL03/eng.testa")
-    parser.add_argument('--input_testb', default="./data/CONLL03/eng.testb")
+    parser.add_argument('--input_train', default="./data/ner/eng.train.pre")
+    parser.add_argument('--input_testa', default="./data/ner/eng.testa.pre")
+    parser.add_argument('--input_testb', default="./data/ner/eng.testb.pre")
     parser.add_argument('--pre_word_emb', default="./data/glove.100.pk")
     parser.add_argument('--output_folder', default="./data/ner/")
     args = parser.parse_args()
