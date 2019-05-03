@@ -88,6 +88,9 @@ if __name__ == "__main__":
     emb_array, w_map, c_map, tl_map, cl_map, range_idx, test_data, dev_data = [dataset[tup] for tup in key_list]
     id2label = {v: k for k, v in tl_map.items()}
     assert len(emb_array) == len(w_map)
+    ct_dataset = pickle.load(open(args.context_data, 'rb'))
+    ct_name_list = ['flm_map', 'blm_map']
+    flm_map, blm_map = [ct_dataset[tup] for tup in ct_name_list ]
 
     train_loader = TrainDataset(args.train_dataset, w_map['<\n>'], c_map['<\n>'], args.batch_token_number, flm_map['\n'], blm_map['\n'], sample_ratio = args.sample_ratio)
     test_loader = NERDataset(test_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number, flm_map['\n'], blm_map['\n'])
@@ -95,13 +98,12 @@ if __name__ == "__main__":
 
     logger.info('building model')
 
-    ct_dataset = pickle.load(open(args.context_data, 'rb'))
-    ct_name_list = ['flm_map', 'blm_map']
+
     rnn_map = {'Basic': BasicRNN}
     rnn_layer = rnn_map[args.rnn_layer](args.layer_num, args.rnn_unit, args.word_dim + args.char_dim, args.hid_dim, args.droprate, args.batch_norm)
 
     
-    flm_map, blm_map = [ct_dataset[tup] for tup in ct_name_list ]
+    
     lm_rnn_map = {'Basic': BasicRNN, 'LDNet': functools.partial(LDRNN, layer_drop = 0)}
     flm_rnn_layer = lm_rnn_map[args.lm_rnn_layer](args.lm_layer_num, args.lm_rnn_unit, args.lm_word_dim, args.lm_hid_dim, args.lm_droprate)
     blm_rnn_layer = lm_rnn_map[args.lm_rnn_layer](args.lm_layer_num, args.lm_rnn_unit, args.lm_word_dim, args.lm_hid_dim, args.lm_droprate)
