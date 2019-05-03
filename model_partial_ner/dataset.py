@@ -268,8 +268,10 @@ class TrainDataset(object):
             batch_idx = self.shuffle_list[cur_idx]
             batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
             cur_seq_length = len(batch[0][0])
+
             print(len([batch[0][0] + [self.w_pad] * (cur_seq_length - len(batch[0][0]))]))
             print(len([batch[0][6] + [self.flm_pad] * (cur_seq_length - len(batch[0][0]))]))
+
             word_t = torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
             char_t = torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
             chunk_mask = torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch]).to(device)
