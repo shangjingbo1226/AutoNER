@@ -216,9 +216,9 @@ class TrainDataset(object):
                 w_pad: int, 
                 c_pad: int, 
                 token_per_batch: int, 
-                sample_ratio: float = 1.0,
                 flm_pad: int,
-                blm_pad: int):
+                blm_pad: int,
+                sample_ratio: float = 1.0):
         
         super(TrainDataset, self).__init__()
         self.sample_ratio = sample_ratio
