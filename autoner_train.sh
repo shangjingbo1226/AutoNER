@@ -57,6 +57,6 @@ python train_partial_ner.py \
     --eval_dataset data/ner/test.pk \
     --train_dataset data/ner/train_0.pk \
     --update SGD --lr 0.05 --hid_dim 300 --droprate 0.5 \
-    --sample_ratio 1.0 --word_dim 200 --epoch 50
+    --sample_ratio 1.0 --word_dim 100 --epoch 50
 
 echo ${green}Done.${reset}
