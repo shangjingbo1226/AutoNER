@@ -228,6 +228,8 @@ class TrainDataset(object):
         self.w_pad = w_pad
         self.c_pad = c_pad
         self.token_per_batch = token_per_batch
+        self.flm_pad = flm_pad
+        self.blm_pad = blm_pad
 
         self.total_batch_num = -1
 
