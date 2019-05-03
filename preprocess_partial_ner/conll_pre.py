@@ -1,6 +1,6 @@
 import pickle
-original = open("./data/CONLL03/eng.train", "r")
-output = open("./data/ner/eng.train.pre", "w")
+original = open("./data/ner/eng.testb", "r")
+output = open("./data/ner/eng.testb.pre", "w")
 status = True
 for line in original:
 	line = line.split()

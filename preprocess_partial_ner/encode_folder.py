@@ -146,7 +146,7 @@ def read_corpus(lines):
     return features, labels_chunk, labels_point, labels_typing
 
 
-def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, c_threshold = -1, flm_map, blm_map):
+def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, flm_map, blm_map,c_threshold=-1):
 
     w_st, w_unk, w_con, w_pad = w_map['<s>'], w_map['<unk>'], w_map['< >'], w_map['<\n>']
     c_st, c_unk, c_con, c_pad = c_map['<s>'], c_map['<unk>'], c_map['< >'], c_map['<\n>']
@@ -305,7 +305,7 @@ if __name__ == "__main__":
     tl_map = build_label_mapping(args.input_train, args.input_testa, args.input_testb)
     cl_map = {'I': 0, 'O': 1}
 
-    range_ind = encode_folder(args.input_train, args.output_folder, w_map, c_map, cl_map, tl_map, 5, flm_map, blm_map)
+    range_ind = encode_folder(args.input_train, args.output_folder, w_map, c_map, cl_map, tl_map, flm_map, blm_map, 5)
     testa_dataset = encode_dataset(args.input_testa, w_map, c_map, cl_map, tl_map, flm_map, blm_map)
     testb_dataset = encode_dataset(args.input_testb, w_map, c_map, cl_map, tl_map, flm_map, blm_map)
 

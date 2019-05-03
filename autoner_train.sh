@@ -24,10 +24,10 @@ if [ $EMBEDDING_TXT_FILE == "embedding/bio_embedding.txt" ]; then
     fi
 fi
 
-if [ $MUST_RE_RUN == 1 ] || [ ! -e $MODEL_ROOT/embedding.pk ]; then
-    echo ${green}=== Encoding Embeddings ===${reset}
-    python preprocess_partial_ner/save_emb.py --input_embedding $EMBEDDING_TXT_FILE --output_embedding $MODEL_ROOT/embedding.pk
-fi
+#if [ $MUST_RE_RUN == 1 ] || [ ! -e $MODEL_ROOT/embedding.pk ]; then
+#    echo ${green}=== Encoding Embeddings ===${reset}
+#    python preprocess_partial_ner/save_emb.py --input_embedding $EMBEDDING_TXT_FILE --output_embedding $MODEL_ROOT/embedding.pk
+#fi
 
 # echo ${green}=== Generating Distant Supervision ===${reset}
 # bin/generate $RAW_TEXT $DICT_CORE $DICT_FULL $TRAINING_SET
