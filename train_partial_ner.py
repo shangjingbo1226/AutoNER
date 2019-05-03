@@ -167,7 +167,7 @@ if __name__ == "__main__":
 
             ner_model.train()
 
-            for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in train_loader.get_tqdm(device):
+            for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_w, blm_w, blm_ind in train_loader.get_tqdm(device):
                 ner_model.zero_grad()
                 output = ner_model(flm_w, blm_w, blm_ind, word_t, char_t, chunk_mask)
 
