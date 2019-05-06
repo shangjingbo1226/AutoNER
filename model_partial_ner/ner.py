@@ -94,6 +94,7 @@ class NER(nn.Module):
         pre_word_embeddings : ``torch.FloatTensor``, required.
             pre-trained word embedding
         """
+        print('embedding loaded')
         self.word_embed.weight = nn.Parameter(pre_word_embeddings)
 
     def rand_ini(self):
@@ -110,7 +111,7 @@ class NER(nn.Module):
             utils.init_linear(self.to_chunk_proj)
             utils.init_linear(self.to_type_proj)
 
-    def forward(flm_w, blm_w, blm_ind, self, w_in, c_in, mask):
+    def forward(self, flm_w, blm_w, blm_ind, w_in, c_in, mask):
         """
         Sequence labeling model.
 

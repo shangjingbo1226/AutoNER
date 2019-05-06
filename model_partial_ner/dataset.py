@@ -280,11 +280,12 @@ class TrainDataset(object):
             type_mask = torch.ByteTensor([mask for tup in batch for mask in tup[4]]).to(device)
             label_list = [label for tup in batch for label in tup[5]]
             type_label = torch.FloatTensor(label_list[0:-1]).to(device)
-
+            # for tup in batch:
+            #    print(len(tup[0]))
             # adding tensors for flm and blm
-            flm_t = torch.LongTensor([tup[6] + [self.flm_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
-            blm_t = torch.LongTensor([[self.blm_pad] * (cur_seq_length - len(tup[0])) + tup[7][::-1] for tup in batch]).to(device)
-            blm_ind = torch.LongTensor([]).to(device)
+            flm_t = torch.LongTensor([tup[6] + [self.flm_pad] * (cur_seq_length - len(tup[0]))for tup in batch]).to(device)
+            blm_t = torch.LongTensor([tup[7] + [self.blm_pad] * (cur_seq_length - len(tup[0]))for tup in batch]).to(device)
+            blm_ind = []
             cur_idx += 1
 
             yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t, blm_ind
