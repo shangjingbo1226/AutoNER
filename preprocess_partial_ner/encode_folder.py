@@ -192,7 +192,6 @@ def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, flm
             tmp_mc = tmp_mc + [0] * len(i_f) + [i_m]
 
             # encoding flm and blm mapping, not sure about this format
-            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_unk)] * len(i_f)
             tmp_blm = tmp_blm + [blm_map.get(i_f, blm_unk)] * len(i_f)
 
         tmp_w.append(w_pad)
