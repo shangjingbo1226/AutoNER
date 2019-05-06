@@ -183,8 +183,8 @@ def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, flm
         tmp_w = [w_st, w_con]
         tmp_c = [c_st, c_con]
         tmp_mc = [0, 1]
-        tmp_flm = []
-        tmp_blm = []
+        tmp_flm = [flm_pad, flm_pad]
+        tmp_blm = [blm_pad, blm_pad]
 
         for i_f, i_m in zip(f_l[1:-1], l_c_m[1:-1]):
             tmp_w = tmp_w + [w_map.get(i_f, w_map.get(i_f.lower(), w_unk))] * len(i_f) + [w_con]
@@ -192,14 +192,15 @@ def encode_folder(input_folder, output_folder, w_map, c_map, cl_map, tl_map, flm
             tmp_mc = tmp_mc + [0] * len(i_f) + [i_m]
 
             # encoding flm and blm mapping, not sure about this format
-            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_unk)] * len(i_f)
-            tmp_blm = tmp_blm + [blm_map.get(i_f, blm_unk)] * len(i_f)
+            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_map.get(i_f.lower(), flm_unk))] * len(i_f) + [flm_pad]
+            tmp_blm = tmp_blm + [blm_map.get(i_f, blm_map.get(i_f.lower(), blm_unk))] * len(i_f) + [blm_pad]
 
         tmp_w.append(w_pad)
         tmp_c.append(c_pad)
         tmp_mc.append(0)
         tmp_flm.append(flm_pad)
         tmp_blm.append(blm_pad)
+        
 
         tmp_lc = [cl_map[tup] for tup in l_c[1:]]
         tmp_mt = l_m[1:]
@@ -244,8 +245,8 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map, flm_map, blm_map):
         tmp_mc = [0, 1]
         # print(l_c)
         tmp_lc = [cl_map[l_c[1]]]
-        tmp_flm = []
-        tmp_blm = []
+        tmp_flm = [flm_pad, flm_pad]
+        tmp_blm = [blm_pad, blm_pad]
 
         for i_f, i_c in zip(f_l[1:-1], l_c[2:]):
             tmp_w = tmp_w + [w_map.get(i_f, w_map.get(i_f.lower(), w_unk))] * len(i_f) + [w_con]
@@ -254,17 +255,19 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map, flm_map, blm_map):
             tmp_lc = tmp_lc + [cl_map[i_c]]
 
             # encoding flm and blm mapping, not sure about this format
-            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_unk)] * len(i_f)
-            tmp_blm = tmp_blm + [blm_map.get(i_f, blm_unk)] * len(i_f)
+            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_map(i_f.lower(), flm_unk))] * len(i_f) + [flm_pad]
+            tmp_blm = tmp_blm + [blm_map.get(i_f, blm_map(i_f.lower(), blm_unk))] * len(i_f) + [flm_pad]
 
         tmp_w.append(w_pad)
         tmp_c.append(c_pad)
         tmp_mc.append(0)
+        tmp_flm.append(flm_pad)
+        tmp_blm.append(blm_pad)
 
         tmp_mt = l_m[1:]
         tmp_lt = [tl_map[tup] for tup in l_t]
-        tmp_flm.append(flm_pad)
-        tmp_blm.append(blm_pad)
+        
+        
 
         dataset.append([tmp_w, tmp_c, tmp_mc, tmp_lc, tmp_mt, tmp_lt, tmp_flm, tmp_blm])
 
