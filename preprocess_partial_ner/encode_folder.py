@@ -256,8 +256,8 @@ def encode_dataset(input_file, w_map, c_map, cl_map, tl_map, flm_map, blm_map):
             tmp_lc = tmp_lc + [cl_map[i_c]]
 
             # encoding flm and blm mapping, not sure about this format
-            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_map(i_f.lower(), flm_unk))] * len(i_f) + [flm_pad]
-            tmp_blm = tmp_blm + [blm_map.get(i_f, blm_map(i_f.lower(), blm_unk))] * len(i_f) + [flm_pad]
+            tmp_flm = tmp_flm + [flm_map.get(i_f, flm_map.get(i_f.lower(), flm_unk))] * len(i_f) + [flm_pad]
+            tmp_blm = tmp_blm + [blm_map.get(i_f, blm_map.get(i_f.lower(), blm_unk))] * len(i_f) + [flm_pad]
 
         tmp_w.append(w_pad)
         tmp_c.append(c_pad)

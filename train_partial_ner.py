@@ -176,6 +176,7 @@ if __name__ == "__main__":
                 type_loss = crit_type(type_score, type_label)
 
                 loss = type_loss + chunk_loss
+                print(loss)
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(ner_model.parameters(), args.clip)
                 optimizer.step()
