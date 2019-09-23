@@ -45,8 +45,8 @@ def evaluate_chunking(iterator, ner_model, none_idx):
 
     ner_model.eval()
 
-    for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in iterator:
-        output = ner_model(word_t, char_t, chunk_mask)
+    for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t, blm_ind, lm_idx in iterator:
+        output = ner_model(flm_t, blm_t, blm_ind, lm_idx, word_t, char_t, chunk_mask)
         chunk_score = ner_model.chunking(output)
         pred_chunk = (chunk_score < 0.0)
 
@@ -91,8 +91,8 @@ def evaluate_typing(iterator, ner_model, none_idx):
 
     ner_model.eval()
 
-    for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in iterator:
-        output = ner_model(word_t, char_t, chunk_mask)
+    for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t, blm_ind, lm_idx in iterator:
+        output = ner_model(flm_t, blm_t, blm_ind, lm_idx, word_t, char_t, chunk_mask)
         pred_chunk = (chunk_label <= 0.0)
 
         if pred_chunk.data.float().sum() <= 1:
@@ -137,8 +137,8 @@ def evaluate_ner(iterator, ner_model, none_idx, id2label):
 
     type2gold, type2guess, type2overlap = {}, {}, {}
 
-    for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in iterator:
-        output = ner_model(word_t, char_t, chunk_mask)
+    for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t, blm_ind, lm_idx in iterator:
+        output = ner_model(flm_t, blm_t, blm_ind, lm_idx, word_t, char_t, chunk_mask)
         chunk_score = ner_model.chunking(output)
         pred_chunk = (chunk_score < 0.0)
 

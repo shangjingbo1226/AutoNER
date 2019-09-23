@@ -16,6 +16,10 @@ class NER(nn.Module):
 
     Parameters
     ----------
+    f_lm : ``torch.nn.Module``, optional.
+        The forward language modle for contextualized representations.
+    b_lm : ``torch.nn.Module``, optional.
+        The backward language modle for contextualized representations.
     rnn : ``torch.nn.Module``, required.
         The RNN unit..
     w_num : ``int`` , required.
@@ -33,7 +37,7 @@ class NER(nn.Module):
     droprate : ``float`` , required
         The dropout ratio.
     """
-    def __init__(self, rnn, 
+    def __init__(self, flm, blm, rnn, 
                 w_num: int, 
                 w_dim: int, 
                 c_num: int, 
@@ -44,6 +48,8 @@ class NER(nn.Module):
 
         super(NER, self).__init__()
 
+        self.flm = flm
+        self.blm = blm
         self.rnn = rnn
         self.rnn_outdim = self.rnn.output_dim
         self.one_direction_dim = self.rnn_outdim // 2
@@ -109,12 +115,20 @@ class NER(nn.Module):
             utils.init_linear(self.to_chunk_proj)
             utils.init_linear(self.to_type_proj)
 
-    def forward(self, w_in, c_in, mask):
+    def forward(self, flm_in, blm_in, blm_ind, lm_idx, w_in, c_in, mask):
         """
         Sequence labeling model.
 
         Parameters
         ----------
+        flm_in : ``torch.LongTensor``, optional.
+            Forward contextualized language model input.
+        blm_in : ``torch.LongTensor``, optional.
+            Backward contextualized language model input.
+        blm_ind : ``torch.LongTensor``, optional.
+            Backward contextualized language model index.
+        lm_idx : ``torch.LongTensor``, optional.
+            Contextualized language model index.
         w_in : ``torch.LongTensor``, required.
             The RNN unit.
         c_in : ``torch.LongTensor`` , required.
@@ -126,7 +140,28 @@ class NER(nn.Module):
 
         c_emb = self.char_embed(c_in)
 
-        emb = self.drop( torch.cat([w_emb, c_emb], 2) )
+        context_o = []
+        if self.flm is not None:
+            self.flm.init_hidden()
+            self.blm.init_hidden()
+            flm_o = self.flm(flm_in)
+            blm_o = self.blm(blm_in, blm_ind)
+
+            tmp_lm_pad = torch.zeros(1, flm_o.size()[1], flm_o.size()[2]).to(flm_o.device)
+            flm_o = torch.cat([flm_o, tmp_lm_pad], 0)
+            blm_o = torch.cat([blm_o, tmp_lm_pad], 0)
+
+            flm_o = flm_o.permute(1,0,2)
+            blm_o = blm_o.permute(1,0,2)
+            
+            flm_o = flm_o[torch.arange(flm_o.shape[0]).unsqueeze(-1), lm_idx]
+            blm_o = blm_o[torch.arange(blm_o.shape[0]).unsqueeze(-1), lm_idx]
+            
+            context_o.append(flm_o)
+            context_o.append(blm_o)
+
+
+        emb = self.drop( torch.cat([w_emb, c_emb] + context_o, 2) )
 
         out = self.rnn(emb)
 
