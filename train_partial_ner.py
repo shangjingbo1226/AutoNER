@@ -15,6 +15,10 @@ from model_partial_ner.object import softCE
 from model_partial_ner.basic import BasicRNN
 from model_partial_ner.dataset import NERDataset, TrainDataset
 
+from model_word_ada.LM import LM
+from model_word_ada.ldnet import LDRNN
+from model_seq.seqlm import BasicSeqLM
+
 from torch_scope import wrapper
 
 import argparse
@@ -34,8 +38,8 @@ if __name__ == "__main__":
     parser.add_argument('--checkpoint_name', default='autoner0')
     parser.add_argument('--git_tracking', action='store_true')
 
-    parser.add_argument('--eval_dataset', default='./data/hqner/train_0.pk')
-    parser.add_argument('--train_dataset', default='./data/hqner/test.pk')
+    parser.add_argument('--eval_dataset', default='./data/contextner/test.pk')
+    parser.add_argument('--train_dataset', default='./data/contextner/train_0.pk')
     parser.add_argument('--batch_token_number', type=int, default=3000)
     parser.add_argument('--label_dim', type=int, default=50)
     parser.add_argument('--hid_dim', type=int, default=300)
@@ -56,6 +60,16 @@ if __name__ == "__main__":
     parser.add_argument('--interval', type=int, default=30)
     parser.add_argument('--check', type=int, default=1000)
     parser.add_argument('--seed', type=int, default=None)
+
+    parser.add_argument('--lm_hid_dim', type=int, default=300)
+    parser.add_argument('--lm_word_dim', type=int, default=300)
+    parser.add_argument('--lm_label_dim', type=int, default=-1)
+    parser.add_argument('--lm_layer_num', type=int, default=10)
+    parser.add_argument('--lm_droprate', type=float, default=0.5)
+    parser.add_argument('--lm_rnn_unit', choices=['gru', 'lstm', 'rnn'], default='lstm')
+    parser.add_argument('--forward_lm', default=None)
+    parser.add_argument('--backward_lm', default=None)
+
     args = parser.parse_args()
 
     pw = wrapper(os.path.join(args.cp_root, args.checkpoint_name), args.checkpoint_name, enable_git_track=args.git_tracking, seed = args.seed)
@@ -64,22 +78,41 @@ if __name__ == "__main__":
     device = torch.device("cuda:" + str(gpu_index) if gpu_index >= 0 else "cpu")
     
     logger.info('loading dataset')
-    key_list = ['emb_array', 'w_map', 'c_map', 'tl_map', 'cl_map', 'range', 'test_data', 'dev_data']
+    key_list = ['emb_array', 'flm_map', 'blm_map', 'w_map', 'c_map', 'tl_map', 'cl_map', 'range', 'test_data', 'dev_data']
     dataset = pickle.load(open(args.eval_dataset, 'rb'))
-    emb_array, w_map, c_map, tl_map, cl_map, range_idx, test_data, dev_data = [dataset[tup] for tup in key_list]
+    emb_array, flm_map, blm_map, w_map, c_map, tl_map, cl_map, range_idx, test_data, dev_data = [dataset[tup] for tup in key_list]
     id2label = {v: k for k, v in tl_map.items()}
     assert len(emb_array) == len(w_map)
 
-    train_loader = TrainDataset(args.train_dataset, w_map['<\n>'], c_map['<\n>'], args.batch_token_number, sample_ratio = args.sample_ratio)
-    test_loader = NERDataset(test_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
-    dev_loader = NERDataset(dev_data, w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
+    train_loader = TrainDataset(args.train_dataset, flm_map['\n'], blm_map['\n'], w_map['<\n>'], c_map['<\n>'], args.batch_token_number, sample_ratio = args.sample_ratio)
+    test_loader = NERDataset(test_data, flm_map['\n'], blm_map['\n'], w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
+    dev_loader = NERDataset(dev_data, flm_map['\n'], blm_map['\n'], w_map['<\n>'], c_map['<\n>'], args.batch_token_number)
 
     logger.info('building model')
+    flm_model_seq = None
+    blm_model_seq = None
+    context_dim = 0
+    if args.forward_lm != None:
+
+        flm_rnn_layer = LDRNN(args.lm_layer_num, args.lm_rnn_unit, args.lm_word_dim, args.lm_hid_dim, args.lm_droprate, 0)
+        blm_rnn_layer = LDRNN(args.lm_layer_num, args.lm_rnn_unit, args.lm_word_dim, args.lm_hid_dim, args.lm_droprate, 0)
+        flm_model = LM(flm_rnn_layer, None, len(flm_map), args.lm_word_dim, args.lm_droprate, label_dim = args.lm_label_dim)
+        blm_model = LM(blm_rnn_layer, None, len(blm_map), args.lm_word_dim, args.lm_droprate, label_dim = args.lm_label_dim)
+        flm_file = wrapper.restore_checkpoint(args.forward_lm)['model']
+        flm_model.load_state_dict(flm_file, False)
+        blm_file = wrapper.restore_checkpoint(args.backward_lm)['model']
+        blm_model.load_state_dict(blm_file, False)
+        flm_model_seq = BasicSeqLM(flm_model, False, args.lm_droprate, True)
+        blm_model_seq = BasicSeqLM(blm_model, True, args.lm_droprate, True)
+        context_dim = flm_model_seq.output_dim
+        logger.info('contextualized language model loaded, output_dim = ' + str(context_dim))
+
 
     rnn_map = {'Basic': BasicRNN}
-    rnn_layer = rnn_map[args.rnn_layer](args.layer_num, args.rnn_unit, args.word_dim + args.char_dim, args.hid_dim, args.droprate, args.batch_norm)
+    rnn_layer = rnn_map[args.rnn_layer](args.layer_num, args.rnn_unit, args.word_dim + args.char_dim + context_dim * 2, args.hid_dim, args.droprate, args.batch_norm)
 
-    ner_model = NER(rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate)
+
+    ner_model = NER(flm_model_seq, blm_model_seq, rnn_layer, len(w_map), args.word_dim, len(c_map), args.char_dim, args.label_dim, len(tl_map), args.droprate)
 
     ner_model.rand_ini()
     ner_model.load_pretrained_word_embedding(torch.FloatTensor(emb_array))
@@ -125,9 +158,9 @@ if __name__ == "__main__":
 
             ner_model.train()
 
-            for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label in train_loader.get_tqdm(device):
+            for word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t, blm_ind, lm_index in train_loader.get_tqdm(device):
                 ner_model.zero_grad()
-                output = ner_model(word_t, char_t, chunk_mask)
+                output = ner_model(flm_t, blm_t, blm_ind, lm_index, word_t, char_t, chunk_mask)
 
                 chunk_score = ner_model.chunking(output)
                 chunk_loss = crit_chunk(chunk_score, chunk_label)

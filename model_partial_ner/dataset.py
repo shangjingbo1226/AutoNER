@@ -112,11 +112,15 @@ class NERDataset(object):
     """
     def __init__(self, 
                 dataset: list, 
+                flm_pad: int,
+                blm_pad: int,
                 w_pad: int, 
                 c_pad: int, 
                 token_per_batch: int):
         super(NERDataset, self).__init__()
         self.dataset = dataset
+        self.flm_pad = flm_pad
+        self.blm_pad = blm_pad
         self.w_pad = w_pad
         self.c_pad = c_pad
         self.token_per_batch = token_per_batch
@@ -176,6 +180,29 @@ class NERDataset(object):
             batch_idx = self.shuffle_list[cur_idx]
             batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
             cur_seq_length = len(batch[0][0])
+            batch_size = len(batch)
+            batch_idx = range(batch_size)
+
+            flm_t, blm_t, blm_ind, lm_index = None, None, None, None
+            if batch[0][6] is not None:
+                flm_t = list()
+                blm_t = list()
+                blm_ind = list()
+                word_padded_len = max([len(tup[6]) for tup in batch])
+                for instance_ind in range(batch_size):
+                    instance = batch[instance_ind]
+                    word_padded_len_ins = word_padded_len - len(instance[6])
+                    flm_t.append(instance[6] + [self.flm_pad] + [self.flm_pad] * word_padded_len_ins)
+                    blm_t.append([self.blm_pad] + instance[7][::-1] + [self.blm_pad] * word_padded_len_ins)
+                    tmp_p = list(range(len(instance[7]), -1, -1)) + list(range(len(instance[7])+1, word_padded_len+1))
+                    blm_ind.append([x * batch_size + instance_ind for x in tmp_p])
+                flm_t = torch.LongTensor(flm_t).transpose(0, 1).contiguous().to(device)
+                blm_t = torch.LongTensor(blm_t).transpose(0, 1).contiguous().to(device)
+                blm_ind = torch.LongTensor(blm_ind).transpose(0, 1).contiguous().view(-1).to(device)
+                lm_index = torch.LongTensor([tup[8] + [word_padded_len] * (cur_seq_length - len(tup[0])) for tup in batch])
+                lm_index[lm_index==-1] = word_padded_len + 1
+                lm_index = lm_index.to(device)
+
             word_t = torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
             char_t = torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
             chunk_mask = torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch]).to(device)
@@ -183,8 +210,9 @@ class NERDataset(object):
             type_mask = torch.ByteTensor([mask for tup in batch for mask in tup[4]]).to(device)
             label_list = [label for tup in batch for label in tup[5]]
             type_label = torch.FloatTensor(label_list[0:-1]).to(device)
+
             cur_idx += 1
-            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
+            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t, blm_ind, lm_index
         self.shuffle()
             
 class TrainDataset(object):
@@ -206,6 +234,8 @@ class TrainDataset(object):
     """
     def __init__(self, 
                 dataset_name: str, 
+                flm_pad: int,
+                blm_pad: int,
                 w_pad: int, 
                 c_pad: int, 
                 token_per_batch: int, 
@@ -215,7 +245,8 @@ class TrainDataset(object):
         self.sample_ratio = sample_ratio
 
         self.dataset_name = dataset_name
-
+        self.flm_pad = flm_pad
+        self.blm_pad = blm_pad
         self.w_pad = w_pad
         self.c_pad = c_pad
         self.token_per_batch = token_per_batch
@@ -258,6 +289,28 @@ class TrainDataset(object):
             batch = self.dataset[self.index_list[batch_idx]: self.index_list[batch_idx + 1]]
 
             cur_seq_length = len(batch[0][0])
+            batch_size = len(batch)
+            batch_idx = range(batch_size)
+
+            flm_t, blm_t, blm_ind, lm_index = None, None, None, None
+            if batch[0][6] is not None:
+                flm_t = list()
+                blm_t = list()
+                blm_ind = list()
+                word_padded_len = max([len(tup[6]) for tup in batch])
+                for instance_ind in range(batch_size):
+                    instance = batch[instance_ind]
+                    word_padded_len_ins = word_padded_len - len(instance[6])
+                    flm_t.append(instance[6] + [self.flm_pad] + [self.flm_pad] * word_padded_len_ins)
+                    blm_t.append([self.blm_pad] + instance[7][::-1] + [self.blm_pad] * word_padded_len_ins)
+                    tmp_p = list(range(len(instance[7]), -1, -1)) + list(range(len(instance[7])+1, word_padded_len+1))
+                    blm_ind.append([x * batch_size + instance_ind for x in tmp_p])
+                flm_t = torch.LongTensor(flm_t).transpose(0, 1).contiguous().to(device)
+                blm_t = torch.LongTensor(blm_t).transpose(0, 1).contiguous().to(device)
+                blm_ind = torch.LongTensor(blm_ind).transpose(0, 1).contiguous().view(-1).to(device)
+                lm_index = torch.LongTensor([tup[8] + [word_padded_len] * (cur_seq_length - len(tup[0])) for tup in batch])
+                lm_index[lm_index==-1] = word_padded_len + 1
+                lm_index = lm_index.to(device)
             word_t = torch.LongTensor([tup[0] + [self.w_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
             char_t = torch.LongTensor([tup[1] + [self.c_pad] * (cur_seq_length - len(tup[0])) for tup in batch]).to(device)
             chunk_mask = torch.ByteTensor([tup[2] + [0] * (cur_seq_length - len(tup[2])) for tup in batch]).to(device)
@@ -266,9 +319,10 @@ class TrainDataset(object):
             label_list = [label for tup in batch for label in tup[5]]
             type_label = torch.FloatTensor(label_list[0:-1]).to(device)
 
+            
             cur_idx += 1
 
-            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label
+            yield word_t, char_t, chunk_mask, chunk_label, type_mask, type_label, flm_t, blm_t, blm_ind, lm_index
 
         random.shuffle(self.shuffle_list)
 
